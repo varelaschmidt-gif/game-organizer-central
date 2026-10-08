@@ -14,16 +14,338 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      audit_logs: {
+        Row: {
+          action: string
+          actor_id: string | null
+          created_at: string
+          details: Json
+          entity: string | null
+          entity_id: string | null
+          group_id: string | null
+          id: string
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          created_at?: string
+          details?: Json
+          entity?: string | null
+          entity_id?: string | null
+          group_id?: string | null
+          id?: string
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          created_at?: string
+          details?: Json
+          entity?: string | null
+          entity_id?: string | null
+          group_id?: string | null
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_logs_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      group_invites: {
+        Row: {
+          accepted_at: string | null
+          created_at: string
+          email: string
+          expires_at: string
+          group_id: string
+          id: string
+          invited_by: string
+          role: Database["public"]["Enums"]["group_role"]
+          token: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          created_at?: string
+          email: string
+          expires_at?: string
+          group_id: string
+          id?: string
+          invited_by: string
+          role?: Database["public"]["Enums"]["group_role"]
+          token?: string
+        }
+        Update: {
+          accepted_at?: string | null
+          created_at?: string
+          email?: string
+          expires_at?: string
+          group_id?: string
+          id?: string
+          invited_by?: string
+          role?: Database["public"]["Enums"]["group_role"]
+          token?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_invites_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      group_members: {
+        Row: {
+          created_at: string
+          group_id: string
+          id: string
+          permissions: string[]
+          role: Database["public"]["Enums"]["group_role"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          group_id: string
+          id?: string
+          permissions?: string[]
+          role?: Database["public"]["Enums"]["group_role"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          group_id?: string
+          id?: string
+          permissions?: string[]
+          role?: Database["public"]["Enums"]["group_role"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_members_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      group_settings: {
+        Row: {
+          created_at: string
+          default_time: string | null
+          default_weekday: number | null
+          group_id: string
+          location: string | null
+          max_players: number
+          monthly_fee: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          default_time?: string | null
+          default_weekday?: number | null
+          group_id: string
+          location?: string | null
+          max_players?: number
+          monthly_fee?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          default_time?: string | null
+          default_weekday?: number | null
+          group_id?: string
+          location?: string | null
+          max_players?: number
+          monthly_fee?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_settings_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: true
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      groups: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      players: {
+        Row: {
+          created_at: string
+          group_id: string
+          id: string
+          is_monthly: boolean
+          name: string
+          nickname: string | null
+          phone: string | null
+          position: string | null
+          skill_level: number | null
+          status: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          group_id: string
+          id?: string
+          is_monthly?: boolean
+          name: string
+          nickname?: string | null
+          phone?: string | null
+          position?: string | null
+          skill_level?: number | null
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          group_id?: string
+          id?: string
+          is_monthly?: boolean
+          name?: string
+          nickname?: string | null
+          phone?: string | null
+          position?: string | null
+          skill_level?: number | null
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "players_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          full_name: string
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["platform_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["platform_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["platform_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      accept_invite: { Args: { _token: string }; Returns: string }
+      create_group: {
+        Args: { _as_player?: boolean; _name: string }
+        Returns: string
+      }
+      create_invite: {
+        Args: {
+          _email: string
+          _group_id: string
+          _role?: Database["public"]["Enums"]["group_role"]
+        }
+        Returns: string
+      }
+      get_invite: {
+        Args: { _token: string }
+        Returns: {
+          accepted: boolean
+          email: string
+          expired: boolean
+          group_name: string
+          role: Database["public"]["Enums"]["group_role"]
+        }[]
+      }
+      has_group_permission: {
+        Args: { _group_id: string; _perm: string }
+        Returns: boolean
+      }
+      has_platform_role: {
+        Args: { _role: Database["public"]["Enums"]["platform_role"] }
+        Returns: boolean
+      }
+      is_group_admin: { Args: { _group_id: string }; Returns: boolean }
+      is_group_member: { Args: { _group_id: string }; Returns: boolean }
+      shares_group_with: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      group_role: "admin" | "organizer" | "player"
+      platform_role: "group_creator"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +472,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      group_role: ["admin", "organizer", "player"],
+      platform_role: ["group_creator"],
+    },
   },
 } as const
