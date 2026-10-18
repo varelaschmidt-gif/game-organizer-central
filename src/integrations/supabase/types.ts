@@ -14,6 +14,117 @@ export type Database = {
   }
   public: {
     Tables: {
+      attendance_history: {
+        Row: {
+          actor_id: string | null
+          attendance_id: string
+          created_at: string
+          from_status: string | null
+          group_id: string
+          id: string
+          note: string | null
+          to_status: string
+        }
+        Insert: {
+          actor_id?: string | null
+          attendance_id: string
+          created_at?: string
+          from_status?: string | null
+          group_id: string
+          id?: string
+          note?: string | null
+          to_status: string
+        }
+        Update: {
+          actor_id?: string | null
+          attendance_id?: string
+          created_at?: string
+          from_status?: string | null
+          group_id?: string
+          id?: string
+          note?: string | null
+          to_status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendance_history_attendance_id_fkey"
+            columns: ["attendance_id"]
+            isOneToOne: false
+            referencedRelation: "attendances"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      attendances: {
+        Row: {
+          attended: boolean | null
+          cancelled_at: string | null
+          confirmed_at: string | null
+          created_at: string
+          event_id: string
+          group_id: string
+          id: string
+          offer_expires_at: string | null
+          player_id: string
+          status: string
+          updated_at: string
+          updated_by: string | null
+          waitlisted_at: string | null
+        }
+        Insert: {
+          attended?: boolean | null
+          cancelled_at?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          event_id: string
+          group_id: string
+          id?: string
+          offer_expires_at?: string | null
+          player_id: string
+          status: string
+          updated_at?: string
+          updated_by?: string | null
+          waitlisted_at?: string | null
+        }
+        Update: {
+          attended?: boolean | null
+          cancelled_at?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          event_id?: string
+          group_id?: string
+          id?: string
+          offer_expires_at?: string | null
+          player_id?: string
+          status?: string
+          updated_at?: string
+          updated_by?: string | null
+          waitlisted_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendances_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attendances_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attendances_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "players"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       audit_logs: {
         Row: {
           action: string
@@ -55,6 +166,128 @@ export type Database = {
           },
         ]
       }
+      event_series: {
+        Row: {
+          created_at: string
+          created_by: string
+          group_id: string
+          id: string
+          start_time: string
+          updated_at: string
+          weekday: number
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          group_id: string
+          id?: string
+          start_time: string
+          updated_at?: string
+          weekday: number
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          group_id?: string
+          id?: string
+          start_time?: string
+          updated_at?: string
+          weekday?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_series_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          cancellation_rules: string | null
+          confirm_deadline: string | null
+          created_at: string
+          created_by: string
+          duration_minutes: number
+          goalkeepers_wanted: number
+          group_id: string
+          id: string
+          location: string | null
+          max_participants: number
+          notes: string | null
+          players_per_team: number
+          price: number | null
+          series_id: string | null
+          starts_at: string
+          status: string
+          teams_count: number
+          title: string
+          updated_at: string
+          waitlist_offer_minutes: number | null
+        }
+        Insert: {
+          cancellation_rules?: string | null
+          confirm_deadline?: string | null
+          created_at?: string
+          created_by: string
+          duration_minutes?: number
+          goalkeepers_wanted?: number
+          group_id: string
+          id?: string
+          location?: string | null
+          max_participants?: number
+          notes?: string | null
+          players_per_team?: number
+          price?: number | null
+          series_id?: string | null
+          starts_at: string
+          status?: string
+          teams_count?: number
+          title?: string
+          updated_at?: string
+          waitlist_offer_minutes?: number | null
+        }
+        Update: {
+          cancellation_rules?: string | null
+          confirm_deadline?: string | null
+          created_at?: string
+          created_by?: string
+          duration_minutes?: number
+          goalkeepers_wanted?: number
+          group_id?: string
+          id?: string
+          location?: string | null
+          max_participants?: number
+          notes?: string | null
+          players_per_team?: number
+          price?: number | null
+          series_id?: string | null
+          starts_at?: string
+          status?: string
+          teams_count?: number
+          title?: string
+          updated_at?: string
+          waitlist_offer_minutes?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "events_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "events_series_id_fkey"
+            columns: ["series_id"]
+            isOneToOne: false
+            referencedRelation: "event_series"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       group_invites: {
         Row: {
           accepted_at: string | null
@@ -64,6 +297,8 @@ export type Database = {
           group_id: string
           id: string
           invited_by: string
+          player_id: string | null
+          revoked_at: string | null
           role: Database["public"]["Enums"]["group_role"]
           token: string
         }
@@ -75,6 +310,8 @@ export type Database = {
           group_id: string
           id?: string
           invited_by: string
+          player_id?: string | null
+          revoked_at?: string | null
           role?: Database["public"]["Enums"]["group_role"]
           token?: string
         }
@@ -86,6 +323,8 @@ export type Database = {
           group_id?: string
           id?: string
           invited_by?: string
+          player_id?: string | null
+          revoked_at?: string | null
           role?: Database["public"]["Enums"]["group_role"]
           token?: string
         }
@@ -95,6 +334,13 @@ export type Database = {
             columns: ["group_id"]
             isOneToOne: false
             referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_invites_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "players"
             referencedColumns: ["id"]
           },
         ]
@@ -202,16 +448,59 @@ export type Database = {
         }
         Relationships: []
       }
+      player_private_notes: {
+        Row: {
+          group_id: string
+          notes: string
+          player_id: string
+          updated_at: string
+        }
+        Insert: {
+          group_id: string
+          notes?: string
+          player_id: string
+          updated_at?: string
+        }
+        Update: {
+          group_id?: string
+          notes?: string
+          player_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "player_private_notes_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "player_private_notes_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: true
+            referencedRelation: "players"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       players: {
         Row: {
           created_at: string
+          dominant_foot: string | null
+          email: string | null
+          goalkeeper_level: number | null
           group_id: string
           id: string
           is_monthly: boolean
+          joined_at: string
           name: string
           nickname: string | null
+          participation_type: string
           phone: string | null
+          photo_path: string | null
           position: string | null
+          secondary_positions: string[]
           skill_level: number | null
           status: string
           updated_at: string
@@ -219,13 +508,20 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          dominant_foot?: string | null
+          email?: string | null
+          goalkeeper_level?: number | null
           group_id: string
           id?: string
           is_monthly?: boolean
+          joined_at?: string
           name: string
           nickname?: string | null
+          participation_type?: string
           phone?: string | null
+          photo_path?: string | null
           position?: string | null
+          secondary_positions?: string[]
           skill_level?: number | null
           status?: string
           updated_at?: string
@@ -233,13 +529,20 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          dominant_foot?: string | null
+          email?: string | null
+          goalkeeper_level?: number | null
           group_id?: string
           id?: string
           is_monthly?: boolean
+          joined_at?: string
           name?: string
           nickname?: string | null
+          participation_type?: string
           phone?: string | null
+          photo_path?: string | null
           position?: string | null
+          secondary_positions?: string[]
           skill_level?: number | null
           status?: string
           updated_at?: string
@@ -308,7 +611,65 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      _expire_offers: { Args: { _event_id: string }; Returns: undefined }
+      _lock_event: {
+        Args: { _event_id: string }
+        Returns: {
+          cancellation_rules: string | null
+          confirm_deadline: string | null
+          created_at: string
+          created_by: string
+          duration_minutes: number
+          goalkeepers_wanted: number
+          group_id: string
+          id: string
+          location: string | null
+          max_participants: number
+          notes: string | null
+          players_per_team: number
+          price: number | null
+          series_id: string | null
+          starts_at: string
+          status: string
+          teams_count: number
+          title: string
+          updated_at: string
+          waitlist_offer_minutes: number | null
+        }
+        SetofOptions: {
+          from: "*"
+          to: "events"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      _promote_next: { Args: { _event_id: string }; Returns: undefined }
+      _resolve_player: {
+        Args: {
+          _ev: Database["public"]["Tables"]["events"]["Row"]
+          _player_id: string
+        }
+        Returns: string
+      }
       accept_invite: { Args: { _token: string }; Returns: string }
+      admin_mark_attended: {
+        Args: { _attended: boolean; _event_id: string; _player_id: string }
+        Returns: undefined
+      }
+      admin_promote: {
+        Args: { _event_id: string; _player_id: string }
+        Returns: undefined
+      }
+      create_event_series: {
+        Args: {
+          _first_date: string
+          _group_id: string
+          _occurrences: number
+          _start_time: string
+          _template: Json
+        }
+        Returns: string
+      }
       create_group: {
         Args: { _as_player?: boolean; _name: string }
         Returns: string
@@ -317,6 +678,7 @@ export type Database = {
         Args: {
           _email: string
           _group_id: string
+          _player_id?: string
           _role?: Database["public"]["Enums"]["group_role"]
         }
         Returns: string
@@ -328,6 +690,8 @@ export type Database = {
           email: string
           expired: boolean
           group_name: string
+          player_name: string
+          revoked: boolean
           role: Database["public"]["Enums"]["group_role"]
         }[]
       }
@@ -341,7 +705,21 @@ export type Database = {
       }
       is_group_admin: { Args: { _group_id: string }; Returns: boolean }
       is_group_member: { Args: { _group_id: string }; Returns: boolean }
+      process_event: { Args: { _event_id: string }; Returns: undefined }
+      revoke_invite: { Args: { _invite_id: string }; Returns: undefined }
+      rsvp_cancel: {
+        Args: { _event_id: string; _player_id?: string }
+        Returns: undefined
+      }
+      rsvp_confirm: {
+        Args: { _event_id: string; _player_id?: string }
+        Returns: string
+      }
       shares_group_with: { Args: { _user_id: string }; Returns: boolean }
+      update_events_scoped: {
+        Args: { _changes: Json; _event_id: string; _scope: string }
+        Returns: number
+      }
     }
     Enums: {
       group_role: "admin" | "organizer" | "player"
