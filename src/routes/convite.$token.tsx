@@ -42,7 +42,7 @@ function InvitePage() {
     setBusy(true);
     const { data, error } = await supabase.rpc("accept_invite", { _token: token });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setActiveGroupId(data as string);
     await qc.invalidateQueries();
     toast.success("Bem-vindo ao grupo!");
