@@ -8,6 +8,13 @@
       "when": 1791497094208,
       "tag": "0000_migration",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792353916779,
+      "tag": "0001_players_events_rsvp",
+      "breakpoints": true
     }
   ]
 }
