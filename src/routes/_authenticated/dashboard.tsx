@@ -65,7 +65,7 @@ function Dashboard() {
     return <ErrorState message={(groups.error as Error).message} onRetry={() => groups.refetch()} />;
   const list = groups.data ?? [];
   if (list.length === 0) return <NoGroup />;
-  const active = list.find((g) => g.id === getActiveGroupId()) ?? list[0];
+  const active = list.find((g) => g.id === getActiveGroupId()) ?? list[0]!;
   return <GroupDashboard group={active} all={list} />;
 }
 
@@ -80,7 +80,7 @@ function NoGroup() {
     setBusy(true);
     const { data, error } = await supabase.rpc("create_group", { _name: name, _as_player: true });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setActiveGroupId(data as string);
     toast.success("Grupo criado!");
     qc.invalidateQueries({ queryKey: ["my-groups"] });
@@ -210,7 +210,7 @@ function InviteDialog({ groupId, isAdmin }: { groupId: string; isAdmin: boolean 
       _role: role,
     });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setLink(`${window.location.origin}/convite/${data}`);
   }
 
