@@ -208,6 +208,7 @@ function InviteDialog({ groupId, isAdmin }: { groupId: string; isAdmin: boolean 
       _group_id: groupId,
       _email: email,
       _role: role,
+      _player_id: undefined,
     });
     setBusy(false);
     if (error) { toast.error(error.message); return; }
