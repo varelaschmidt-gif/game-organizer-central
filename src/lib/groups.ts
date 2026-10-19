@@ -60,3 +60,29 @@ const KEY = "rdq-active-group";
 export const getActiveGroupId = () =>
   typeof window === "undefined" ? null : window.localStorage.getItem(KEY);
 export const setActiveGroupId = (id: string) => window.localStorage.setItem(KEY, id);
+
+import { useQuery } from "@tanstack/react-query";
+
+export function useActiveGroup() {
+  const q = useQuery(myGroupsQuery);
+  const list = q.data ?? [];
+  const group = list.find((g) => g.id === getActiveGroupId()) ?? list[0];
+  const can = (perm: string) =>
+    !!group && (group.role === "admin" || (group.role === "organizer" && group.permissions.includes(perm)));
+  return { ...q, group, can };
+}
+
+export const myPlayerQuery = (groupId: string) =>
+  queryOptions({
+    queryKey: ["my-player", groupId],
+    queryFn: async () => {
+      const { data: u } = await supabase.auth.getUser();
+      if (!u.user) return null;
+      const { data } = await supabase.from("players").select("*").eq("group_id", groupId).eq("user_id", u.user.id).maybeSingle();
+      return data;
+    },
+  });
+
+export function errMsg(e: unknown) {
+  return e && typeof e === "object" && "message" in e ? String((e as { message: unknown }).message) : "Erro inesperado";
+}
