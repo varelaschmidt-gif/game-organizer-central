@@ -15,6 +15,13 @@
       "when": 1792353916779,
       "tag": "0001_players_events_rsvp",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792454400000,
+      "tag": "0002_rsvp_first_confirmation",
+      "breakpoints": true
     }
   ]
 }

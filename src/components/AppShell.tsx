@@ -25,8 +25,8 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const NAV = [
   { to: "/dashboard", label: "Início", icon: LayoutDashboard },
-  { to: "/dashboard", label: "Jogos", icon: CalendarDays, soon: true },
-  { to: "/dashboard", label: "Jogadores", icon: Users, soon: true },
+  { to: "/events", label: "Jogos", icon: CalendarDays },
+  { to: "/players", label: "Jogadores", icon: Users },
   { to: "/dashboard", label: "Financeiro", icon: Wallet, soon: true },
   { to: "/dashboard", label: "Estatísticas", icon: BarChart3, soon: true },
   { to: "/dashboard", label: "Configurações", icon: Settings, soon: true },
