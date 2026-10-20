@@ -57,6 +57,7 @@ function InvitePage() {
   else {
     const { invite, user } = q.data;
     if (invite.accepted) body = <ErrorState message="Este convite já foi utilizado." />;
+    else if (invite.revoked) body = <ErrorState message="Este convite foi revogado. Peça um novo ao administrador." />;
     else if (invite.expired) body = <ErrorState message="Este convite expirou. Peça um novo ao administrador." />;
     else
       body = (
