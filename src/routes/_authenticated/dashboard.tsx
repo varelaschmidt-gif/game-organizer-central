@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -13,6 +13,7 @@ import {
   Wallet,
   Shirt,
   UserPlus,
+  MapPin,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -49,14 +50,16 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 });
 
 const MODULES = [
-  { label: "Jogos", icon: CalendarDays, text: "Nenhum jogo agendado ainda." },
+  { label: "Eventos", icon: CalendarDays, text: "Crie jogos, séries recorrentes e gerencie confirmações.", to: "/events" },
+  { label: "Jogadores", icon: Users, text: "Cadastre jogadores, envie convites e organize sua lista.", to: "/jogadores" },
+  { label: "Quadras", icon: MapPin, text: "Cadastre os locais utilizados nos jogos.", to: "/quadras" },
   { label: "Times", icon: Shirt, text: "Nenhum time montado ainda." },
   { label: "Partidas", icon: Swords, text: "Nenhuma partida registrada." },
   { label: "Financeiro", icon: Wallet, text: "Nenhuma movimentação registrada." },
   { label: "Estatísticas", icon: BarChart3, text: "Sem dados para estatísticas." },
   { label: "Relatórios", icon: FileText, text: "Nenhum relatório disponível." },
   { label: "Configurações", icon: Settings, text: "Defina dia, horário e local do grupo." },
-];
+] as const;
 
 function Dashboard() {
   const groups = useQuery(myGroupsQuery);
@@ -92,7 +95,7 @@ function NoGroup() {
       <EmptyState
         icon={<UserPlus className="h-8 w-8" />}
         title="Você ainda não participa de um grupo"
-        description="Peça ao administrador do seu grupo um convite. Ao abrir o link do convite, você entra automaticamente."
+        description="Peça um convite ao administrador de um grupo para participar. Para criar um grupo novo, um administrador da plataforma precisa autorizar sua conta."
       />
     );
   return (
@@ -183,9 +186,13 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
                 <m.icon className="h-5 w-5 text-primary" /> {m.label}
               </div>
               <p className="mt-2 text-sm text-muted-foreground">{m.text}</p>
-              <Button size="sm" variant="outline" className="mt-3" disabled>
-                Configurar (em breve)
-              </Button>
+              {"to" in m ? (
+                <Button asChild size="sm" variant="outline" className="mt-3">
+                  <Link to={m.to}>Abrir</Link>
+                </Button>
+              ) : (
+                <Button size="sm" variant="outline" className="mt-3" disabled>Configurar (em breve)</Button>
+              )}
             </div>
           ))}
         </div>

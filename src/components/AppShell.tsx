@@ -6,6 +6,7 @@ import {
   Crown,
   LayoutDashboard,
   LogOut,
+  MapPin,
   Settings,
   Users,
   Wallet,
@@ -25,6 +26,9 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const NAV = [
   { to: "/dashboard", label: "Início", icon: LayoutDashboard },
+  { to: "/events", label: "Eventos", icon: CalendarDays },
+  { to: "/jogadores", label: "Jogadores", icon: Users },
+  { to: "/quadras", label: "Quadras", icon: MapPin },
   { to: "/dashboard", label: "Financeiro", icon: Wallet, soon: true },
   { to: "/dashboard", label: "Estatísticas", icon: BarChart3, soon: true },
   { to: "/dashboard", label: "Configurações", icon: Settings, soon: true },
