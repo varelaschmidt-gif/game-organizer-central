@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center text-foreground">
-      <Crown className="h-12 w-12 text-primary" />
+      <Crown className="h-12 w-12 text-pink-500" />
       <h1 className="mt-4 text-5xl font-bold uppercase md:text-7xl">Rei da Quadra</h1>
       <p className="mt-3 max-w-md text-muted-foreground">
         Organize jogos, jogadores e o caixa do seu grupo de futebol amador.
