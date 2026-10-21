@@ -561,25 +561,37 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          address: string | null
+          age: number | null
+          city: string | null
           created_at: string
           full_name: string
           id: string
+          neighborhood: string | null
           phone: string | null
           updated_at: string
         }
         Insert: {
           avatar_url?: string | null
+          address?: string | null
+          age?: number | null
+          city?: string | null
           created_at?: string
           full_name?: string
           id: string
+          neighborhood?: string | null
           phone?: string | null
           updated_at?: string
         }
         Update: {
           avatar_url?: string | null
+          address?: string | null
+          age?: number | null
+          city?: string | null
           created_at?: string
           full_name?: string
           id?: string
+          neighborhood?: string | null
           phone?: string | null
           updated_at?: string
         }
@@ -674,6 +686,10 @@ export type Database = {
         Args: { _as_player?: boolean; _name: string }
         Returns: string
       }
+      create_court: {
+        Args: { _address: string; _name: string; _time: string; _weekday: number }
+        Returns: string
+      }
       create_invite: {
         Args: {
           _email: string
@@ -707,6 +723,7 @@ export type Database = {
       is_group_member: { Args: { _group_id: string }; Returns: boolean }
       process_event: { Args: { _event_id: string }; Returns: undefined }
       revoke_invite: { Args: { _invite_id: string }; Returns: undefined }
+      review_join_request: { Args: { _approve: boolean; _request_id: string }; Returns: string }
       rsvp_cancel: {
         Args: { _event_id: string; _player_id?: string }
         Returns: undefined
@@ -856,3 +873,4 @@ export const Constants = {
     },
   },
 } as const
+

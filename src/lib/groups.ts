@@ -46,7 +46,7 @@ export const profileQuery = queryOptions({
     const { data: u } = await supabase.auth.getUser();
     if (!u.user) return null;
     const { data } = await supabase.from("profiles").select("*").eq("id", u.user.id).maybeSingle();
-    return { email: u.user.email ?? "", ...(data ?? { full_name: "" }) };
+    return { email: u.user.email ?? "", ...(data ?? { full_name: "", age: null, address: null, city: null, neighborhood: null }) };
   },
 });
 
@@ -86,3 +86,4 @@ export const myPlayerQuery = (groupId: string) =>
 export function errMsg(e: unknown) {
   return e && typeof e === "object" && "message" in e ? String((e as { message: unknown }).message) : "Erro inesperado";
 }
+

@@ -17,14 +17,13 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  canCreateGroupQuery,
   myGroupsQuery,
   getActiveGroupId,
   setActiveGroupId,
   ROLE_LABEL,
   type MyGroup,
 } from "@/lib/groups";
-import { EmptyState, ErrorState, LoadingState, StatCard } from "@/components/states";
+import { ErrorState, LoadingState, StatCard } from "@/components/states";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -62,7 +61,7 @@ const MODULES = [
 ] as const;
 
 function Dashboard() {
-  const groups = useQuery(myGroupsQuery);
+  const groups = useQuery({ ...myGroupsQuery, refetchInterval: 15_000 });
   if (groups.isLoading) return <LoadingState />;
   if (groups.error)
     return <ErrorState message={(groups.error as Error).message} onRetry={() => groups.refetch()} />;
@@ -73,51 +72,59 @@ function Dashboard() {
 }
 
 function NoGroup() {
-  const can = useQuery(canCreateGroupQuery);
   const qc = useQueryClient();
   const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [weekday, setWeekday] = useState("0");
+  const [time, setTime] = useState("09:00");
   const [busy, setBusy] = useState(false);
+  const requests = useQuery({
+    queryKey: ["my-join-requests"],
+    queryFn: async () => {
+      const { data: auth } = await supabase.auth.getUser();
+      if (!auth.user) return [];
+      const { data, error } = await (supabase as any).from("group_join_requests")
+        .select("id,court_name,status,created_at").eq("user_id", auth.user.id).order("created_at", { ascending: false });
+      if (error) throw error;
+      return data ?? [];
+    },
+  });
 
   async function create(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
-    const { data, error } = await supabase.rpc("create_group", { _name: name, _as_player: true });
+    const { data, error } = await supabase.rpc("create_court", { _name: name, _address: address, _weekday: Number(weekday), _time: time });
     setBusy(false);
     if (error) { toast.error(error.message); return; }
     setActiveGroupId(data as string);
-    toast.success("Grupo criado!");
-    qc.invalidateQueries({ queryKey: ["my-groups"] });
+    toast.success("Quadra criada! Você é o administrador responsável.");
+    await qc.invalidateQueries({ queryKey: ["my-groups"] });
   }
 
-  if (can.isLoading) return <LoadingState />;
-  if (!can.data)
-    return (
-      <EmptyState
-        icon={<UserPlus className="h-8 w-8" />}
-        title="Você ainda não participa de um grupo"
-        description="Peça um convite ao administrador de um grupo para participar. Para criar um grupo novo, um administrador da plataforma precisa autorizar sua conta."
-      />
-    );
   return (
-    <div className="mx-auto max-w-md rounded-xl border border-border bg-card p-6">
-      <h1 className="text-2xl font-bold">Crie seu grupo</h1>
-      <p className="mt-1 text-sm text-muted-foreground">
-        Você foi autorizado a criar um grupo e será o administrador dele.
-      </p>
-      <form onSubmit={create} className="mt-4 space-y-3">
-        <div>
-          <Label htmlFor="gname">Nome do grupo</Label>
-          <Input id="gname" value={name} onChange={(e) => setName(e.target.value)} required minLength={2} />
-        </div>
-        <Button type="submit" disabled={busy} className="w-full">
-          {busy ? "Criando..." : "Criar grupo"}
-        </Button>
-      </form>
+    <div className="mx-auto max-w-2xl space-y-5">
+      <div className="rounded-xl border border-border bg-card p-6">
+        <h1 className="text-2xl font-bold">Crie sua quadra</h1>
+        <p className="mt-1 text-sm text-muted-foreground">A criação é gratuita durante o desenvolvimento. Você será o administrador e poderá aprovar os jogadores que entrarem.</p>
+        <form onSubmit={create} className="mt-4 grid gap-3 sm:grid-cols-2">
+          <div><Label htmlFor="gname">Nome da quadra ou grupo</Label><Input id="gname" value={name} onChange={(e) => setName(e.target.value)} required minLength={2} /></div>
+          <div><Label htmlFor="court-address">Endereço da quadra</Label><Input id="court-address" value={address} onChange={(e) => setAddress(e.target.value)} required /></div>
+          <div><Label htmlFor="court-day">Dia habitual de uso</Label><select id="court-day" className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" value={weekday} onChange={(e) => setWeekday(e.target.value)}>{["Domingo","Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado"].map((d,i)=><option key={d} value={i}>{d}</option>)}</select></div>
+          <div><Label htmlFor="court-time">Horário habitual</Label><Input id="court-time" type="time" value={time} onChange={(e) => setTime(e.target.value)} required /></div>
+          <Button type="submit" disabled={busy} className="sm:col-span-2">{busy ? "Criando..." : "Criar quadra gratuitamente"}</Button>
+        </form>
+      </div>
+      <section className="rounded-xl border border-border bg-card p-6">
+        <h2 className="text-xl font-semibold">Aguardando aprovação</h2>
+        <p className="mt-1 text-sm text-muted-foreground">Depois de usar um convite e completar seu perfil, o administrador da quadra precisa aprovar sua entrada.</p>
+        <div className="mt-3 space-y-2">{(requests.data ?? []).map((r:any)=><div key={r.id} className="flex items-center justify-between rounded-lg border p-3"><span>{r.court_name}</span><Badge variant={r.status==="approved"?"default":"secondary"}>{r.status==="pending"?"Aguardando aprovação":r.status==="approved"?"Aprovado":"Recusado"}</Badge></div>)}{requests.data?.length===0&&<p className="text-sm text-muted-foreground">Nenhuma solicitação enviada.</p>}</div>
+      </section>
     </div>
   );
 }
 
 function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
+  const qc = useQueryClient();
   const players = useQuery({
     queryKey: ["players-count", group.id],
     queryFn: async () => {
@@ -141,6 +148,22 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
     },
   });
   const canInvite = group.role === "admin" || group.permissions.includes("members");
+  const requests = useQuery({
+    queryKey: ["join-requests", group.id],
+    enabled: group.role === "admin",
+    queryFn: async () => {
+      const { data, error } = await (supabase as any).from("group_join_requests").select("id,name,email,created_at")
+        .eq("group_id", group.id).eq("status", "pending").order("created_at");
+      if (error) throw error;
+      return data ?? [];
+    },
+  });
+  async function reviewRequest(id: string, approve: boolean) {
+    const { error } = await (supabase as any).rpc("review_join_request", { _request_id: id, _approve: approve });
+    if (error) { toast.error(error.message); return; }
+    toast.success(approve ? "Jogador aprovado e vinculado à quadra" : "Solicitação recusada");
+    await Promise.all([qc.invalidateQueries({ queryKey: ["my-groups"] }), qc.invalidateQueries({ queryKey: ["players-count", group.id] }), requests.refetch()]);
+  }
 
   return (
     <div className="space-y-6">
@@ -176,6 +199,18 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
         <StatCard label="Jogadores" icon={<Users className="h-4 w-4" />} value={players.data ?? "—"} />
         <StatCard label="Membros" icon={<Shield className="h-4 w-4" />} value={members.data ?? "—"} />
       </div>
+
+      {group.role === "admin" && (requests.data?.length ?? 0) > 0 && (
+        <section className="rounded-xl border border-border bg-card p-4">
+          <h2 className="text-xl font-semibold">Pedidos para entrar na quadra</h2>
+          <div className="mt-3 divide-y">{requests.data!.map((request: any) => (
+            <div key={request.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
+              <div><div className="font-medium">{request.name}</div><div className="text-sm text-muted-foreground">{request.email} · {new Date(request.created_at).toLocaleString("pt-BR")}</div></div>
+              <div className="flex gap-2"><Button size="sm" variant="outline" onClick={() => reviewRequest(request.id, false)}>Recusar</Button><Button size="sm" onClick={() => reviewRequest(request.id, true)}>Aprovar entrada</Button></div>
+            </div>
+          ))}</div>
+        </section>
+      )}
 
       <section>
         <h2 className="mb-3 text-xl font-semibold uppercase">Módulos</h2>

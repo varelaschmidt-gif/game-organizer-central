@@ -47,6 +47,10 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [neighborhood, setNeighborhood] = useState("");
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState<string | null>(null);
 
@@ -72,7 +76,7 @@ function AuthPage() {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: window.location.origin + target, data: { full_name: name } },
+          options: { emailRedirectTo: window.location.origin + target, data: { full_name: name, age: Number(age), address, city, neighborhood } },
         });
         if (error) {
           if (/already|registered/i.test(error.message)) throw new Error("Este e-mail já está cadastrado. Faça login ou recupere sua senha.");
@@ -135,10 +139,13 @@ function AuthPage() {
             <>
               <form onSubmit={submit} className="mt-4 space-y-3">
                 {mode === "signup" && (
-                  <div>
-                    <Label htmlFor="name">Nome</Label>
-                    <Input id="name" required value={name} onChange={(e) => setName(e.target.value)} />
-                  </div>
+                  <>
+                    <div><Label htmlFor="name">Nome</Label><Input id="name" required value={name} onChange={(e) => setName(e.target.value)} /></div>
+                    <div><Label htmlFor="age">Idade</Label><Input id="age" required type="number" min="1" max="120" value={age} onChange={(e) => setAge(e.target.value)} /></div>
+                    <div><Label htmlFor="address">Endereço</Label><Input id="address" required autoComplete="street-address" value={address} onChange={(e) => setAddress(e.target.value)} /></div>
+                    <div><Label htmlFor="city">Cidade</Label><Input id="city" required autoComplete="address-level2" value={city} onChange={(e) => setCity(e.target.value)} /></div>
+                    <div><Label htmlFor="neighborhood">Bairro</Label><Input id="neighborhood" required value={neighborhood} onChange={(e) => setNeighborhood(e.target.value)} /></div>
+                  </>
                 )}
                 <div>
                   <Label htmlFor="email">E-mail</Label>
@@ -177,3 +184,4 @@ function AuthPage() {
     </main>
   );
 }
+

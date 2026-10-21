@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { MapPin, Pencil, Plus } from "lucide-react";
@@ -120,7 +120,7 @@ function CourtsPage() {
   }
 
   if (isLoading || courts.isLoading) return <LoadingState />;
-  if (!group) return <EmptyState title="Você ainda não participa de um grupo" />;
+  if (!group) return <EmptyState title="Você ainda não participa de uma quadra" description="Crie uma quadra gratuitamente ou abra o convite recebido na tela inicial." action={<Button asChild><Link to="/dashboard">Ir para início</Link></Button>} />;
   if (courts.error) return <ErrorState message={(courts.error as Error).message} onRetry={() => courts.refetch()} />;
 
   return (
@@ -188,3 +188,4 @@ function CourtsPage() {
     </div>
   );
 }
+

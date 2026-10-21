@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -88,7 +88,7 @@ function PlayersPage() {
   }
 
   if (isLoading) return <LoadingState />;
-  if (!group) return <EmptyState title="Você ainda não participa de um grupo" />;
+  if (!group) return <EmptyState title="Você ainda não participa de uma quadra" description="Crie sua quadra gratuitamente ou abra o convite recebido na tela inicial." action={<Button asChild><Link to="/dashboard">Ir para início</Link></Button>} />;
   const pages = Math.max(1, Math.ceil((q.data?.count ?? 0) / PAGE));
 
   return (

@@ -34,7 +34,10 @@ function InvitePage() {
         supabase.auth.getUser(),
       ]);
       if (error) throw error;
-      return { invite: data?.[0] ?? null, user: u.user };
+      const { data: profile } = u.user
+        ? await supabase.from("profiles").select("full_name,age,address,city,neighborhood").eq("id", u.user.id).maybeSingle()
+        : { data: null };
+      return { invite: data?.[0] ?? null, user: u.user, profile };
     },
   });
 
@@ -45,7 +48,7 @@ function InvitePage() {
     if (error) { toast.error(error.message); return; }
     setActiveGroupId(data as string);
     await qc.invalidateQueries();
-    toast.success("Bem-vindo ao grupo!");
+    toast.success("Pedido enviado. O administrador da quadra precisa aprovar sua entrada.");
     navigate({ to: "/dashboard" });
   }
 
@@ -55,7 +58,7 @@ function InvitePage() {
   else if (q.error) body = <ErrorState message={(q.error as Error).message} />;
   else if (!q.data?.invite) body = <ErrorState message="Convite inválido." />;
   else {
-    const { invite, user } = q.data;
+    const { invite, user, profile } = q.data;
     if (invite.accepted) body = <ErrorState message="Este convite já foi utilizado." />;
     else if (invite.revoked) body = <ErrorState message="Este convite foi revogado. Peça um novo ao administrador." />;
     else if (invite.expired) body = <ErrorState message="Este convite expirou. Peça um novo ao administrador." />;
@@ -68,9 +71,12 @@ function InvitePage() {
           </p>
           <p className="mt-1 text-sm text-muted-foreground">Convite para: {invite.email}</p>
           {user ? (
+            !profile?.full_name?.trim() || !profile.age || !profile.address?.trim() || !profile.city?.trim() || !profile.neighborhood?.trim() ? (
+              <div className="mt-4 space-y-3"><p className="text-sm text-muted-foreground">Complete seu perfil antes de solicitar acesso.</p><Button asChild className="w-full"><Link to="/perfil" search={{ redirect }}>Completar perfil</Link></Button></div>
+            ) :
             user.email?.toLowerCase() === invite.email ? (
               <Button className="mt-4 w-full" onClick={accept} disabled={busy}>
-                {busy ? "Entrando..." : "Aceitar convite"}
+                {busy ? "Enviando pedido..." : "Solicitar entrada"}
               </Button>
             ) : (
               <div className="mt-4">
@@ -100,3 +106,4 @@ function InvitePage() {
     </main>
   );
 }
+
