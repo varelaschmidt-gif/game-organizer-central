@@ -168,7 +168,7 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
               ))}
             </select>
           )}
-          {canInvite && <InviteDialog groupId={group.id} isAdmin={group.role === "admin"} />}
+          {canInvite && <InviteDialog groupId={group.id} />}
         </div>
       </div>
 
@@ -201,10 +201,9 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
   );
 }
 
-function InviteDialog({ groupId, isAdmin }: { groupId: string; isAdmin: boolean }) {
+function InviteDialog({ groupId }: { groupId: string }) {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState<"player" | "organizer" | "admin">("player");
   const [link, setLink] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -214,7 +213,7 @@ function InviteDialog({ groupId, isAdmin }: { groupId: string; isAdmin: boolean 
     const { data, error } = await supabase.rpc("create_invite", {
       _group_id: groupId,
       _email: email,
-      _role: role,
+      _role: "player",
       _player_id: undefined,
     });
     setBusy(false);
@@ -264,19 +263,6 @@ function InviteDialog({ groupId, isAdmin }: { groupId: string; isAdmin: boolean 
               <Label htmlFor="iemail">E-mail</Label>
               <Input id="iemail" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div>
-              <Label htmlFor="irole">Papel</Label>
-              <select
-                id="irole"
-                className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                value={role}
-                onChange={(e) => setRole(e.target.value as typeof role)}
-              >
-                <option value="player">Jogador</option>
-                <option value="organizer">Organizador auxiliar</option>
-                {isAdmin && <option value="admin">Administrador</option>}
-              </select>
-            </div>
             <Button type="submit" className="w-full" disabled={busy}>
               {busy ? "Gerando..." : "Gerar convite"}
             </Button>
@@ -286,3 +272,4 @@ function InviteDialog({ groupId, isAdmin }: { groupId: string; isAdmin: boolean 
     </Dialog>
   );
 }
+

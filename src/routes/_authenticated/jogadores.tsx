@@ -76,7 +76,7 @@ function PlayersPage() {
     if (error) return void toast.error(error.message);
     download(
       "jogadores.csv",
-      toCsv(data ?? [], ["name", "nickname", "email", "phone", "position", "secondary_positions", "dominant_foot", "skill_level", "goalkeeper_level", "participation_type", "status", "joined_at"]),
+      toCsv(data ?? [], ["name", "nickname", "email", "phone", "position", "secondary_positions", "dominant_foot", "skill_level", "goalkeeper_level", "participation_type", "status", "joined_at", "photo_path"]),
     );
   }
 
@@ -344,22 +344,32 @@ function ImportCsv({ groupId, onClose }: { groupId: string; onClose: () => void 
   async function onFile(file: File) {
     const parsed = parseCsv(await file.text());
     const { data: existing } = await supabase.from("players").select("name, email").eq("group_id", groupId);
-    const emails = new Set((existing ?? []).map((p) => p.email).filter(Boolean));
-    const names = new Set((existing ?? []).map((p) => p.name.toLowerCase()));
+    const emails = new Set((existing ?? []).map((p) => p.email?.trim().toLowerCase()).filter(Boolean));
+    const names = new Set((existing ?? []).map((p) => p.name.trim().toLowerCase()));
     const seenE = new Set<string>(), seenN = new Set<string>();
     setRows(parsed.map((d) => {
       const errors: string[] = [];
-      const name = d["name"] || d["nome"] || "";
-      const email = (d["email"] || d["e-mail"] || "").toLowerCase();
+      const name = (d["name"] || d["nome"] || "").trim();
+      const email = (d["email"] || d["e-mail"] || "").trim().toLowerCase();
+      const normalizedName = name.toLowerCase();
       if (!name) errors.push("Sem nome");
       if (email && (emails.has(email) || seenE.has(email))) errors.push("E-mail duplicado");
-      if (name && (names.has(name.toLowerCase()) || seenN.has(name.toLowerCase()))) errors.push("Nome já cadastrado");
-      const t = d["participation_type"] || d["tipo"] || "avulso";
+      if (name && (names.has(normalizedName) || seenN.has(normalizedName))) errors.push("Nome já cadastrado");
+      const t = (d["participation_type"] || d["tipo"] || "avulso").trim().toLowerCase();
       if (!["mensalista", "avulso", "convidado"].includes(t)) errors.push("Tipo inválido");
-      const sk = d["skill_level"] || d["nota"];
-      if (sk && (isNaN(+sk) || +sk < 0 || +sk > 10)) errors.push("Nota inválida");
-      seenE.add(email); seenN.add(name.toLowerCase());
-      return { data: { ...d, name, email, participation_type: t, skill_level: sk ?? "" }, errors };
+      const sk = d["skill_level"] || d["nota"] || "";
+      const gk = d["goalkeeper_level"] || d["nota_goleiro"] || "";
+      if (sk && (isNaN(+sk) || +sk < 0 || +sk > 10)) errors.push("Nota técnica inválida");
+      if (gk && (isNaN(+gk) || +gk < 0 || +gk > 10)) errors.push("Nota de goleiro inválida");
+      const foot = (d["dominant_foot"] || d["pe_dominante"] || "").trim().toLowerCase();
+      if (foot && !["direito", "esquerdo", "ambos"].includes(foot)) errors.push("Pé dominante inválido");
+      const playerStatus = (d["status"] || "active").trim().toLowerCase();
+      if (!["active", "inactive", "suspended"].includes(playerStatus)) errors.push("Status inválido");
+      const joinedAt = d["joined_at"] || d["data_entrada"] || new Date().toISOString().slice(0, 10);
+      if (joinedAt && !/^\d{4}-\d{2}-\d{2}$/.test(joinedAt)) errors.push("Data de entrada inválida (use AAAA-MM-DD)");
+      const positions = (d["secondary_positions"] || d["posicoes_secundarias"] || "").split(/[|;]/).map((p) => p.trim()).filter(Boolean);
+      seenE.add(email); if (name) seenN.add(normalizedName);
+      return { data: { ...d, name, email, participation_type: t, skill_level: sk, goalkeeper_level: gk, dominant_foot: foot, status: playerStatus, joined_at: joinedAt, secondary_positions: positions.join("|") }, errors };
     }));
   }
 
@@ -370,8 +380,11 @@ function ImportCsv({ groupId, onClose }: { groupId: string; onClose: () => void 
     const { error } = await supabase.from("players").insert(ok.map(({ data: d }) => ({
       group_id: groupId, name: d["name"]!, email: d["email"] || null, nickname: d["nickname"] || d["apelido"] || null,
       phone: d["phone"] || d["telefone"] || null, position: d["position"] || d["posicao"] || null,
+      secondary_positions: (d["secondary_positions"] || d["posicoes_secundarias"] || "").split(/[|;]/).map((p) => p.trim()).filter(Boolean), dominant_foot: d["dominant_foot"] || d["pe_dominante"] || null,
       participation_type: d["participation_type"]!, is_monthly: d["participation_type"] === "mensalista",
+      status: d["status"] as "active" | "inactive" | "suspended", joined_at: d["joined_at"] || d["data_entrada"],
       skill_level: d["skill_level"] ? Number(d["skill_level"]) : null,
+      goalkeeper_level: d["goalkeeper_level"] ? Number(d["goalkeeper_level"]) : null,
     })));
     setBusy(false);
     if (error) return void toast.error(error.message);
@@ -401,3 +414,4 @@ function ImportCsv({ groupId, onClose }: { groupId: string; onClose: () => void 
     </Dialog>
   );
 }
+
