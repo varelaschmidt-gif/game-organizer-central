@@ -49,3 +49,4 @@ function PlayersPage() {
 function Field({label,name,form,setForm,type="text",required=false}:any){return <div><Label htmlFor={name}>{label}</Label><Input id={name} type={type} value={form[name] ?? ""} onChange={(e)=>setForm({...form,[name]:e.target.value})} required={required}/></div>}
 function parseCsvLine(line:string){const cells:string[]=[];let value="",quoted=false;for(let i=0;i<line.length;i++){const c=line[i]!;if(c==='"'&&quoted&&line[i+1]==='"'){value+='"';i++;}else if(c==='"')quoted=!quoted;else if(c===','&&!quoted){cells.push(value);value="";}else value+=c;}cells.push(value);return cells;}
 function downloadCsv(text:string,name:string){const blob=new Blob(["\ufeff",text],{type:"text/csv;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+
