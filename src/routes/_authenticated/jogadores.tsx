@@ -382,7 +382,7 @@ function ImportCsv({ groupId, onClose }: { groupId: string; onClose: () => void 
       phone: d["phone"] || d["telefone"] || null, position: d["position"] || d["posicao"] || null,
       secondary_positions: (d["secondary_positions"] || d["posicoes_secundarias"] || "").split(/[|;]/).map((p) => p.trim()).filter(Boolean), dominant_foot: d["dominant_foot"] || d["pe_dominante"] || null,
       participation_type: d["participation_type"]!, is_monthly: d["participation_type"] === "mensalista",
-      status: d["status"] as "active" | "inactive" | "suspended", joined_at: d["joined_at"] || d["data_entrada"],
+      status: d["status"] as "active" | "inactive" | "suspended", joined_at: d["joined_at"] || d["data_entrada"] || new Date().toISOString().slice(0, 10),
       skill_level: d["skill_level"] ? Number(d["skill_level"]) : null,
       goalkeeper_level: d["goalkeeper_level"] ? Number(d["goalkeeper_level"]) : null,
     })));
