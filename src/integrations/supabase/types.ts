@@ -345,6 +345,73 @@ export type Database = {
           },
         ]
       }
+      group_join_requests: {
+        Row: {
+          court_name: string
+          created_at: string
+          decided_at: string | null
+          decided_by: string | null
+          email: string
+          group_id: string
+          id: string
+          invite_id: string
+          name: string
+          player_id: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          court_name: string
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          email: string
+          group_id: string
+          id?: string
+          invite_id: string
+          name: string
+          player_id?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          court_name?: string
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          email?: string
+          group_id?: string
+          id?: string
+          invite_id?: string
+          name?: string
+          player_id?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_join_requests_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_join_requests_invite_id_fkey"
+            columns: ["invite_id"]
+            isOneToOne: true
+            referencedRelation: "group_invites"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_join_requests_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "players"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       group_members: {
         Row: {
           created_at: string
@@ -560,26 +627,38 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address: string | null
+          age: number | null
           avatar_url: string | null
+          city: string | null
           created_at: string
           full_name: string
           id: string
+          neighborhood: string | null
           phone: string | null
           updated_at: string
         }
         Insert: {
+          address?: string | null
+          age?: number | null
           avatar_url?: string | null
+          city?: string | null
           created_at?: string
           full_name?: string
           id: string
+          neighborhood?: string | null
           phone?: string | null
           updated_at?: string
         }
         Update: {
+          address?: string | null
+          age?: number | null
           avatar_url?: string | null
+          city?: string | null
           created_at?: string
           full_name?: string
           id?: string
+          neighborhood?: string | null
           phone?: string | null
           updated_at?: string
         }
@@ -605,6 +684,62 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      venues: {
+        Row: {
+          address: string | null
+          covered: boolean
+          created_at: string
+          created_by: string | null
+          group_id: string
+          id: string
+          is_active: boolean
+          name: string
+          notes: string | null
+          phone: string | null
+          price_per_hour: number | null
+          surface: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          covered?: boolean
+          created_at?: string
+          created_by?: string | null
+          group_id: string
+          id?: string
+          is_active?: boolean
+          name: string
+          notes?: string | null
+          phone?: string | null
+          price_per_hour?: number | null
+          surface?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          covered?: boolean
+          created_at?: string
+          created_by?: string | null
+          group_id?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          price_per_hour?: number | null
+          surface?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "venues_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
@@ -660,6 +795,15 @@ export type Database = {
         Args: { _event_id: string; _player_id: string }
         Returns: undefined
       }
+      create_court: {
+        Args: {
+          _address: string
+          _name: string
+          _time: string
+          _weekday: number
+        }
+        Returns: string
+      }
       create_event_series: {
         Args: {
           _first_date: string
@@ -706,6 +850,10 @@ export type Database = {
       is_group_admin: { Args: { _group_id: string }; Returns: boolean }
       is_group_member: { Args: { _group_id: string }; Returns: boolean }
       process_event: { Args: { _event_id: string }; Returns: undefined }
+      review_join_request: {
+        Args: { _approve: boolean; _request_id: string }
+        Returns: string
+      }
       revoke_invite: { Args: { _invite_id: string }; Returns: undefined }
       rsvp_cancel: {
         Args: { _event_id: string; _player_id?: string }
