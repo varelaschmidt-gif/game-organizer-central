@@ -99,7 +99,7 @@ export function AppShell() {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel className="max-w-56 truncate">{name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onSelect={() => navigate({ to: "/perfil" })}>
+                <DropdownMenuItem onSelect={() => navigate({ to: "/perfil", search: {} })}>
                   <Users className="mr-2 h-4 w-4" /> Meu perfil
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={signOut}>
