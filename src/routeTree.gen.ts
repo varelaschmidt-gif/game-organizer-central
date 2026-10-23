@@ -13,13 +13,16 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedCampeonatosRouteImport } from './routes/_authenticated/campeonatos'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedEventsRouteImport } from './routes/_authenticated/events'
 import { Route as AuthenticatedJogadoresRouteImport } from './routes/_authenticated/jogadores'
 import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
 import { Route as AuthenticatedPlayersRouteImport } from './routes/_authenticated/players'
 import { Route as AuthenticatedQuadrasRouteImport } from './routes/_authenticated/quadras'
+import { Route as AuthenticatedTimesRouteImport } from './routes/_authenticated/times'
 import { Route as ConviteTokenRouteImport } from './routes/convite.$token'
+import { Route as QuadraCourtIdRouteImport } from './routes/quadra.$courtId'
 import { Route as AuthenticatedEventsEventIdRouteImport } from './routes/_authenticated/events.$eventId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +44,12 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedCampeonatosRoute =
+  AuthenticatedCampeonatosRouteImport.update({
+    id: '/campeonatos',
+    path: '/campeonatos',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -71,9 +80,19 @@ const AuthenticatedQuadrasRoute = AuthenticatedQuadrasRouteImport.update({
   path: '/quadras',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedTimesRoute = AuthenticatedTimesRouteImport.update({
+  id: '/times',
+  path: '/times',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const ConviteTokenRoute = ConviteTokenRouteImport.update({
   id: '/convite/$token',
   path: '/convite/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuadraCourtIdRoute = QuadraCourtIdRouteImport.update({
+  id: '/quadra/$courtId',
+  path: '/quadra/$courtId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedEventsEventIdRoute =
@@ -87,26 +106,32 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/campeonatos': typeof AuthenticatedCampeonatosRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/events': typeof AuthenticatedEventsRouteWithChildren
   '/jogadores': typeof AuthenticatedJogadoresRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/players': typeof AuthenticatedPlayersRoute
   '/quadras': typeof AuthenticatedQuadrasRoute
+  '/times': typeof AuthenticatedTimesRoute
   '/convite/$token': typeof ConviteTokenRoute
+  '/quadra/$courtId': typeof QuadraCourtIdRoute
   '/events/$eventId': typeof AuthenticatedEventsEventIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/campeonatos': typeof AuthenticatedCampeonatosRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/events': typeof AuthenticatedEventsRouteWithChildren
   '/jogadores': typeof AuthenticatedJogadoresRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/players': typeof AuthenticatedPlayersRoute
   '/quadras': typeof AuthenticatedQuadrasRoute
+  '/times': typeof AuthenticatedTimesRoute
   '/convite/$token': typeof ConviteTokenRoute
+  '/quadra/$courtId': typeof QuadraCourtIdRoute
   '/events/$eventId': typeof AuthenticatedEventsEventIdRoute
 }
 export interface FileRoutesById {
@@ -115,13 +140,16 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/campeonatos': typeof AuthenticatedCampeonatosRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/events': typeof AuthenticatedEventsRouteWithChildren
   '/_authenticated/jogadores': typeof AuthenticatedJogadoresRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/_authenticated/players': typeof AuthenticatedPlayersRoute
   '/_authenticated/quadras': typeof AuthenticatedQuadrasRoute
+  '/_authenticated/times': typeof AuthenticatedTimesRoute
   '/convite/$token': typeof ConviteTokenRoute
+  '/quadra/$courtId': typeof QuadraCourtIdRoute
   '/_authenticated/events/$eventId': typeof AuthenticatedEventsEventIdRoute
 }
 export interface FileRouteTypes {
@@ -130,26 +158,32 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/reset-password'
+    | '/campeonatos'
     | '/dashboard'
     | '/events'
     | '/jogadores'
     | '/perfil'
     | '/players'
     | '/quadras'
+    | '/times'
     | '/convite/$token'
+    | '/quadra/$courtId'
     | '/events/$eventId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
     | '/reset-password'
+    | '/campeonatos'
     | '/dashboard'
     | '/events'
     | '/jogadores'
     | '/perfil'
     | '/players'
     | '/quadras'
+    | '/times'
     | '/convite/$token'
+    | '/quadra/$courtId'
     | '/events/$eventId'
   id:
     | '__root__'
@@ -157,13 +191,16 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/reset-password'
+    | '/_authenticated/campeonatos'
     | '/_authenticated/dashboard'
     | '/_authenticated/events'
     | '/_authenticated/jogadores'
     | '/_authenticated/perfil'
     | '/_authenticated/players'
     | '/_authenticated/quadras'
+    | '/_authenticated/times'
     | '/convite/$token'
+    | '/quadra/$courtId'
     | '/_authenticated/events/$eventId'
   fileRoutesById: FileRoutesById
 }
@@ -173,6 +210,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ConviteTokenRoute: typeof ConviteTokenRoute
+  QuadraCourtIdRoute: typeof QuadraCourtIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -204,6 +242,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/campeonatos': {
+      id: '/_authenticated/campeonatos'
+      path: '/campeonatos'
+      fullPath: '/campeonatos'
+      preLoaderRoute: typeof AuthenticatedCampeonatosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
@@ -247,11 +292,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedQuadrasRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/times': {
+      id: '/_authenticated/times'
+      path: '/times'
+      fullPath: '/times'
+      preLoaderRoute: typeof AuthenticatedTimesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/convite/$token': {
       id: '/convite/$token'
       path: '/convite/$token'
       fullPath: '/convite/$token'
       preLoaderRoute: typeof ConviteTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quadra/$courtId': {
+      id: '/quadra/$courtId'
+      path: '/quadra/$courtId'
+      fullPath: '/quadra/$courtId'
+      preLoaderRoute: typeof QuadraCourtIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/events/$eventId': {
@@ -276,21 +335,25 @@ const AuthenticatedEventsRouteWithChildren =
   AuthenticatedEventsRoute._addFileChildren(AuthenticatedEventsRouteChildren)
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCampeonatosRoute: typeof AuthenticatedCampeonatosRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedEventsRoute: typeof AuthenticatedEventsRouteWithChildren
   AuthenticatedJogadoresRoute: typeof AuthenticatedJogadoresRoute
   AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
   AuthenticatedPlayersRoute: typeof AuthenticatedPlayersRoute
   AuthenticatedQuadrasRoute: typeof AuthenticatedQuadrasRoute
+  AuthenticatedTimesRoute: typeof AuthenticatedTimesRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCampeonatosRoute: AuthenticatedCampeonatosRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedEventsRoute: AuthenticatedEventsRouteWithChildren,
   AuthenticatedJogadoresRoute: AuthenticatedJogadoresRoute,
   AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
   AuthenticatedPlayersRoute: AuthenticatedPlayersRoute,
   AuthenticatedQuadrasRoute: AuthenticatedQuadrasRoute,
+  AuthenticatedTimesRoute: AuthenticatedTimesRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -302,6 +365,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ConviteTokenRoute: ConviteTokenRoute,
+  QuadraCourtIdRoute: QuadraCourtIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

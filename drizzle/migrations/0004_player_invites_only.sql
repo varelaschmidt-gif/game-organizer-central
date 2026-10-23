@@ -79,4 +79,3 @@ end $$;
 
 revoke execute on function public.create_invite(uuid,text,public.group_role,uuid), public.accept_invite(text) from public,anon;
 grant execute on function public.create_invite(uuid,text,public.group_role,uuid), public.accept_invite(text) to authenticated;
-
