@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Download, Link2, Pencil, Plus, Upload, UserX, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
-import { useActiveGroup, errMsg } from "@/lib/groups";
+import { useActiveGroup, useActiveCourt, errMsg } from "@/lib/groups";
 import { download, parseCsv, toCsv } from "@/lib/csv";
 import { DataTable, EmptyState, ErrorState, FilterBar, LoadingState } from "@/components/states";
 import { Button } from "@/components/ui/button";
@@ -37,6 +37,7 @@ const sel = "rounded-md border border-input bg-background px-3 py-2 text-sm";
 
 function PlayersPage() {
   const { group, can, isLoading } = useActiveGroup();
+  const court = useActiveCourt(group?.id);
   const qc = useQueryClient();
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("active");
@@ -48,14 +49,14 @@ function PlayersPage() {
   const [importing, setImporting] = useState(false);
   const manager = can("players");
 
-  useEffect(() => setPage(0), [search, status, type, position]);
+  useEffect(() => setPage(0), [search, status, type, position, court.venue?.id]);
 
   const q = useQuery({
-    enabled: !!group,
+    enabled: !!group && !!court.venue,
     placeholderData: keepPreviousData,
-    queryKey: ["players", group?.id, search, status, type, position, page],
+    queryKey: ["players", group?.id, court.venue?.id, search, status, type, position, page],
     queryFn: async () => {
-      let r = supabase.from("players").select("*", { count: "exact" }).eq("group_id", group!.id);
+      let r = (supabase as any).from("players").select("*", { count: "exact" }).eq("group_id", group!.id).eq("venue_id", court.venue!.id);
       if (search.trim()) {
         const s = search.trim().replace(/[%,()]/g, "");
         r = r.or(`name.ilike.%${s}%,nickname.ilike.%${s}%,email.ilike.%${s}%`);
@@ -72,7 +73,7 @@ function PlayersPage() {
   const refresh = () => qc.invalidateQueries({ queryKey: ["players"] });
 
   async function exportCsv() {
-    const { data, error } = await supabase.from("players").select("*").eq("group_id", group!.id).order("name");
+    const { data, error } = await (supabase as any).from("players").select("*").eq("group_id", group!.id).eq("venue_id", court.venue!.id).order("name");
     if (error) return void toast.error(error.message);
     download(
       "jogadores.csv",
@@ -89,12 +90,14 @@ function PlayersPage() {
 
   if (isLoading) return <LoadingState />;
   if (!group) return <EmptyState title="Você ainda não participa de uma quadra" description="Crie sua quadra gratuitamente ou abra o convite recebido na tela inicial." action={<Button asChild><Link to="/dashboard">Ir para início</Link></Button>} />;
+  if (court.isLoading) return <LoadingState />;
+  if (!court.venue) return <EmptyState title="Selecione uma quadra" description="Abra Quadras e escolha a quadra para ver ou cadastrar jogadores." action={<Button asChild><Link to="/quadras">Ir para quadras</Link></Button>} />;
   const pages = Math.max(1, Math.ceil((q.data?.count ?? 0) / PAGE));
 
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-3xl font-bold uppercase">Jogadores</h1>
+        <div><h1 className="text-3xl font-bold uppercase">Jogadores</h1><p className="text-sm text-muted-foreground">{court.venue.name}</p></div>
         {manager && (
           <div className="flex flex-wrap gap-2">
             <Button variant="outline" onClick={exportCsv}><Download className="mr-2 h-4 w-4" />Exportar CSV</Button>
@@ -122,17 +125,17 @@ function PlayersPage() {
       {q.isLoading ? <LoadingState /> : q.error ? <ErrorState message={errMsg(q.error)} onRetry={() => q.refetch()} /> : (
         <DataTable
           rows={q.data!.rows}
-          rowKey={(r) => r.id}
+          rowKey={(r: Player) => r.id}
           empty={<EmptyState icon={<Users className="h-8 w-8" />} title="Nenhum jogador encontrado" description={manager ? "Cadastre o primeiro jogador ou ajuste os filtros." : "Ajuste os filtros."} action={manager ? <Button onClick={() => setEditing("new")}>Novo jogador</Button> : undefined} />}
           columns={[
-            { key: "name", header: "Jogador", render: (r) => <PlayerCell p={r} /> },
-            { key: "pos", header: "Posição", render: (r) => [r.position, ...r.secondary_positions].filter(Boolean).join(", ") || "—" },
-            { key: "type", header: "Tipo", render: (r) => TYPE_LABEL[r.participation_type] },
-            { key: "notes", header: "Nota", render: (r) => `${r.skill_level ?? "—"}${r.goalkeeper_level != null ? ` / G ${r.goalkeeper_level}` : ""}` },
-            { key: "status", header: "Status", render: (r) => <Badge variant={r.status === "active" ? "default" : "secondary"}>{STATUS_LABEL[r.status]}</Badge> },
-            { key: "acc", header: "Conta", render: (r) => r.user_id ? <span className="text-primary">Vinculada</span> : <span className="text-muted-foreground">Sem conta</span> },
+            { key: "name", header: "Jogador", render: (r: Player) => <PlayerCell p={r} /> },
+            { key: "pos", header: "Posição", render: (r: Player) => [r.position, ...r.secondary_positions].filter(Boolean).join(", ") || "—" },
+            { key: "type", header: "Tipo", render: (r: Player) => TYPE_LABEL[r.participation_type] },
+            { key: "notes", header: "Nota", render: (r: Player) => `${r.skill_level ?? "—"}${r.goalkeeper_level != null ? ` / G ${r.goalkeeper_level}` : ""}` },
+            { key: "status", header: "Status", render: (r: Player) => <Badge variant={r.status === "active" ? "default" : "secondary"}>{STATUS_LABEL[r.status]}</Badge> },
+            { key: "acc", header: "Conta", render: (r: Player) => r.user_id ? <span className="text-primary">Vinculada</span> : <span className="text-muted-foreground">Sem conta</span> },
             {
-              key: "act", header: "", render: (r) => (
+              key: "act", header: "", render: (r: Player) => (
                 <div className="flex justify-end gap-1">
                   <Button size="icon" variant="ghost" aria-label="Editar" onClick={() => setEditing(r)}><Pencil className="h-4 w-4" /></Button>
                   {manager && !r.user_id && <Button size="icon" variant="ghost" aria-label="Convidar" onClick={() => setInviting(r)}><Link2 className="h-4 w-4" /></Button>}
@@ -153,9 +156,9 @@ function PlayersPage() {
         </div>
       )}
 
-      {editing && <PlayerForm groupId={group.id} player={editing === "new" ? null : editing} manager={manager} onClose={() => { setEditing(null); refresh(); }} />}
+      {editing && <PlayerForm groupId={group.id} venueId={court.venue.id} player={editing === "new" ? null : editing} manager={manager} onClose={() => { setEditing(null); refresh(); }} />}
       {inviting && <InvitePlayer groupId={group.id} player={inviting} onClose={() => setInviting(null)} />}
-      {importing && <ImportCsv groupId={group.id} onClose={() => { setImporting(false); refresh(); }} />}
+      {importing && <ImportCsv groupId={group.id} venueId={court.venue.id} onClose={() => { setImporting(false); refresh(); }} />}
     </div>
   );
 }
@@ -182,7 +185,7 @@ function PlayerCell({ p }: { p: Player }) {
   );
 }
 
-function PlayerForm({ groupId, player, manager, onClose }: { groupId: string; player: Player | null; manager: boolean; onClose: () => void }) {
+function PlayerForm({ groupId, venueId, player, manager, onClose }: { groupId: string; venueId: string; player: Player | null; manager: boolean; onClose: () => void }) {
   const [f, setF] = useState({
     name: player?.name ?? "", nickname: player?.nickname ?? "", email: player?.email ?? "", phone: player?.phone ?? "",
     position: player?.position ?? "", secondary_positions: player?.secondary_positions ?? [], dominant_foot: player?.dominant_foot ?? "",
@@ -216,7 +219,7 @@ function PlayerForm({ groupId, player, manager, onClose }: { groupId: string; pl
         const { error } = await supabase.from("players").update({ ...self, ...admin }).eq("id", player.id);
         if (error) throw error;
       } else {
-        const { data, error } = await supabase.from("players").insert({ group_id: groupId, name: f.name, ...self, ...admin }).select("id").single();
+        const { data, error } = await (supabase as any).from("players").insert({ group_id: groupId, venue_id: venueId, name: f.name, ...self, ...admin }).select("id").single();
         if (error) throw error;
         id = data.id;
       }
@@ -337,15 +340,15 @@ function InvitePlayer({ groupId, player, onClose }: { groupId: string; player: P
 
 interface ImportRow { data: Record<string, string>; errors: string[] }
 
-function ImportCsv({ groupId, onClose }: { groupId: string; onClose: () => void }) {
+function ImportCsv({ groupId, venueId, onClose }: { groupId: string; venueId: string; onClose: () => void }) {
   const [rows, setRows] = useState<ImportRow[] | null>(null);
   const [busy, setBusy] = useState(false);
 
   async function onFile(file: File) {
     const parsed = parseCsv(await file.text());
-    const { data: existing } = await supabase.from("players").select("name, email").eq("group_id", groupId);
-    const emails = new Set((existing ?? []).map((p) => p.email?.trim().toLowerCase()).filter(Boolean));
-    const names = new Set((existing ?? []).map((p) => p.name.trim().toLowerCase()));
+    const { data: existing } = await (supabase as any).from("players").select("name, email").eq("group_id", groupId).eq("venue_id", venueId);
+    const emails = new Set((existing ?? []).map((p: any) => p.email?.trim().toLowerCase()).filter(Boolean));
+    const names = new Set((existing ?? []).map((p: any) => p.name.trim().toLowerCase()));
     const seenE = new Set<string>(), seenN = new Set<string>();
     setRows(parsed.map((d) => {
       const errors: string[] = [];
@@ -377,12 +380,12 @@ function ImportCsv({ groupId, onClose }: { groupId: string; onClose: () => void 
     const ok = rows!.filter((r) => r.errors.length === 0);
     if (!ok.length) return;
     setBusy(true);
-    const { error } = await supabase.from("players").insert(ok.map(({ data: d }) => ({
-      group_id: groupId, name: d["name"]!, email: d["email"] || null, nickname: d["nickname"] || d["apelido"] || null,
+    const { error } = await (supabase as any).from("players").insert(ok.map(({ data: d }) => ({
+      group_id: groupId, venue_id: venueId, name: d["name"]!, email: d["email"] || null, nickname: d["nickname"] || d["apelido"] || null,
       phone: d["phone"] || d["telefone"] || null, position: d["position"] || d["posicao"] || null,
       secondary_positions: (d["secondary_positions"] || d["posicoes_secundarias"] || "").split(/[|;]/).map((p) => p.trim()).filter(Boolean), dominant_foot: d["dominant_foot"] || d["pe_dominante"] || null,
       participation_type: d["participation_type"]!, is_monthly: d["participation_type"] === "mensalista",
-      status: d["status"] as "active" | "inactive" | "suspended", joined_at: d["joined_at"] || d["data_entrada"] || new Date().toISOString().slice(0, 10),
+      status: d["status"] as "active" | "inactive" | "suspended", joined_at: d["joined_at"] || d["data_entrada"],
       skill_level: d["skill_level"] ? Number(d["skill_level"]) : null,
       goalkeeper_level: d["goalkeeper_level"] ? Number(d["goalkeeper_level"]) : null,
     })));
@@ -414,4 +417,3 @@ function ImportCsv({ groupId, onClose }: { groupId: string; onClose: () => void 
     </Dialog>
   );
 }
-

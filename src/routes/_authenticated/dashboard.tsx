@@ -20,7 +20,9 @@ import {
   myGroupsQuery,
   getActiveGroupId,
   setActiveGroupId,
+  setActiveCourtId,
   ROLE_LABEL,
+  useActiveCourt,
   type MyGroup,
 } from "@/lib/groups";
 import { ErrorState, LoadingState, StatCard } from "@/components/states";
@@ -125,13 +127,15 @@ function NoGroup() {
 
 function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
   const qc = useQueryClient();
+  const court = useActiveCourt(group.id);
   const players = useQuery({
-    queryKey: ["players-count", group.id],
+    queryKey: ["players-count", group.id, court.venue?.id],
+    enabled: !!court.venue,
     queryFn: async () => {
-      const { count, error } = await supabase
+      const { count, error } = await (supabase as any)
         .from("players")
         .select("id", { count: "exact", head: true })
-        .eq("group_id", group.id);
+        .eq("group_id", group.id).eq("venue_id", court.venue!.id);
       if (error) throw error;
       return count ?? 0;
     },
@@ -149,11 +153,12 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
   });
   const canInvite = group.role === "admin" || group.permissions.includes("members");
   const requests = useQuery({
-    queryKey: ["join-requests", group.id],
-    enabled: group.role === "admin",
+    queryKey: ["join-requests", group.id, court.venue?.id],
+    enabled: group.role === "admin" && !!court.venue,
+    refetchInterval: 20000,
     queryFn: async () => {
-      const { data, error } = await (supabase as any).from("group_join_requests").select("id,name,email,created_at")
-        .eq("group_id", group.id).eq("status", "pending").order("created_at");
+      const { data, error } = await (supabase as any).from("group_join_requests").select("id,name,email,position,secondary_positions,dominant_foot,created_at")
+        .eq("group_id", group.id).eq("venue_id", court.venue!.id).eq("status", "pending").order("created_at");
       if (error) throw error;
       return data ?? [];
     },
@@ -169,12 +174,13 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-bold uppercase">{group.name}</h1>
+          <h1 className="text-3xl font-bold uppercase">{court.venue?.name ?? group.name}</h1>
           <Badge variant="secondary" className="mt-1">
             <Shield className="mr-1 h-3 w-3" /> {ROLE_LABEL[group.role]}
           </Badge>
         </div>
-        <div className="flex gap-2">
+          <div className="flex gap-2">
+          {court.venues.length>1&&<select aria-label="Quadra" className="rounded-md border border-input bg-background px-3 py-2 text-sm" value={court.venue?.id??""} onChange={e=>setActiveCourtId(e.target.value)}>{court.venues.map((v:any)=><option key={v.id} value={v.id}>{v.name}</option>)}</select>}
           {all.length > 1 && (
             <select
               className="rounded-md border border-input bg-background px-3 py-2 text-sm"
@@ -205,7 +211,7 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
           <h2 className="text-xl font-semibold">Pedidos para entrar na quadra</h2>
           <div className="mt-3 divide-y">{requests.data!.map((request: any) => (
             <div key={request.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
-              <div><div className="font-medium">{request.name}</div><div className="text-sm text-muted-foreground">{request.email} · {new Date(request.created_at).toLocaleString("pt-BR")}</div></div>
+              <div><div className="font-medium">{request.name}</div><div className="text-sm text-muted-foreground">{request.email} · {request.position} · pé {request.dominant_foot} · {request.secondary_positions?.join(", ")||"sem posições secundárias"}</div><div className="text-xs text-muted-foreground">Solicitou em {new Date(request.created_at).toLocaleString("pt-BR")}</div></div>
               <div className="flex gap-2"><Button size="sm" variant="outline" onClick={() => reviewRequest(request.id, false)}>Recusar</Button><Button size="sm" onClick={() => reviewRequest(request.id, true)}>Aprovar entrada</Button></div>
             </div>
           ))}</div>
@@ -306,4 +312,3 @@ function InviteDialog({ groupId }: { groupId: string }) {
     </Dialog>
   );
 }
-

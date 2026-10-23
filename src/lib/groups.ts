@@ -1,4 +1,5 @@
-import { queryOptions } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export type GroupRole = "admin" | "organizer" | "player";
@@ -61,7 +62,37 @@ export const getActiveGroupId = () =>
   typeof window === "undefined" ? null : window.localStorage.getItem(KEY);
 export const setActiveGroupId = (id: string) => window.localStorage.setItem(KEY, id);
 
-import { useQuery } from "@tanstack/react-query";
+const COURT_KEY = "rdq-active-court";
+export const getActiveCourtId = () => typeof window === "undefined" ? null : window.localStorage.getItem(COURT_KEY);
+export const setActiveCourtId = (id: string) => {
+  window.localStorage.setItem(COURT_KEY, id);
+  window.dispatchEvent(new Event("rdq-court-change"));
+};
+
+export function useActiveCourt(groupId?: string) {
+  const [selectedId, setSelectedId] = useState(getActiveCourtId);
+  useEffect(() => {
+    const update = () => setSelectedId(getActiveCourtId());
+    window.addEventListener("rdq-court-change", update);
+    window.addEventListener("storage", update);
+    return () => { window.removeEventListener("rdq-court-change", update); window.removeEventListener("storage", update); };
+  }, []);
+  const query = useQuery({
+    queryKey: ["venues", groupId],
+    enabled: !!groupId,
+    queryFn: async () => {
+      const { data, error } = await (supabase as any).from("venues").select("*").eq("group_id", groupId).eq("is_active", true).order("name");
+      if (error) throw error;
+      return data ?? [];
+    },
+  });
+  const venues = query.data ?? [];
+  const venue = venues.find((item: any) => item.id === selectedId) ?? venues[0];
+  useEffect(() => {
+    if (venue && venue.id !== selectedId) setActiveCourtId(venue.id);
+  }, [venue?.id, selectedId]);
+  return { ...query, venues, venue };
+}
 
 export function useActiveGroup() {
   const q = useQuery(myGroupsQuery);
@@ -86,4 +117,3 @@ export const myPlayerQuery = (groupId: string) =>
 export function errMsg(e: unknown) {
   return e && typeof e === "object" && "message" in e ? String((e as { message: unknown }).message) : "Erro inesperado";
 }
-

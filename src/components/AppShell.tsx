@@ -13,7 +13,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { myGroupsQuery, profileQuery, getActiveGroupId } from "@/lib/groups";
+import { myGroupsQuery, profileQuery, getActiveGroupId, setActiveCourtId, useActiveCourt } from "@/lib/groups";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -40,6 +40,7 @@ export function AppShell() {
   const { data: groups } = useQuery(myGroupsQuery);
   const { data: profile } = useQuery(profileQuery);
   const active = groups?.find((g) => g.id === getActiveGroupId()) ?? groups?.[0];
+  const court = useActiveCourt(active?.id);
   const name = profile?.full_name || profile?.email || "";
 
   async function signOut() {
@@ -78,10 +79,13 @@ export function AppShell() {
           <div className="min-w-0">
             <div className="text-xs uppercase text-muted-foreground">Grupo</div>
             <div className="truncate font-display text-lg font-semibold">
-              {active?.name ?? "Nenhum grupo"}
+              {court.venue?.name ?? active?.name ?? "Nenhum grupo"}
             </div>
           </div>
           <div className="flex items-center gap-2">
+            {court.venues.length > 1 && <select aria-label="Selecionar quadra" className="max-w-44 rounded-md border bg-background px-2 py-1 text-sm" value={court.venue?.id ?? ""} onChange={(e) => setActiveCourtId(e.target.value)}>
+              {court.venues.map((venue: any) => <option key={venue.id} value={venue.id}>{venue.name}</option>)}
+            </select>}
             <button
               aria-label="Notificações"
               className="rounded-full p-2 text-muted-foreground hover:bg-muted"
@@ -132,4 +136,3 @@ export function AppShell() {
     </div>
   );
 }
-

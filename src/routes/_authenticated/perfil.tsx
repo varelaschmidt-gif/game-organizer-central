@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { LoadingState } from "@/components/states";
 
 export const Route = createFileRoute("/_authenticated/perfil")({
-  validateSearch: (search: Record<string, unknown>) => ({ redirect: typeof search["redirect"] === "string" ? (search["redirect"] as string) : undefined }),
+  validateSearch: (search: Record<string, unknown>) => ({ redirect: typeof search["redirect"] === "string" ? search["redirect"] : undefined }),
   head: () => ({ meta: [{ title: "Meu perfil | Rei da Quadra" }] }),
   component: ProfilePage,
 });
@@ -72,5 +72,3 @@ function ProfilePage() {
     </div>
   );
 }
-
-
