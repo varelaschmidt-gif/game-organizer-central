@@ -50,6 +50,13 @@
       "when": 1792627200000,
       "tag": "0006_court_rosters_teams_and_votes",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1793050000000,
+      "tag": "0007_legacy_court_link_resolution",
+      "breakpoints": true
     }
   ]
 }
