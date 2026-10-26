@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useActiveGroup } from "@/lib/groups";
 import { setActiveCourtId } from "@/lib/groups";
+import { publicAppUrl } from "@/lib/public-app-url";
 import { EmptyState, ErrorState, LoadingState } from "@/components/states";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -165,9 +166,9 @@ function CourtsPage() {
                   {[["Eventos", "/events"], ["Jogadores", "/jogadores"], ["Times", "/times"], ["Campeonatos", "/campeonatos"]].map(([label, to]) => (
                     <Button key={to} size="sm" variant="secondary" onClick={() => { setActiveCourtId(court.id); navigate({ to: to as any }); }}>{label}</Button>
                   ))}
-                  <Button size="sm" variant="outline" onClick={async()=>{const url=`${window.location.origin}/quadra/${court.id}`;try{await navigator.clipboard.writeText(url);toast.success("Link permanente copiado")}catch{toast.error("Não foi possível copiar o link")} }}><MapPin className="mr-2 h-4 w-4"/>Copiar link para participar</Button>
+                  <Button size="sm" variant="outline" onClick={async()=>{const url=publicAppUrl(`/quadra/${court.id}`);try{await navigator.clipboard.writeText(url);toast.success("Link permanente copiado")}catch{toast.error("Não foi possível copiar o link")} }}><MapPin className="mr-2 h-4 w-4"/>Copiar link para participar</Button>
                 </div>
-                <p className="mt-2 break-all text-xs text-muted-foreground">Link permanente: {typeof window!=="undefined"?`${window.location.origin}/quadra/${court.id}`:`/quadra/${court.id}`}</p>
+                <p className="mt-2 break-all text-xs text-muted-foreground">Link permanente: {publicAppUrl(`/quadra/${court.id}`)}</p>
               </div>
             </article>
           ))}
