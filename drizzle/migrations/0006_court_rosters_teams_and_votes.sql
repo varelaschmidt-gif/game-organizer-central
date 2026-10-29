@@ -1,206 +1,581 @@
-YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éí×5õ:-jZ.¶›­–)Ş³RÒÒÖ¶RfVçVR†6÷W'B’F†R66÷Rf÷"—G2&÷7FW"æBWfVçG2v†–ÆR&W6W'f–æp¢ÒÒF†RW†—7F–ærw&÷W2F†RW&Ö—76–öç2æBÖVÖ&W'6†—&÷VæF'’à¦–ç6W'B–çFòV&Æ–2çfVçVW2†w&÷Wö–BÂæÖRÂFG&W72Â7&VFVEö'’§6VÆV7Bræ–BÂrææÖRÂw2æÆö6F–öâÂræ7&VFVEö'¦g&öÒV&Æ–2æw&÷W2p¦ÆVgB¦ö–âV&Æ–2æw&÷W÷6WGF–æw2w2öâw2æw&÷Wö–BÒræ–@§v†W&Ræ÷BW†—7G2‡6VÆV7Bg&öÒV&Æ–2çfVçVW2bv†W&Rbæw&÷Wö–BÒræ–B“° ¦ÇFW"F&ÆRV&Æ–2çfVçVW2FB6öÇVÖâ–bæ÷BW†—7G26—G’FW‡C°¦ÇFW"F&ÆRV&Æ–2çfVçVW2FB6öÇVÖâ–bæ÷BW†—7G2æV–v†&÷&†ööBFW‡C°¦ÇFW"F&ÆRV&Æ–2çfVçVW2FB6öÇVÖâ–bæ÷BW†—7G2†&—GVÅ÷vVV¶F’6ÖÆÆ–çB6†V6²††&—GVÅ÷vVV¶F’—2çVÆÂ÷"†&—GVÅ÷vVV¶F’&WGvVVâæBb“°¦ÇFW"F&ÆRV&Æ–2çfVçVW2FB6öÇVÖâ–bæ÷BW†—7G2†&—GVÅ÷F–ÖRF–ÖS° ¦ÇFW"F&ÆRV&Æ–2çÆ–W'2FB6öÇVÖâ–bæ÷BW†—7G2fVçVUö–BWV–B&VfW&Væ6W2V&Æ–2çfVçVW2†–B’öâFVÆWFR&W7G&–7C°§WFFRV&Æ–2çÆ–W'26WBfVçVUö–BÒ€¢6VÆV7B–Bg&öÒV&Æ–2çfVçVW2v†W&Rw&÷Wö–C×æw&÷Wö–B÷&FW"'’7&VFVEöBÂ–BÆ–Ö—B¢’v†W&RçfVçVUö–B—2çVÆÃ° ¦ÇFW"F&ÆRV&Æ–2æWfVçE÷6W&–W2FB6öÇVÖâ–bæ÷BW†—7G2fVçVUö–BWV–B&VfW&Væ6W2V&Æ–2çfVçVW2†–B’öâFVÆWFR&W7G&–7C°¦ÇFW"F&ÆRV&Æ–2æWfVçG2FB6öÇVÖâ–bæ÷BW†—7G2fVçVUö–BWV–B&VfW&Væ6W2V&Æ–2çfVçVW2†–B’öâFVÆWFR&W7G&–7C°§WFFRV&Æ–2æWfVçG2R6WBfVçVUö–BÒ6öÆW66R€¢‡6VÆV7Bbæ–Bg&öÒV&Æ–2çfVçVW2bv†W&Rbæw&÷Wö–CÖRæw&÷Wö–BæBÆ÷vW"†6öÆW66R‡bæFG&W72Ârr’“ÖÆ÷vW"†6öÆW66R†RæÆö6F–öâÂrr’’÷&FW"'’bæ7&VFVEöBÆ–Ö—B’À¢‡6VÆV7Bbæ–Bg&öÒV&Æ–2çfVçVW2bv†W&Rbæw&÷Wö–CÖRæw&÷Wö–B÷&FW"'’bæ7&VFVEöBÆ–Ö—B¢’v†W&RRçfVçVUö–B—2çVÆÃ°§WFFRV&Æ–2æWfVçE÷6W&–W226WBfVçVUö–BÒ6öÆW66R€¢‡6VÆV7BRçfVçVUö–Bg&öÒV&Æ–2æWfVçG2Rv†W&RRç6W&–W5ö–C×2æ–BæBRçfVçVUö–B—2æ÷BçVÆÂ÷&FW"'’Rç7F'G5öBÆ–Ö—B’À¢‡6VÆV7Bbæ–Bg&öÒV&Æ–2çfVçVW2bv†W&Rbæw&÷Wö–C×2æw&÷Wö–B÷&FW"'’bæ7&VFVEöBÆ–Ö—B¢’v†W&R2çfVçVUö–B—2çVÆÃ°¦ÇFW"F&ÆRV&Æ–2çÆ–W'2ÇFW"6öÇVÖâfVçVUö–B6WBæ÷BçVÆÃ°¦ÇFW"F&ÆRV&Æ–2æWfVçG2ÇFW"6öÇVÖâfVçVUö–B6WBæ÷BçVÆÃ°¦ÇFW"F&ÆRV&Æ–2æWfVçE÷6W&–W2ÇFW"6öÇVÖâfVçVUö–B6WBæ÷BçVÆÃ°¦7&VFR–æFW‚Æ–W'5÷fVçVUöæÖUö–G‚öâV&Æ–2çÆ–W'2‡fVçVUö–BÂæÖR“°¦7&VFR–æFW‚WfVçG5÷fVçVU÷7F'Eö–G‚öâV&Æ–2æWfVçG2‡fVçVUö–BÂ7F'G5öB“° ¦ÇFW"F&ÆRV&Æ–2æw&÷Wö–çf—FW2FB6öÇVÖâ–bæ÷BW†—7G2fVçVUö–BWV–B&VfW&Væ6W2V&Æ–2çfVçVW2†–B’öâFVÆWFR666FS°§WFFRV&Æ–2æw&÷Wö–çf—FW2’6WBfVçVUö–CÖ6öÆW66R€¢‡6VÆV7BçfVçVUö–Bg&öÒV&Æ–2çÆ–W'2v†W&Ræ–CÖ’çÆ–W%ö–B’À¢‡6VÆV7Bbæ–Bg&öÒV&Æ–2çfVçVW2bv†W&Rbæw&÷Wö–CÖ’æw&÷Wö–B÷&FW"'’bæ7&VFVEöBÆ–Ö—B¢’v†W&R’çfVçVUö–B—2çVÆÃ°¦ÇFW"F&ÆRV&Æ–2æw&÷Wö¦ö–å÷&WVW7G2FB6öÇVÖâ–bæ÷BW†—7G2fVçVUö–BWV–B&VfW&Væ6W2V&Æ–2çfVçVW2†–B’öâFVÆWFR666FS°¦ÇFW"F&ÆRV&Æ–2æw&÷Wö¦ö–å÷&WVW7G2ÇFW"6öÇVÖâ–çf—FUö–BG&÷æ÷BçVÆÃ°¦ÇFW"F&ÆRV&Æ–2æw&÷Wö¦ö–å÷&WVW7G2FB6öÇVÖâ–bæ÷BW†—7G2FöÖ–æçEöfö÷BFW‡B6†V6²†FöÖ–æçEöfö÷B—2çVÆÂ÷"FöÖ–æçEöfö÷B–â‚vF—&V—FòrÂvW7VW&FòrÂvÖ&÷2r’“°¦ÇFW"F&ÆRV&Æ–2æw&÷Wö¦ö–å÷&WVW7G2FB6öÇVÖâ–bæ÷BW†—7G2÷6—F–öâFW‡C°¦ÇFW"F&ÆRV&Æ–2æw&÷Wö¦ö–å÷&WVW7G2FB6öÇVÖâ–bæ÷BW†—7G26V6öæF'•÷÷6—F–öç2FW‡EµÒæ÷BçVÆÂFVfVÇBw·Òs°§WFFRV&Æ–2æw&÷Wö¦ö–å÷&WVW7G2"6WBfVçVUö–CÖ’çfVçVUö–Bg&öÒV&Æ–2æw&÷Wö–çf—FW2’v†W&R’æ–C×"æ–çf—FUö–BæB"çfVçVUö–B—2çVÆÃ°¦ÇFW"F&ÆRV&Æ–2æw&÷Wö¦ö–å÷&WVW7G2ÇFW"6öÇVÖâfVçVUö–B6WBæ÷BçVÆÃ°¦G&÷–æFW‚–bW†—7G2V&Æ–2æw&÷Wö¦ö–å÷&WVW7G5ööæU÷VæF–æu÷W6W%ö–Gƒ°¦7&VFRVæ—VR–æFW‚w&÷Wö¦ö–å÷&WVW7G5ööæU÷VæF–æu÷W6W%ö–G‚öâV&Æ–2æw&÷Wö¦ö–å÷&WVW7G2‡fVçVUö–BÇW6W%ö–B’v†W&R7FGW3ÒwVæF–ærs° ¦7&VFR÷"&WÆ6RgVæ7F–öâV&Æ–2ævWE÷V&Æ–5ö6÷W'B…÷fVçVUö–BWV–B§&WGW&ç2F&ÆR†–BWV–BÆæÖRFW‡BÆFG&W72FW‡BÆ6—G’FW‡BÆæV–v†&÷&†ööBFW‡B¦ÆæwVvR7Â7F&ÆR6V7W&—G’FVf–æW"6WB6V&6…÷Fƒ×V&Æ–22B@¢6VÆV7Bbæ–BÇbææÖRÇbæFG&W72Çbæ6—G’ÇbææV–v†&÷&†ööBg&öÒV&Æ–2çfVçVW2bv†W&Rbæ–CÕ÷fVçVUö–BæBbæ—5ö7F—fP¢BC°§&Wfö¶RW†V7WFRöâgVæ7F–öâV&Æ–2ævWE÷V&Æ–5ö6÷W'B‡WV–B’g&öÒV&Æ–3°¦w&çBW†V7WFRöâgVæ7F–öâV&Æ–2ævWE÷V&Æ–5ö6÷W'B‡WV–B’FòæöâÆWF†VçF–6FVC° ¦7&VFR÷"&WÆ6RgVæ7F–öâV&Æ–2ç&WVW7Eö6÷W'EöÖVÖ&W'6†—…÷fVçVUö–BWV–BÅöFöÖ–æçEöfö÷BFW‡BÅ÷÷6—F–öâFW‡BÅ÷6V6öæF'•÷÷6—F–öç2FW‡EµÒFVfVÇBw·Òr’&WGW&ç2WV–@¦ÆæwVvRÇw7Â6V7W&—G’FVf–æW"6WB6V&6…÷Fƒ×V&Æ–22B@¦FV6Æ&RbV&Æ–2çfVçVW3²&öbV&Æ–2ç&öf–ÆW3²VVÖ–ÂFW‡C²æÖRFW‡C²&W–BWV–C°¦&Vv–à¢–bWF‚çV–B‚’—2çVÆÂF†Vâ&—6RW†6WF–öâtVçG&R÷R7&–RVÖ6öçFçFW2FR6öÆ–6—F"'F–6—:|:6òs²VæB–c°¢6VÆV7B¢–çFòbg&öÒV&Æ–2çfVçVW2v†W&R–CÕ÷fVçVUö–BæB—5ö7F—fS°¢–bæ÷Bf÷VæBF†Vâ&—6RW†6WF–öâtW7FVG&ì:6òW7L:F—7öì:×fVÂs²VæB–c°¢6VÆV7B¢–çFò&öbg&öÒV&Æ–2ç&öf–ÆW2v†W&R–CÖWF‚çV–B‚“°¢–bæ÷Bf÷VæB÷"çVÆÆ–b‡G&–Ò‡&öbægVÆÅöæÖR’Ârr’—2çVÆÂ÷"&öbævR—2çVÆÂ÷"çVÆÆ–b‡G&–Ò‡&öbæFG&W72’Ârr’—2çVÆÂ÷"çVÆÆ–b‡G&–Ò‡&öbæ6—G’’Ârr’—2çVÆÂ÷"çVÆÆ–b‡G&–Ò‡&öbææV–v†&÷&†ööB’Ârr’—2çVÆÂF†Và¢&—6RW†6WF–öât6ö×ÆWFR6WRW&f–ÂçFW2FR6öÆ–6—F"'F–6—:|:6òs°¢VæB–c°¢–böFöÖ–æçEöfö÷B—2çVÆÂ÷"öFöÖ–æçEöfö÷Bæ÷B–â‚vF—&V—FòrÂvW7VW&FòrÂvÖ&÷2r’F†Vâ&—6RW†6WF–öâu6VÆV6–öæR6WR:’FöÖ–æçFRs²VæB–c°¢–b÷÷6—F–öâ—2çVÆÂ÷"÷÷6—F–öâæ÷B–â‚tvöÆV—&òrÂu¦wVV—&òrÂtÆFW&ÂrÂuföÆçFRrÂtÖV–rÂuöçFrÂtF6çFRr’F†Vâ&—6RW†6WF–öâu6VÆV6–öæR7V÷6œ:|:6ò&–æ6—Âs²VæB–c°¢–bW†—7G2‡6VÆV7Bg&öÒVææW7B†6öÆW66R…÷6V6öæF'•÷÷6—F–öç2Âw·Òr’’‚v†W&R‚æ÷B–â‚tvöÆV—&òrÂu¦wVV—&òrÂtÆFW&ÂrÂuföÆçFRrÂtÖV–rÂuöçFrÂtF6çFRr’’F†Vâ&—6RW†6WF–öâu÷6œ:|:6ò6V7VæL:&––çl:Æ–Fs²VæB–c°¢–bW†—7G2‡6VÆV7Bg&öÒV&Æ–2çÆ–W'2v†W&RfVçVUö–C×bæ–BæBW6W%ö–CÖWF‚çV–B‚’’F†Vâ&—6RW†6WF–öâufö<:¢¬:'F–6—FW7FVG&s²VæB–c°¢6VÆV7B–B–çFò&W–Bg&öÒV&Æ–2æw&÷Wö¦ö–å÷&WVW7G2v†W&RfVçVUö–C×bæ–BæBW6W%ö–CÖWF‚çV–B‚’æB7FGW3ÒwVæF–ærrÆ–Ö—B°¢–b&W–B—2æ÷BçVÆÂF†Vâ&WGW&â&W–C²VæB–c°¢6VÆV7BVÖ–Â–çFòVVÖ–Âg&öÒWF‚çW6W'2v†W&R–CÖWF‚çV–B‚“°¢æÖS£×G&–Ò‡&öbægVÆÅöæÖR“°¢–ç6W'B–çFòV&Æ–2æw&÷Wö¦ö–å÷&WVW7G2†w&÷Wö–BÇfVçVUö–BÆ–çf—FUö–BÇW6W%ö–BÆ6÷W'EöæÖRÆæÖRÆVÖ–ÂÆFöÖ–æçEöfö÷BÇ÷6—F–öâÇ6V6öæF'•÷÷6—F–öç2¢fÇVW2‡bæw&÷Wö–BÇbæ–BÆçVÆÂÆWF‚çV–B‚’ÇbææÖRÇæÖRÆÆ÷vW"‡VVÖ–Â’ÅöFöÖ–æçEöfö÷BÅ÷÷6—F–öâÆ6öÆW66R…÷6V6öæF'•÷÷6—F–öç2Âw·Òr’’&WGW&æ–ær–B–çFò&W–C°¢–ç6W'B–çFòV&Æ–2æVF—EöÆöw2†w&÷Wö–BÆ7F÷%ö–BÆ7F–öâÆVçF—G’ÆVçF—G•ö–BÆFWF–Ç2¢fÇVW2‡bæw&÷Wö–BÆWF‚çV–B‚’Âv¦ö–âç&WVW7FVBrÂv¦ö–å÷&WVW7BrÇ&W–BÆ§6öæ%ö'V–ÆEöö&¦V7B‚wfVçVUö–BrÇbæ–BÂw÷6—F–öârÅ÷÷6—F–öâ’“°¢&WGW&â&W–C°¦VæBBC°§&Wfö¶RW†V7WFRöâgVæ7F–öâV&Æ–2ç&WVW7Eö6÷W'EöÖVÖ&W'6†—‡WV–BÇFW‡BÇFW‡BÇFW‡EµÒ’g&öÒV&Æ–2Ææöã°¦w&çBW†V7WFRöâgVæ7F–öâV&Æ–2ç&WVW7Eö6÷W'EöÖVÖ&W'6†—‡WV–BÇFW‡BÇFW‡BÇFW‡EµÒ’FòWF†VçF–6FVC° ¦7&VFR÷"&WÆ6RgVæ7F–öâV&Æ–2çfÆ–FFUö6÷W'E÷66÷R‚’&WGW&ç2G&–vvW ¦ÆæwVvRÇw7Â6WB6V&6…÷Fƒ×V&Æ–22B@¦&Vv–à¢–bæ÷BW†—7G2‡6VÆV7Bg&öÒV&Æ–2çfVçVW2bv†W&Rbæ–CÖæWrçfVçVUö–BæBbæw&÷Wö–CÖæWræw&÷Wö–B’F†Và¢&—6RW†6WF–öâtVG&6VÆV6–öæFì:6òW'FVæ6RW7FRw'Wòs°¢VæB–c°¢&WGW&âæWs°¦VæBBC°¦7&VFRG&–vvW"G&u÷Æ–W'5ö6÷W'E÷66÷R&Vf÷&R–ç6W'B÷"WFFRöbw&÷Wö–BÇfVçVUö–BöâV&Æ–2çÆ–W'0¦f÷"V6‚&÷rW†V7WFRgVæ7F–öâV&Æ–2çfÆ–FFUö6÷W'E÷66÷R‚“°¦7&VFRG&–vvW"G&uöWfVçG5ö6÷W'E÷66÷R&Vf÷&R–ç6W'B÷"WFFRöbw&÷Wö–BÇfVçVUö–BöâV&Æ–2æWfVçG0¦f÷"V6‚&÷rW†V7WFRgVæ7F–öâV&Æ–2çfÆ–FFUö6÷W'E÷66÷R‚“°¦7&VFRG&–vvW"G&u÷6W&–W5ö6÷W'E÷66÷R&Vf÷&R–ç6W'B÷"WFFRöbw&÷Wö–BÇfVçVUö–BöâV&Æ–2æWfVçE÷6W&–W0¦f÷"V6‚&÷rW†V7WFRgVæ7F–öâV&Æ–2çfÆ–FFUö6÷W'E÷66÷R‚“° ¦7&VFR÷"&WÆ6RgVæ7F–öâV&Æ–2çfÆ–FFU÷FVÕ÷Æ–W%÷66÷R‚’&WGW&ç2G&–vvW ¦ÆæwVvRÇw7Â6WB6V&6…÷Fƒ×V&Æ–22B@¦&Vv–à¢–bæ÷BW†—7G2‡6VÆV7Bg&öÒV&Æ–2æWfVçE÷FV×2B¦ö–âV&Æ–2æWfVçG2RöâRæ–C×BæWfVçEö–@¢¦ö–âV&Æ–2çÆ–W'2öâæ–CÖæWrçÆ–W%ö–Bv†W&RBæ–CÖæWrçFVÕö–BæBBæWfVçEö–CÖæWræWfVçEö–@¢æBBçfVçVUö–CÖæWrçfVçVUö–BæBRçfVçVUö–CÖæWrçfVçVUö–BæBçfVçVUö–CÖæWrçfVçVUö–@¢æBBæw&÷Wö–CÖæWræw&÷Wö–BæBæw&÷Wö–CÖæWræw&÷Wö–B’F†Và¢&—6RW†6WF–öâuF–ÖRÂWfVçFòR¦övF÷"FWfVÒW'FVæ6W":ÖW6ÖVG&s°¢VæB–c°¢&WGW&âæWs°¦VæBBC° ¢ÒÒ¶VWF†RW†—7F–ærw&÷W7&VF÷"fÆ÷rv÷&¶–ærv—F‚F†RæWr&WV—&VBfVçVUö–Bà¦7&VFR÷"&WÆ6RgVæ7F–öâV&Æ–2æ7&VFUöw&÷W…öæÖRFW‡BÂö5÷Æ–W"&ööÆVâFVfVÇBG'VR’&WGW&ç2WV–@¦ÆæwVvRÇw7Â6V7W&—G’FVf–æW"6WB6V&6…÷Fƒ×V&Æ–22B@¦FV6Æ&Rv–BWV–C²–BWV–C²æÖRFW‡C²&öbV&Æ–2ç&öf–ÆW3°¦&Vv–à¢–bWF‚çV–B‚’—2çVÆÂF†Vâ&—6RW†6WF–öâtì:6òWFVçF–6Fòs²VæB–c°¢–bÆVæwF‚‡G&–Ò…öæÖR’“Ã"F†Vâ&—6RW†6WF–öâtæöÖRFVG&–çl:Æ–Fòs²VæB–c°¢6VÆV7B¢–çFò&öbg&öÒV&Æ–2ç&öf–ÆW2v†W&R–CÖWF‚çV–B‚’f÷"WFFS°¢–bæ÷Bf÷VæB÷"çVÆÆ–b‡G&–Ò‡&öbægVÆÅöæÖR’Ârr’—2çVÆÂ÷"&öbævR—2çVÆÂ÷"çVÆÆ–b‡G&–Ò‡&öbæFG&W72’Ârr’—2çVÆÂ÷"çVÆÆ–b‡G&–Ò‡&öbæ6—G’’Ârr’—2çVÆÂ÷"çVÆÆ–b‡G&–Ò‡&öbææV–v†&÷&†ööB’Ârr’—2çVÆÂF†Và¢&—6RW†6WF–öât6ö×ÆWFR–FFRÂVæFW&\:vòÂ6–FFRR&—'&òæò6WRW&f–ÂçFW2FR7&–"VÖVG&s°¢VæB–c°¢–ç6W'B–çFòV&Æ–2æw&÷W2†æÖRÆ7&VFVEö'’’fÇVW2‡G&–Ò…öæÖR’ÆWF‚çV–B‚’’&WGW&æ–ær–B–çFòv–C°¢–ç6W'B–çFòV&Æ–2æw&÷WöÖVÖ&W'2†w&÷Wö–BÇW6W%ö–BÇ&öÆR’fÇVW2†v–BÆWF‚çV–B‚’ÂvFÖ–âr“°¢–ç6W'B–çFòV&Æ–2æw&÷W÷6WGF–æw2†w&÷Wö–B’fÇVW2†v–B“°¢–ç6W'B–çFòV&Æ–2çfVçVW2†w&÷Wö–BÆæÖRÆFG&W72Æ6—G’ÆæV–v†&÷&†ööBÆ7&VFVEö'’¢fÇVW2†v–BÇG&–Ò…öæÖR’ÇG&–Ò‡&öbæFG&W72’ÇG&–Ò‡&öbæ6—G’’ÇG&–Ò‡&öbææV–v†&÷&†ööB’ÆWF‚çV–B‚’’&WGW&æ–ær–B–çFò–C°¢–bö5÷Æ–W"F†Và¢–ç6W'B–çFòV&Æ–2çÆ–W'2†w&÷Wö–BÇfVçVUö–BÇW6W%ö–BÆæÖRÆVÖ–Â¢fÇVW2†v–BÇ–BÆWF‚çV–B‚’Æ6öÆW66R†çVÆÆ–b‡G&–Ò‡&öbægVÆÅöæÖR’Ârr’ÂtFÖ–æ—7G&F÷"r’Â‡6VÆV7BÆ÷vW"†VÖ–Â’g&öÒWF‚çW6W'2v†W&R–CÖWF‚çV–B‚’’“°¢VæB–c°¢–ç6W'B–çFòV&Æ–2æVF—EöÆöw2†w&÷Wö–BÆ7F÷%ö–BÆ7F–öâÆVçF—G’ÆVçF—G•ö–B¢fÇVW2†v–BÆWF‚çV–B‚’Âvw&÷Wæ7&VFVBrÂvw&÷WrÆv–B“°¢&WGW&âv–C°¦VæBBC°§&Wfö¶RW†V7WFRöâgVæ7F–öâV&Æ–2æ7&VFUöw&÷W‡FW‡BÆ&ööÆVâ’g&öÒV&Æ–2ÆæöâÆWF†VçF–6FVC° ¦7&VFR÷"&WÆ6RgVæ7F–öâV&Æ–2æ7&VFUö6÷W'B…öæÖRFW‡BÅöFG&W72FW‡BÅ÷vVV¶F’6ÖÆÆ–çBÅ÷F–ÖRF–ÖR’&WGW&ç2WV–@¦ÆæwVvRÇw7Â6V7W&—G’FVf–æW"6WB6V&6…÷Fƒ×V&Æ–22B@¦FV6Æ&Rv–BWV–C°¦&Vv–à¢–bçVÆÆ–b‡G&–Ò…öFG&W72’Ârr’—2çVÆÂF†Vâ&—6RW†6WF–öât–æf÷&ÖRòVæFW&\:vòFVG&s²VæB–c°¢–b÷vVV¶F’—2çVÆÂ÷"÷vVV¶F’æ÷B&WGvVVâæBbF†Vâ&—6RW†6WF–öâtF–F6VÖæ–çl:Æ–Fòs²VæB–c°¢–b÷F–ÖR—2çVÆÂF†Vâ&—6RW†6WF–öât–æf÷&ÖRò†÷,:&–òFRW6òs²VæB–c°¢v–C£×V&Æ–2æ7&VFUöw&÷W…öæÖRÇG'VR“°¢WFFRV&Æ–2æw&÷W÷6WGF–æw26WBFVfVÇE÷vVV¶F“Õ÷vVV¶F’ÆFVfVÇE÷F–ÖSÕ÷F–ÖRÆÆö6F–öã×G&–Ò…öFG&W72’v†W&Rw&÷Wö–CÖv–C°¢WFFRV&Æ–2çfVçVW26WBFG&W73×G&–Ò…öFG&W72’Æ†&—GVÅ÷vVV¶F“Õ÷vVV¶F’Æ†&—GVÅ÷F–ÖSÕ÷F–ÖRv†W&Rw&÷Wö–CÖv–C°¢&WGW&âv–C°¦VæBBC°§&Wfö¶RW†V7WFRöâgVæ7F–öâV&Æ–2æ7&VFUö6÷W'B‡FW‡BÇFW‡BÇ6ÖÆÆ–çBÇF–ÖR’g&öÒV&Æ–2Ææöã°¦w&çBW†V7WFRöâgVæ7F–öâV&Æ–2æ7&VFUö6÷W'B‡FW‡BÇFW‡BÇ6ÖÆÆ–çBÇF–ÖR’FòWF†VçF–6FVC° ¦7&VFR÷"&WÆ6RgVæ7F–öâV&Æ–2æ—5ö6÷W'EöÖVÖ&W"…÷fVçVUö–BWV–B’&WGW&ç2&ööÆVà¦ÆæwVvR7Â7F&ÆR6V7W&—G’FVf–æW"6WB6V&6…÷Fƒ×V&Æ–22B@¢6VÆV7BW†—7G2‡6VÆV7Bg&öÒV&Æ–2çfVçVW2bv†W&Rbæ–CÕ÷fVçVUö–BæB€¢V&Æ–2æ—5öw&÷WöFÖ–â‡bæw&÷Wö–B’÷"W†—7G2‡6VÆV7Bg&öÒV&Æ–2çÆ–W'2v†W&RçfVçVUö–C×bæ–BæBçW6W%ö–CÖWF‚çV–B‚’¢’¢BC°§&Wfö¶RW†V7WFRöâgVæ7F–öâV&Æ–2æ—5ö6÷W'EöÖVÖ&W"‡WV–B’g&öÒV&Æ–2Ææöã°¦w&çBW†V7WFRöâgVæ7F–öâV&Æ–2æ—5ö6÷W'EöÖVÖ&W"‡WV–B’FòWF†VçF–6FVC° ¦G&÷öÆ–7’–bW†—7G2&w&÷WÖVÖ&W'2&VBfVçVW2"öâV&Æ–2çfVçVW3°¦7&VFRöÆ–7’&6÷W'BÖVÖ&W'2&VBfVçVW2"öâV&Æ–2çfVçVW2f÷"6VÆV7BFòWF†VçF–6FVBW6–ær‡V&Æ–2æ—5ö6÷W'EöÖVÖ&W"†–B’“°¦G&÷öÆ–7’–bW†—7G2&ÖVÖ&W'2&VBÆ–W'2"öâV&Æ–2çÆ–W'3°¦7&VFRöÆ–7’&6÷W'BÖVÖ&W'2&VBÆ–W'2"öâV&Æ–2çÆ–W'2f÷"6VÆV7BFòWF†VçF–6FVBW6–ær‡V&Æ–2æ—5ö6÷W'EöÖVÖ&W"‡fVçVUö–B’“°¦G&÷öÆ–7’–bW†—7G2&ÖVÖ&W'2&VBWfVçG2"öâV&Æ–2æWfVçG3°¦7&VFRöÆ–7’&6÷W'BÖVÖ&W'2&VBWfVçG2"öâV&Æ–2æWfVçG2f÷"6VÆV7BFòWF†VçF–6FVBW6–ær‡V&Æ–2æ—5ö6÷W'EöÖVÖ&W"‡fVçVUö–B’“°¦G&÷öÆ–7’–bW†—7G2&ÖVÖ&W'2&VB6W&–W2"öâV&Æ–2æWfVçE÷6W&–W3°¦7&VFRöÆ–7’&6÷W'BÖVÖ&W'2&VB6W&–W2"öâV&Æ–2æWfVçE÷6W&–W2f÷"6VÆV7BFòWF†VçF–6FVBW6–ær‡V&Æ–2æ—5ö6÷W'EöÖVÖ&W"‡fVçVUö–B’“°¦G&÷öÆ–7’–bW†—7G2&ÖVÖ&W'2&VBGFVæFæ6W2"öâV&Æ–2æGFVæFæ6W3°¦7&VFRöÆ–7’&6÷W'BÖVÖ&W'2&VBGFVæFæ6W2"öâV&Æ–2æGFVæFæ6W2f÷"6VÆV7BFòWF†VçF–6FVBW6–ær€¢W†—7G2‡6VÆV7Bg&öÒV&Æ–2æWfVçG2Rv†W&RRæ–CÖWfVçEö–BæBV&Æ–2æ—5ö6÷W'EöÖVÖ&W"†RçfVçVUö–B’¢“°¦G&÷öÆ–7’–bW†—7G2&ÖVÖ&W'2&VBGB†—7F÷'’"öâV&Æ–2æGFVæFæ6Uö†—7F÷'“°¦7&VFRöÆ–7’&6÷W'BÖVÖ&W'2&VBGB†—7F÷'’"öâV&Æ–2æGFVæFæ6Uö†—7F÷'’f÷"6VÆV7BFòWF†VçF–6FVBW6–ær€¢W†—7G2‡6VÆV7Bg&öÒV&Æ–2æGFVæFæ6W2¦ö–âV&Æ–2æWfVçG2RöâRæ–CÖæWfVçEö–Bv†W&Ræ–CÖGFVæFæ6Uö–BæBV&Æ–2æ—5ö6÷W'EöÖVÖ&W"†RçfVçVUö–B’¢“°¦G&÷öÆ–7’–bW†—7G2&w&÷WÖVÖ&W'2&VBÆ–W"†÷F÷2"öâ7F÷&vRæö&¦V7G3°¦7&VFRöÆ–7’&6÷W'BÖVÖ&W'2&VBÆ–W"†÷F÷2"öâ7F÷&vRæö&¦V7G2f÷"6VÆV7BFòWF†VçF–6FVBW6–ær€¢'V6¶WEö–CÒwÆ–W"×†÷F÷2ræBW†—7G2‡6VÆV7Bg&öÒV&Æ–2çÆ–W'2 ¢v†W&Ræ–C£§FW‡CÒ‡7F÷&vRæföÆFW&æÖR†æÖR’•³%ÒæBæw&÷Wö–CÒ‚‡7F÷&vRæföÆFW&æÖR†æÖR’•³Ò“£§WV–@¢æBV&Æ–2æ—5ö6÷W'EöÖVÖ&W"‡çfVçVUö–B’¢“°¦G&÷öÆ–7’–bW†—7G2&ÖævW'2÷"6VÆbWÆöBÆ–W"†÷F÷2"öâ7F÷&vRæö&¦V7G3°¦7&VFRöÆ–7’&6÷W'BÖævW'2÷"6VÆbWÆöBÆ–W"†÷F÷2"öâ7F÷&vRæö&¦V7G2f÷"–ç6W'BFòWF†VçF–6FVBv—F‚6†V6²€¢'V6¶WEö–CÒwÆ–W"×†÷F÷2ræBW†—7G2‡6VÆV7Bg&öÒV&Æ–2çÆ–W'2v†W&Ræ–C£§FW‡CÒ‡7F÷&vRæföÆFW&æÖR†æÖR’•³%Ğ¢æBæw&÷Wö–CÒ‚‡7F÷&vRæföÆFW&æÖR†æÖR’•³Ò“£§WV–Bæ@¢‡V&Æ–2æ†5öw&÷W÷W&Ö—76–öâ‡æw&÷Wö–BÂwÆ–W'2r’÷"çW6W%ö–CÖWF‚çV–B‚’’¢“°¦G&÷öÆ–7’–bW†—7G2&ÖævW'2÷"6VÆbWFFRÆ–W"†÷F÷2"öâ7F÷&vRæö&¦V7G3°¦7&VFRöÆ–7’&6÷W'BÖævW'2÷"6VÆbWFFRÆ–W"†÷F÷2"öâ7F÷&vRæö&¦V7G2f÷"WFFRFòWF†VçF–6FVBW6–ær€¢'V6¶WEö–CÒwÆ–W"×†÷F÷2ræBW†—7G2‡6VÆV7Bg&öÒV&Æ–2çÆ–W'2v†W&Ræ–C£§FW‡CÒ‡7F÷&vRæföÆFW&æÖR†æÖR’•³%Ğ¢æBæw&÷Wö–CÒ‚‡7F÷&vRæföÆFW&æÖR†æÖR’•³Ò“£§WV–Bæ@¢‡V&Æ–2æ†5öw&÷W÷W&Ö—76–öâ‡æw&÷Wö–BÂwÆ–W'2r’÷"çW6W%ö–CÖWF‚çV–B‚’’¢’v—F‚6†V6²€¢'V6¶WEö–CÒwÆ–W"×†÷F÷2ræBW†—7G2‡6VÆV7Bg&öÒV&Æ–2çÆ–W'2v†W&Ræ–C£§FW‡CÒ‡7F÷&vRæföÆFW&æÖR†æÖR’•³%Ğ¢æBæw&÷Wö–CÒ‚‡7F÷&vRæföÆFW&æÖR†æÖR’•³Ò“£§WV–Bæ@¢‡V&Æ–2æ†5öw&÷W÷W&Ö—76–öâ‡æw&÷Wö–BÂwÆ–W'2r’÷"çW6W%ö–CÖWF‚çV–B‚’’¢“°¦G&÷öÆ–7’–bW†—7G2&ÖævW'2FVÆWFRÆ–W"†÷F÷2"öâ7F÷&vRæö&¦V7G3°¦7&VFRöÆ–7’&6÷W'BÖævW'2FVÆWFRÆ–W"†÷F÷2"öâ7F÷&vRæö&¦V7G2f÷"FVÆWFRFòWF†VçF–6FVBW6–ær€¢'V6¶WEö–CÒwÆ–W"×†÷F÷2ræBW†—7G2‡6VÆV7Bg&öÒV&Æ–2çÆ–W'2v†W&Ræ–C£§FW‡CÒ‡7F÷&vRæföÆFW&æÖR†æÖR’•³%Ğ¢æBæw&÷Wö–CÒ‚‡7F÷&vRæföÆFW&æÖR†æÖR’•³Ò“£§WV–BæBV&Æ–2æ†5öw&÷W÷W&Ö—76–öâ‡æw&÷Wö–BÂwÆ–W'2r’¢“° ¦7&VFR÷"&WÆ6RgVæ7F–öâV&Æ–2å÷&W6öÇfU÷Æ–W"…öWbV&Æ–2æWfVçG2Â÷Æ–W%ö–BWV–B’&WGW&ç2WV–@¦ÆæwVvRÇw7Â6V7W&—G’FVf–æW"6WB6V&6…÷Fƒ×V&Æ–22B@¦FV6Æ&R–BWV–C°¦&Vv–à¢4×Ûh‘éì¶»§q«^u[™\×ØXİ]™JH[ˆ˜Z\ÙH^Ù\[Ûˆ	Ô]XY˜H[°è[YHİH[˜]]˜IÎÈ[™YÂˆYˆÛØØİ\œ™[˜Ù\ÈHÜˆÛØØİ\œ™[˜Ù\ÈˆLˆ[ˆ˜Z\ÙH^Ù\[Ûˆ	Ô]X[YYHHØÛÜœ°ê›˜ÚX\È]™HÙ\ˆHHHL‰ÎÈ[™YÂˆ[œÙ\[ÈX›XË™]™[ÜÙ\šY\ÊÜ›İ\ÚY™[YWÚYÙYZÙ^Kİ\İ[YKÜ™X]YØJBˆ˜[Y\È
-ÙÜ›İ\ÚYİ™[YWÚY^˜Xİ
-İÈœ›ÛHÙš\œİÙ]JKÜİ\İ[YK]]ZY
+-- Make a venue (court) the scope for its roster and events while preserving
+-- the existing group as the permissions and membership boundary.
+insert into public.venues(group_id, name, address, created_by)
+select g.id, g.name, gs.location, g.created_by
+from public.groups g
+left join public.group_settings gs on gs.group_id = g.id
+where not exists (select 1 from public.venues v where v.group_id = g.id);
 
-JH™]\›š[™ÈY[ÈÚYÂˆH[YŠİ[\]KO‰ÙXY[™WÚİ\œÉË	ÉÊN›[Y\šXÎÂˆ›ÜˆH[ˆ‹—ÛØØİ\œ™[˜Ù\ËLHÛÜˆHÙš\œİÙ]H
-ÈJÎÈİH
-
-ÈÜİ\İ[YJH][YH›Û™HÂˆ[œÙ\[ÈX›XË™]™[ÊÜ›İ\ÚY™[YWÚYÙ\šY\×ÚY]Kİ\×Ø]\˜][Û—ÛZ[]\ËØØ][Û‹X^Ü\XÚ\[ËX[\×ØÛİ[^Y\œ×Ü\—İX[KÛØ[ÙY\\œ×İØ[YšXÙKÛÛ™š\›WÙXY[™KØ[˜Ù[][Û—Ü[\ËØZ]\İÛÙ™™\—ÛZ[]\Ë›İ\ËÜ™X]YØJBˆ˜[Y\È
-ÙÜ›İ\ÚYİ™[YWÚYÚYÛØ[\ØÙJ[YŠİ[\]KO‰İ]IË	ÉÊK	Ô[YIÊKİˆÛØ[\ØÙJ
-İ[\]KO‰Ù\˜][Û—ÛZ[]\ÉÊNš[L
-KÛØ[\ØÙJ[YŠİ[\]KO‰ÛØØ][Û‰Ë	ÉÊK
-Ù[XİY™\ÜÈœ›ÛHX›XË™[Y\ÈÚ\™HYWİ™[YWÚY
-JKˆÛØ[\ØÙJ
-İ[\]KO‰ÛX^Ü\XÚ\[ÉÊNš[Œ
-KÛØ[\ØÙJ
-İ[\]KO‰İX[\×ØÛİ[	ÊNš[ŠKÛØ[\ØÙJ
-İ[\]KO‰Ü^Y\œ×Ü\—İX[IÊNš[L
-KˆÛØ[\ØÙJ
-İ[\]KO‰ÙÛØ[ÙY\\œ×İØ[Y	ÊNš[ŠK[YŠİ[\]KO‰ÜšXÙIË	ÉÊN›[Y\šXËˆØ\ÙHÚ[ˆ\È›İ[[ˆİ[XZÙWÚ[\˜[
-ÙXÜÏO™
-ŒÍŒ
-H[™İ[\]KO‰ØØ[˜Ù[][Û—Ü[\ÉËˆ[YŠİ[\]KO‰İØZ]\İÛÙ™™\—ÛZ[]\ÉË	ÉÊNš[İ[\]KO‰Û›İ\ÉË]]ZY
+alter table public.venues add column if not exists city text;
+alter table public.venues add column if not exists neighborhood text;
+alter table public.venues add column if not exists habitual_weekday smallint check (habitual_weekday is null or habitual_weekday between 0 and 6);
+alter table public.venues add column if not exists habitual_time time;
 
-JNÂˆ[™ÛÜÂˆ[œÙ\[ÈX›XË˜]Y]ÛÙÜÊÜ›İ\ÚYXİÜ—ÚYXİ[Û‹[]K[]WÚY]Z[ÊBˆ˜[Y\È
-ÙÜ›İ\ÚY]]ZY
+-- Add every target column before inspecting or backfilling legacy data.
+alter table public.players add column if not exists venue_id uuid references public.venues(id) on delete restrict;
+alter table public.event_series add column if not exists venue_id uuid references public.venues(id) on delete restrict;
+alter table public.events add column if not exists venue_id uuid references public.venues(id) on delete restrict;
+alter table public.group_invites add column if not exists venue_id uuid references public.venues(id) on delete cascade;
+alter table public.group_join_requests add column if not exists venue_id uuid references public.venues(id) on delete cascade;
+alter table public.group_join_requests alter column invite_id drop not null;
+alter table public.group_join_requests add column if not exists dominant_foot text check (dominant_foot is null or dominant_foot in ('direito','esquerdo','ambos'));
+alter table public.group_join_requests add column if not exists position text;
+alter table public.group_join_requests add column if not exists secondary_positions text[] not null default '{}';
+-- Abort instead of assigning records to an arbitrary court when legacy data is ambiguous.
+do $$
+begin
+  if exists (
+    select 1 from public.players p
+    where p.venue_id is null and (select count(*) from public.venues v where v.group_id=p.group_id) <> 1
+  ) then raise exception 'Migration 0006 stopped: a player has zero or multiple courts in its group; resolve the court assignment first.'; end if;
+  if exists (
+    select 1 from public.events e where e.venue_id is null and (
+      (select count(*) from public.venues v where v.group_id=e.group_id and lower(coalesce(v.address,''))=lower(coalesce(e.location,''))) > 1
+      or ((select count(*) from public.venues v where v.group_id=e.group_id and lower(coalesce(v.address,''))=lower(coalesce(e.location,''))) = 0
+          and (select count(*) from public.venues v where v.group_id=e.group_id) <> 1)
+    )
+  ) then raise exception 'Migration 0006 stopped: an event has ambiguous court data; resolve its court before migration.'; end if;
+  if exists (
+    select 1 from public.event_series s where s.venue_id is null and (
+      (select count(distinct e.venue_id) from public.events e where e.series_id=s.id and e.venue_id is not null) > 1
+      or ((select count(distinct e.venue_id) from public.events e where e.series_id=s.id and e.venue_id is not null) = 0
+          and (select count(*) from public.venues v where v.group_id=s.group_id) <> 1)
+    )
+  ) then raise exception 'Migration 0006 stopped: an event series has ambiguous court data; resolve it before migration.'; end if;
+  if exists (
+    select 1 from public.group_invites i left join public.players p on p.id=i.player_id
+    where i.venue_id is null and (
+      (i.player_id is not null and (p.id is null or p.group_id<>i.group_id or (p.venue_id is null and (select count(*) from public.venues v where v.group_id=i.group_id)<>1)))
+      or (i.player_id is null and (select count(*) from public.venues v where v.group_id=i.group_id) <> 1)
+    )
+  ) then raise exception 'Migration 0006 stopped: an invite cannot be mapped unambiguously to its court.'; end if;
+  if exists (
+    select 1 from public.group_join_requests r left join public.group_invites i on i.id=r.invite_id
+    where r.venue_id is null and (
+      (r.invite_id is not null and (i.id is null or i.group_id<>r.group_id or (i.venue_id is null and (select count(*) from public.venues v where v.group_id=r.group_id)<>1)))
+      or (r.invite_id is null and (select count(*) from public.venues v where v.group_id=r.group_id) <> 1)
+    )
+  ) then raise exception 'Migration 0006 stopped: a membership request has no unambiguous court mapping.'; end if;
+end $$;
+update public.players p set venue_id = (
+  select id from public.venues where group_id=p.group_id order by created_at, id limit 1
+) where p.venue_id is null;
+update public.events e set venue_id = coalesce(
+  (select v.id from public.venues v where v.group_id=e.group_id and lower(coalesce(v.address,''))=lower(coalesce(e.location,'')) order by v.created_at limit 1),
+  (select v.id from public.venues v where v.group_id=e.group_id order by v.created_at limit 1)
+) where e.venue_id is null;
+update public.event_series s set venue_id = coalesce(
+  (select e.venue_id from public.events e where e.series_id=s.id and e.venue_id is not null order by e.starts_at limit 1),
+  (select v.id from public.venues v where v.group_id=s.group_id order by v.created_at limit 1)
+) where s.venue_id is null;
+update public.group_invites i set venue_id=coalesce(
+ (select p.venue_id from public.players p where p.id=i.player_id),
+ (select v.id from public.venues v where v.group_id=i.group_id order by v.created_at limit 1)
+) where i.venue_id is null;
+update public.group_join_requests r set venue_id=i.venue_id from public.group_invites i where i.id=r.invite_id and r.venue_id is null;
+update public.group_join_requests r set venue_id=(select v.id from public.venues v where v.group_id=r.group_id) where r.venue_id is null and (select count(*) from public.venues v where v.group_id=r.group_id)=1;
 
-K	ÜÙ\šY\Ë˜Ü™X]Y	Ë	ÜÙ\šY\ÉËÚYœÛÛ˜—ØZ[ÛØš™Xİ
-	İ™[YWÚY	Ëİ™[YWÚY	ÛØØİ\œ™[˜Ù\ÉËÛØØİ\œ™[˜Ù\ÊJNÂˆ™]\›ˆÚYÂ™[™		Â‚˜Ü™X]HX›HX›XË™]™[İX[\È
-ˆY]ZYš[X\HÙ^HY˜][Ù[—Ü˜[™ÛWİ]ZY
+alter table public.players alter column venue_id set not null;
+alter table public.events alter column venue_id set not null;
+alter table public.event_series alter column venue_id set not null;
+alter table public.group_join_requests alter column venue_id set not null;
+create index players_venue_name_idx on public.players(venue_id, name);
+create index events_venue_start_idx on public.events(venue_id, starts_at);
+drop index if exists public.group_join_requests_one_pending_user_idx;
+create unique index group_join_requests_one_pending_user_idx on public.group_join_requests(venue_id,user_id) where status='pending';
+create or replace function public.get_public_court(_venue_id uuid)
+returns table(id uuid,name text,address text,city text,neighborhood text)
+language sql stable security definer set search_path=public as $$
+  select v.id,v.name,v.address,v.city,v.neighborhood from public.venues v where v.id=_venue_id and v.is_active
+$$;
+revoke execute on function public.get_public_court(uuid) from public;
+grant execute on function public.get_public_court(uuid) to anon,authenticated;
 
-K]™[ÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™]™[ÊY
-HÛˆ[]HØ\ØØYKˆÜ›İ\ÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™Ü›İ\ÊY
-HÛˆ[]HØ\ØØYK™[YWÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™[Y\ÊY
-HÛˆ[]H™\İšXİˆ˜[YH^›İ[Ü™X]YØH]ZY›İ[™Y™\™[˜Ù\È]]\Ù\œÊY
-KÜ™X]YØ][Y\İ[\ˆ›İ[Y˜][›İÊ
-Kˆ[š\]YJ]™[ÚY˜[YJBŠNÂ˜Ü™X]HX›HX›XË™]™[İX[WÜ^Y\œÈ
-ˆ]™[ÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™]™[ÊY
-HÛˆ[]HØ\ØØYKX[WÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™]™[İX[\ÊY
-HÛˆ[]HØ\ØØYKˆ^Y\—ÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XËœ^Y\œÊY
-HÛˆ[]H™\İšXİÜ›İ\ÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™Ü›İ\ÊY
-HÛˆ[]HØ\ØØYKˆ™[YWÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™[Y\ÊY
-HÛˆ[]H™\İšXİ\ÜÚYÛ™YØH]ZY™Y™\™[˜Ù\È]]\Ù\œÊY
-KÜ™X]YØ][Y\İ[\ˆ›İ[Y˜][›İÊ
-Kˆš[X\HÙ^J]™[ÚY^Y\—ÚY
-BŠNÂ˜Ü™X]HšYÙÙ\ˆ™×İX[WÜ^Y\—ÜØÛÜH™Y›Ü™H[œÙ\Üˆ\]HÛˆX›XË™]™[İX[WÜ^Y\œÂ™›ÜˆXXÚ›İÈ^Xİ]H[˜İ[ÛˆX›XË˜[Y]WİX[WÜ^Y\—ÜØÛÜJ
-NÂ˜[\ˆX›HX›XË™]™[İX[\È[˜X›H›İÈ]™[ÙXİ\š]NÂ˜[\ˆX›HX›XË™]™[İX[WÜ^Y\œÈ[˜X›H›İÈ]™[ÙXİ\š]NÂ™Ü˜[Ù[Xİ[œÙ\\]K[]HÛˆX›XË™]™[İX[\ËX›XË™]™[İX[WÜ^Y\œÈÈ]][XØ]YÂ™Ü˜[[ÛˆX›XË™]™[İX[\ËX›XË™]™[İX[WÜ^Y\œÈÈÙ\šXÙWÜ›ÛNÂ˜Ü™X]HÛXŞH˜Ûİ\Y[X™\œÈ™XYX[\ÈˆÛˆX›XË™]™[İX[\È›ÜˆÙ[XİÈ]][XØ]Y\Ú[™È
-X›XËš\×ØÛİ\ÛY[X™\Š™[YWÚY
-JNÂ˜Ü™X]HÛXŞH˜Ûİ\YZ[œÈX[˜YÙHX[\ÈˆÛˆX›XË™]™[İX[\È›Üˆ[È]][XØ]Y\Ú[™È
-X›XËš\×ÙÜ›İ\ØYZ[ŠÜ›İ\ÚY
-JHÚ]ÚXÚÈ
-X›XËš\×ÙÜ›İ\ØYZ[ŠÜ›İ\ÚY
-JNÂ˜Ü™X]HÛXŞH˜Ûİ\Y[X™\œÈ™XYX[H^Y\œÈˆÛˆX›XË™]™[İX[WÜ^Y\œÈ›ÜˆÙ[XİÈ]][XØ]Y\Ú[™È
-X›XËš\×ØÛİ\ÛY[X™\Š™[YWÚY
-JNÂ˜Ü™X]HÛXŞH˜Ûİ\YZ[œÈX[˜YÙHX[H^Y\œÈˆÛˆX›XË™]™[İX[WÜ^Y\œÈ›Üˆ[È]][XØ]Y\Ú[™È
-X›XËš\×ÙÜ›İ\ØYZ[ŠÜ›İ\ÚY
-JHÚ]ÚXÚÈ
-X›XËš\×ÙÜ›İ\ØYZ[ŠÜ›İ\ÚY
-JNÂ‚˜Ü™X]HÜˆ™\XÙH[˜İ[ÛˆX›XË™Ù[™\˜]WÙ]™[İX[\ÊÙ]™[ÚY]ZY
-H™]\›œÈ[›[™İXYÙHÜÜ[ÙXİ\š]HYš[™\ˆÙ]ÙX\˜ÚÜ]\X›XÈ\È		™XÛ\™H]ˆX›XË™]™[ÎÈˆ[Â˜™YÚ[‚ˆ]ˆHX›XË—ÛØÚ×Ù]™[
-Ù]™[ÚY
-NÂˆYˆ›İX›XËš\×ÙÜ›İ\ØYZ[Š]‹™Ü›İ\ÚY
-H[ˆ˜Z\ÙH^Ù\[Ûˆ	ÔÛÛY[HÈYZ[š\İ˜YÜˆÙH\˜\ˆÜÈ[Y\ÉÎÈ[™YÂˆYˆ]‹œİ]\ÏIØØ[˜Ù[Y	È[ˆ˜Z\ÙH^Ù\[Ûˆ	Ñ]™[ÈØ[˜Ù[YÉÎÈ[™YÂˆ[]Hœ›ÛHX›XË™]™[İX[\ÈÚ\™H]™[ÚYWÙ]™[ÚYÂˆ[œÙ\[ÈX›XË™]™[İX[\Ê]™[ÚYÜ›İ\ÚY™[YWÚY˜[YKÜ™X]YØJBˆÙ[XİÙ]™[ÚY]‹™Ü›İ\ÚY]‹™[YWÚY	Õ[YH	ßË]]ZY
+create or replace function public.request_court_membership(_venue_id uuid,_dominant_foot text,_position text,_secondary_positions text[] default '{}') returns uuid
+language plpgsql security definer set search_path=public as $$
+declare v public.venues; prof public.profiles; uemail text; pname text; reqid uuid;
+begin
+  if auth.uid() is null then raise exception 'Entre ou crie uma conta antes de solicitar participaÃ§Ã£o'; end if;
+  select * into v from public.venues where id=_venue_id and is_active;
+  if not found then raise exception 'Esta quadra nÃ£o estÃ¡ disponÃ­vel'; end if;
+  select * into prof from public.profiles where id=auth.uid();
+  if not found or nullif(trim(prof.full_name),'') is null or prof.age is null or nullif(trim(prof.address),'') is null or nullif(trim(prof.city),'') is null or nullif(trim(prof.neighborhood),'') is null then
+    raise exception 'Complete seu perfil antes de solicitar participaÃ§Ã£o';
+  end if;
+  if _dominant_foot is null or _dominant_foot not in ('direito','esquerdo','ambos') then raise exception 'Selecione seu pÃ© dominante'; end if;
+  if _position is null or _position not in ('Goleiro','Zagueiro','Lateral','Volante','Meia','Ponta','Atacante') then raise exception 'Selecione sua posiÃ§Ã£o principal'; end if;
+  if exists(select 1 from unnest(coalesce(_secondary_positions,'{}')) x where x not in ('Goleiro','Zagueiro','Lateral','Volante','Meia','Ponta','Atacante')) then raise exception 'PosiÃ§Ã£o secundÃ¡ria invÃ¡lida'; end if;
+  if exists(select 1 from public.players where venue_id=v.id and user_id=auth.uid()) then raise exception 'VocÃª jÃ¡ participa desta quadra'; end if;
+  select id into reqid from public.group_join_requests where venue_id=v.id and user_id=auth.uid() and status='pending' limit 1;
+  if reqid is not null then return reqid; end if;
+  select email into uemail from auth.users where id=auth.uid();
+  pname:=trim(prof.full_name);
+  insert into public.group_join_requests(group_id,venue_id,invite_id,user_id,court_name,name,email,dominant_foot,position,secondary_positions)
+    values(v.group_id,v.id,null,auth.uid(),v.name,pname,lower(uemail),_dominant_foot,_position,coalesce(_secondary_positions,'{}')) returning id into reqid;
+  insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+    values(v.group_id,auth.uid(),'join.requested','join_request',reqid,jsonb_build_object('venue_id',v.id,'position',_position));
+  return reqid;
+end $$;
+revoke execute on function public.request_court_membership(uuid,text,text,text[]) from public,anon;
+grant execute on function public.request_court_membership(uuid,text,text,text[]) to authenticated;
 
-Hœ›ÛHÙ[™\˜]WÜÙ\šY\ÊK]‹X[\×ØÛİ[
-HÎÂˆÚ][YÚX›H\È
-ˆÙ[XİšYœÚÚ[Û]™[™ÛØ[ÙY\\—Û]™[ˆ›İ×Û[X™\Š
-Hİ™\ŠÜ™\ˆHÛØ[\ØÙJ™ÛØ[ÙY\\—Û]™[
-H\ØËÛØ[\ØÙJœÚÚ[Û]™[JH\ØËšY
-H›‚ˆœ›ÛHX›XË˜][™[˜Ù\ÈH›Ú[ˆX›XËœ^Y\œÈÛˆšYXKœ^Y\—ÚYˆÚ\™HK™]™[ÚYWÙ]™[ÚY[™™[YWÚYY]‹™[YWÚY[™Kœİ]\ÏIØÛÛ™š\›YY	È[™K˜][™Y\È\İ[˜İœ›ÛH˜[ÙBˆ
-KXÙY\È
-ˆÙ[Xİ
-‹Ø\ÙHÚ[ˆ›ÛÜŠ
-›‹LJN›[Y\šXËÙ]‹X[\×ØÛİ[
-Nš[	LLˆ[ˆ
+create or replace function public.validate_court_scope() returns trigger
+language plpgsql set search_path=public as $$
+begin
+  if not exists (select 1 from public.venues v where v.id=new.venue_id and v.group_id=new.group_id) then
+    raise exception 'A quadra selecionada nÃ£o pertence a este grupo';
+  end if;
+  return new;
+end $$;
+create trigger trg_players_court_scope before insert or update of group_id,venue_id on public.players
+for each row execute function public.validate_court_scope();
+create trigger trg_events_court_scope before insert or update of group_id,venue_id on public.events
+for each row execute function public.validate_court_scope();
+create trigger trg_series_court_scope before insert or update of group_id,venue_id on public.event_series
+for each row execute function public.validate_court_scope();
 
-›‹LJIY]‹X[\×ØÛİ[
-JÌH[ÙH]‹X[\×ØÛİ[J
-›‹LJIY]‹X[\×ØÛİ[
-H[™X[WÛ›Èœ›ÛH[YÚX›Bˆ
-Bˆ[œÙ\[ÈX›XË™]™[İX[WÜ^Y\œÊ]™[ÚYX[WÚY^Y\—ÚYÜ›İ\ÚY™[YWÚY\ÜÚYÛ™YØJBˆÙ[XİÙ]™[ÚYšYšY]‹™Ü›İ\ÚY]‹™[YWÚY]]ZY
+create or replace function public.validate_team_player_scope() returns trigger
+language plpgsql set search_path=public as $$
+begin
+  if not exists(select 1 from public.event_teams t join public.events e on e.id=t.event_id
+    join public.players p on p.id=new.player_id where t.id=new.team_id and t.event_id=new.event_id
+    and t.venue_id=new.venue_id and e.venue_id=new.venue_id and p.venue_id=new.venue_id
+    and t.group_id=new.group_id and p.group_id=new.group_id) then
+    raise exception 'Time, evento e jogador devem pertencer Ã  mesma quadra';
+  end if;
+  return new;
+end $$;
 
-Hœ›ÛHXÙY›Ú[ˆX›XË™]™[İX[\ÈÛˆ™]™[ÚYWÙ]™[ÚY[™›˜[YOIÕ[YH	ßX[WÛ›ÎÂˆÙ]XYÛ›ÜİXÜÈˆH›İ×ØÛİ[Âˆ[œÙ\[ÈX›XË˜]Y]ÛÙÜÊÜ›İ\ÚYXİÜ—ÚYXİ[Û‹[]K[]WÚY]Z[ÊBˆ˜[Y\È
-]‹™Ü›İ\ÚY]]ZY
+-- Keep the existing group creator flow working with the new required venue_id.
+create or replace function public.create_group(_name text, _as_player boolean default true) returns uuid
+language plpgsql security definer set search_path=public as $$
+declare gid uuid; pid uuid; pname text; prof public.profiles;
+begin
+  if auth.uid() is null then raise exception 'NÃ£o autenticado'; end if;
+  if length(trim(_name))<2 then raise exception 'Nome da quadra invÃ¡lido'; end if;
+  select * into prof from public.profiles where id=auth.uid() for update;
+  if not found or nullif(trim(prof.full_name),'') is null or prof.age is null or nullif(trim(prof.address),'') is null or nullif(trim(prof.city),'') is null or nullif(trim(prof.neighborhood),'') is null then
+    raise exception 'Complete idade, endereÃ§o, cidade e bairro no seu perfil antes de criar uma quadra';
+  end if;
+  insert into public.groups(name,created_by) values(trim(_name),auth.uid()) returning id into gid;
+  insert into public.group_members(group_id,user_id,role) values(gid,auth.uid(),'admin');
+  insert into public.group_settings(group_id) values(gid);
+  insert into public.venues(group_id,name,address,city,neighborhood,created_by)
+    values(gid,trim(_name),trim(prof.address),trim(prof.city),trim(prof.neighborhood),auth.uid()) returning id into pid;
+  if _as_player then
+    insert into public.players(group_id,venue_id,user_id,name,email)
+      values(gid,pid,auth.uid(),coalesce(nullif(trim(prof.full_name),''),'Administrador'),(select lower(email) from auth.users where id=auth.uid()));
+  end if;
+  insert into public.audit_logs(group_id,actor_id,action,entity,entity_id)
+    values(gid,auth.uid(),'group.created','group',gid);
+  return gid;
+end $$;
+revoke execute on function public.create_group(text,boolean) from public,anon,authenticated;
 
-K	İX[\Ë™Ù[™\˜]Y	Ë	Ù]™[	ËÙ]™[ÚYœÛÛ˜—ØZ[ÛØš™Xİ
-	İ™[YWÚY	Ë]‹™[YWÚY	Ü^Y\œÉËŠJNÂˆ™]\›ˆÂ™[™		Â‚˜Ü™X]HÜˆ™\XÙH[˜İ[ÛˆX›XË˜Ü™X]WÜ^Y\—Ù›Ü—Ù]™[İX[JÙ]™[ÚY]ZYİX[WÚY]ZYÛ˜[YH^Ù[XZ[^Y˜][[
-H™]\›œÈ]ZY›[™İXYÙHÜÜ[ÙXİ\š]HYš[™\ˆÙ]ÙX\˜ÚÜ]\X›XÈ\È		™XÛ\™H]ˆX›XË™]™[ÎÈY]ZYÈ[H^[[YŠİÙ\Šš[JÙ[XZ[
-JK	ÉÊNÂ˜™YÚ[‚ˆ]\X›XË—ÛØÚ×Ù]™[
-Ù]™[ÚY
-NÂˆYˆ›İX›XËš\×ÙÜ›İ\ØYZ[Š]‹™Ü›İ\ÚY
-H[ˆ˜Z\ÙH^Ù\[Ûˆ	ÔÛÛY[HÈYZ[š\İ˜YÜˆÙH[˜ÛZ\ˆ›ÙØYÜ™\ÈX[X[Y[IÎÈ[™YÂˆYˆ›İ^\İÊÙ[XİHœ›ÛHX›XË™]™[İX[\ÈÚ\™HYWİX[WÚY[™]™[ÚYWÙ]™[ÚY[™™[YWÚYY]‹™[YWÚY
-H[ˆ˜Z\ÙH^Ù\[Ûˆ	Õ[YH°èÛÈ\[˜ÙHH\İH]XY˜IÎÈ[™YÂˆYˆ[™İ
-š[JÛ˜[YJJOˆ[ˆ˜Z\ÙH^Ù\[Ûˆ	Ò[™›Ü›YHÈ›ÛYHÈ›ÙØYÜ‰ÎÈ[™YÂˆYˆ[H\È›İ[[™^\İÊÙ[XİHœ›ÛHX›XËœ^Y\œÈÚ\™H™[YWÚYY]‹™[YWÚY[™İÙ\Š[XZ[
-OY[JH[ˆ˜Z\ÙH^Ù\[Ûˆ	Ò°èH^\İH›ÙØYÜˆÛÛH\İHK[XZ[™\İH]XY˜IÎÈ[™YÂˆ[œÙ\[ÈX›XËœ^Y\œÊÜ›İ\ÚY™[YWÚY˜[YK[XZ[\XÚ\][Û—İ\K\×Û[ÛKİ]\Ë›Ú[™YØ]
-Bˆ˜[Y\Ê]‹™Ü›İ\ÚY]‹™[YWÚYš[JÛ˜[YJK[K	Ø][ÛÉË˜[ÙK	ØXİ]™IËİ\œ™[Ù]JH™]\›š[™ÈY[ÈYÂˆ[œÙ\[ÈX›XË˜][™[˜Ù\Ê]™[ÚYÜ›İ\ÚY^Y\—ÚYİ]\ËÛÛ™š\›YYØ]][™Y\]YØJBˆ˜[Y\ÊÙ]™[ÚY]‹™Ü›İ\ÚYY	ØÛÛ™š\›YY	Ë›İÊ
-KYK]]ZY
+create or replace function public.create_court(_name text,_address text,_weekday smallint,_time time) returns uuid
+language plpgsql security definer set search_path=public as $$
+declare gid uuid;
+begin
+  if nullif(trim(_address),'') is null then raise exception 'Informe o endereÃ§o da quadra'; end if;
+  if _weekday is null or _weekday not between 0 and 6 then raise exception 'Dia da semana invÃ¡lido'; end if;
+  if _time is null then raise exception 'Informe o horÃ¡rio de uso'; end if;
+  gid:=public.create_group(_name,true);
+  update public.group_settings set default_weekday=_weekday,default_time=_time,location=trim(_address) where group_id=gid;
+  update public.venues set address=trim(_address),habitual_weekday=_weekday,habitual_time=_time where group_id=gid;
+  return gid;
+end $$;
+revoke execute on function public.create_court(text,text,smallint,time) from public,anon;
+grant execute on function public.create_court(text,text,smallint,time) to authenticated;
 
-JNÂˆ[œÙ\[ÈX›XË™]™[İX[WÜ^Y\œÊ]™[ÚYX[WÚY^Y\—ÚYÜ›İ\ÚY™[YWÚY\ÜÚYÛ™YØJBˆ˜[Y\ÊÙ]™[ÚYİX[WÚYY]‹™Ü›İ\ÚY]‹™[YWÚY]]ZY
+create or replace function public.is_court_member(_venue_id uuid) returns boolean
+language sql stable security definer set search_path=public as $$
+  select exists(select 1 from public.venues v where v.id=_venue_id and (
+    public.is_group_admin(v.group_id) or exists(select 1 from public.players p where p.venue_id=v.id and p.user_id=auth.uid())
+  ))
+$$;
+revoke execute on function public.is_court_member(uuid) from public,anon;
+grant execute on function public.is_court_member(uuid) to authenticated;
 
-JNÂˆ[œÙ\[ÈX›XË˜]Y]ÛÙÜÊÜ›İ\ÚYXİÜ—ÚYXİ[Û‹[]K[]WÚY]Z[ÊBˆ˜[Y\Ê]‹™Ü›İ\ÚY]]ZY
+drop policy if exists "group members read venues" on public.venues;
+create policy "court members read venues" on public.venues for select to authenticated using (public.is_court_member(id));
+drop policy if exists "members read players" on public.players;
+create policy "court members read players" on public.players for select to authenticated using (public.is_court_member(venue_id));
+drop policy if exists "members read events" on public.events;
+create policy "court members read events" on public.events for select to authenticated using (public.is_court_member(venue_id));
+drop policy if exists "members read series" on public.event_series;
+create policy "court members read series" on public.event_series for select to authenticated using (public.is_court_member(venue_id));
+drop policy if exists "members read attendances" on public.attendances;
+create policy "court members read attendances" on public.attendances for select to authenticated using (
+  exists(select 1 from public.events e where e.id=event_id and public.is_court_member(e.venue_id))
+);
+drop policy if exists "members read att history" on public.attendance_history;
+create policy "court members read att history" on public.attendance_history for select to authenticated using (
+  exists(select 1 from public.attendances a join public.events e on e.id=a.event_id where a.id=attendance_id and public.is_court_member(e.venue_id))
+);
+drop policy if exists "group members read player photos" on storage.objects;
+create policy "court members read player photos" on storage.objects for select to authenticated using (
+  bucket_id='player-photos' and exists(select 1 from public.players p
+    where p.id::text=(storage.foldername(name))[2] and p.group_id=((storage.foldername(name))[1])::uuid
+      and public.is_court_member(p.venue_id))
+);
+drop policy if exists "managers or self upload player photos" on storage.objects;
+create policy "court managers or self upload player photos" on storage.objects for insert to authenticated with check (
+  bucket_id='player-photos' and exists(select 1 from public.players p where p.id::text=(storage.foldername(name))[2]
+    and p.group_id=((storage.foldername(name))[1])::uuid and
+    (public.has_group_permission(p.group_id,'players') or p.user_id=auth.uid()))
+);
+drop policy if exists "managers or self update player photos" on storage.objects;
+create policy "court managers or self update player photos" on storage.objects for update to authenticated using (
+  bucket_id='player-photos' and exists(select 1 from public.players p where p.id::text=(storage.foldername(name))[2]
+    and p.group_id=((storage.foldername(name))[1])::uuid and
+    (public.has_group_permission(p.group_id,'players') or p.user_id=auth.uid()))
+) with check (
+  bucket_id='player-photos' and exists(select 1 from public.players p where p.id::text=(storage.foldername(name))[2]
+    and p.group_id=((storage.foldername(name))[1])::uuid and
+    (public.has_group_permission(p.group_id,'players') or p.user_id=auth.uid()))
+);
+drop policy if exists "managers delete player photos" on storage.objects;
+create policy "court managers delete player photos" on storage.objects for delete to authenticated using (
+  bucket_id='player-photos' and exists(select 1 from public.players p where p.id::text=(storage.foldername(name))[2]
+    and p.group_id=((storage.foldername(name))[1])::uuid and public.has_group_permission(p.group_id,'players'))
+);
 
-K	Ü^Y\‹˜Ü™X]YÙ›Ü—Ù]™[	Ë	Ü^Y\‰ËYœÛÛ˜—ØZ[ÛØš™Xİ
-	Ù]™[ÚY	ËÙ]™[ÚY	İ™[YWÚY	Ë]‹™[YWÚY
-JNÂˆ™]\›ˆYÂ™[™		Â‚˜Ü™X]HÜˆ™\XÙH[˜İ[ÛˆX›XË˜YÜ^Y\—İ×Ù]™[İX[JÙ]™[ÚY]ZYİX[WÚY]ZYÜ^Y\—ÚY]ZY
-H™]\›œÈ›ÚY›[™İXYÙHÜÜ[ÙXİ\š]HYš[™\ˆÙ]ÙX\˜ÚÜ]\X›XÈ\È		™XÛ\™H]ˆX›XË™]™[ÎÂ˜™YÚ[‚ˆ]\X›XË—ÛØÚ×Ù]™[
-Ù]™[ÚY
-NÂˆYˆ›İX›XËš\×ÙÜ›İ\ØYZ[Š]‹™Ü›İ\ÚY
-H[ˆ˜Z\ÙH^Ù\[Ûˆ	ÔÛÛY[HÈYZ[š\İ˜YÜˆÙHYXÚ[Û˜\ˆ›ÙØYÜ™\È[ÜÈ[Y\ÉÎÈ[™YÂˆYˆ›İ^\İÊÙ[XİHœ›ÛHX›XË™]™[İX[\ÈÚ\™HYWİX[WÚY[™]™[ÚYWÙ]™[ÚY[™™[YWÚYY]‹™[YWÚY
-H[ˆ˜Z\ÙH^Ù\[Ûˆ	Õ[YH°èÛÈ\[˜ÙHH\İH]™[ÉÎÈ[™YÂˆYˆ›İ^\İÊÙ[XİHœ›ÛHX›XËœ^Y\œÈÚ\™HYWÜ^Y\—ÚY[™Ü›İ\ÚYY]‹™Ü›İ\ÚY[™™[YWÚYY]‹™[YWÚY
-H[ˆ˜Z\ÙH^Ù\[Ûˆ	Ò›ÙØYÜˆ°èÛÈ\[˜ÙHH\İH]XY˜IÎÈ[™YÂˆ[œÙ\[ÈX›XË˜][™[˜Ù\Ê]™[ÚYÜ›İ\ÚY^Y\—ÚYİ]\ËÛÛ™š\›YYØ]][™Y\]YØJBˆ˜[Y\ÊÙ]™[ÚY]‹™Ü›İ\ÚYÜ^Y\—ÚY	ØÛÛ™š\›YY	Ë›İÊ
-KYK]]ZY
+create or replace function public._resolve_player(_ev public.events, _player_id uuid) returns uuid
+language plpgsql security definer set search_path=public as $$
+declare pid uuid;
+begin
+  if _player_id is null then
+    select id into pid from public.players where group_id=_ev.group_id and venue_id=_ev.venue_id and user_id=auth.uid();
+    if pid is null then raise exception 'VocÃª nÃ£o tem cadastro de jogador nesta quadra'; end if;
+    return pid;
+  end if;
+  if not exists(select 1 from public.players where id=_player_id and group_id=_ev.group_id and venue_id=_ev.venue_id) then
+    raise exception 'Jogador nÃ£o pertence a esta quadra';
+  end if;
+  if not exists(select 1 from public.players where id=_player_id and user_id=auth.uid())
+     and not public.has_group_permission(_ev.group_id,'events') then raise exception 'Sem permissÃ£o'; end if;
+  return _player_id;
+end $$;
 
-JBˆÛˆÛÛ™›Xİ
-]™[ÚY^Y\—ÚY
-HÈ\]HÙ]İ]\ÏIØÛÛ™š\›YY	Ë][™Y]YK\]YØOX]]ZY
+create or replace function public.create_invite(
+  _group_id uuid, _email text, _role public.group_role default 'player', _player_id uuid default null
+) returns text language plpgsql security definer set search_path=public as $$
+declare t text; p public.players; em text:=lower(trim(_email));
+begin
+  if not public.has_group_permission(_group_id,'members') and not public.has_group_permission(_group_id,'players') then raise exception 'Sem permissÃ£o'; end if;
+  if _role<>'player' then raise exception 'Convites individuais sÃ³ podem incluir jogadores'; end if;
+  if em is null or em='' or position('@' in em)<2 then raise exception 'E-mail invÃ¡lido'; end if;
+  if _player_id is null then raise exception 'Selecione o cadastro do jogador e sua quadra antes de convidar'; end if;
+  select * into p from public.players where id=_player_id and group_id=_group_id for update;
+  if not found then raise exception 'Jogador nÃ£o encontrado nesta quadra'; end if;
+  if p.user_id is not null then raise exception 'Este jogador jÃ¡ tem conta vinculada'; end if;
+  if p.email is not null and lower(p.email)<>em then raise exception 'O e-mail nÃ£o corresponde ao cadastro deste jogador'; end if;
+  update public.players set email=em where id=p.id and email is null;
+  update public.group_invites set revoked_at=now() where player_id=p.id and accepted_at is null and revoked_at is null;
+  if exists(select 1 from public.group_members gm join auth.users u on u.id=gm.user_id where gm.group_id=_group_id and lower(u.email)=em) then
+    raise exception 'Este e-mail jÃ¡ participa do grupo';
+  end if;
+  insert into public.group_invites(group_id,venue_id,email,role,invited_by,player_id)
+    values(_group_id,p.venue_id,em,'player',auth.uid(),_player_id) returning token into t;
+  insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+    values(_group_id,auth.uid(),'invite.created','player',_player_id,jsonb_build_object('venue_id',p.venue_id,'email',em));
+  return t;
+end $$;
 
-NÂˆ[œÙ\[ÈX›XË™]™[İX[WÜ^Y\œÊ]™[ÚYX[WÚY^Y\—ÚYÜ›İ\ÚY™[YWÚY\ÜÚYÛ™YØJBˆ˜[Y\ÊÙ]™[ÚYİX[WÚYÜ^Y\—ÚY]‹™Ü›İ\ÚY]‹™[YWÚY]]ZY
+create or replace function public.accept_invite(_token text) returns uuid
+language plpgsql security definer set search_path=public as $$
+declare inv public.group_invites; uemail text; pname text; p public.players; prof public.profiles;
+begin
+  if auth.uid() is null then raise exception 'NÃ£o autenticado'; end if;
+  select * into inv from public.group_invites where token=_token for update;
+  if not found then raise exception 'Convite invÃ¡lido'; end if;
+  if inv.role<>'player' then raise exception 'Este convite nÃ£o pode conceder privilÃ©gios'; end if;
+  if inv.revoked_at is not null then raise exception 'Convite revogado'; end if;
+  if inv.accepted_at is not null then raise exception 'Convite jÃ¡ utilizado'; end if;
+  if inv.expires_at<now() then raise exception 'Convite expirado'; end if;
+  select email into uemail from auth.users where id=auth.uid();
+  if lower(uemail)<>inv.email then raise exception 'Este convite foi enviado para outro e-mail'; end if;
+  select * into prof from public.profiles where id=auth.uid();
+  if not found or nullif(trim(prof.full_name),'') is null or prof.age is null or nullif(trim(prof.address),'') is null or nullif(trim(prof.city),'') is null or nullif(trim(prof.neighborhood),'') is null then
+    raise exception 'Complete seu perfil antes de solicitar entrada';
+  end if;
+  if inv.player_id is not null then
+    select * into p from public.players where id=inv.player_id and group_id=inv.group_id and venue_id=inv.venue_id for update;
+    if not found then raise exception 'Jogador do convite nÃ£o existe mais'; end if;
+    if p.user_id is not null and p.user_id<>auth.uid() then raise exception 'Este jogador jÃ¡ estÃ¡ vinculado a outra conta'; end if;
+    if p.email is not null and lower(p.email)<>lower(uemail) then raise exception 'O convite nÃ£o corresponde ao e-mail deste jogador'; end if;
+  end if;
+  if exists(select 1 from public.players where group_id=inv.group_id and venue_id=inv.venue_id and user_id=auth.uid()) then raise exception 'Sua conta jÃ¡ participa desta quadra'; end if;
+  pname:=coalesce(nullif(trim(prof.full_name),''),split_part(uemail,'@',1));
+  insert into public.group_join_requests(group_id,venue_id,invite_id,user_id,player_id,court_name,name,email)
+    values(inv.group_id,inv.venue_id,inv.id,auth.uid(),inv.player_id,(select name from public.venues where id=inv.venue_id),pname,lower(uemail));
+  update public.group_invites set accepted_at=now() where id=inv.id;
+  insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+    values(inv.group_id,auth.uid(),'join.requested','join_request',inv.id,jsonb_build_object('player_id',inv.player_id,'venue_id',inv.venue_id));
+  return inv.group_id;
+end $$;
 
-JBˆÛˆÛÛ™›Xİ
-]™[ÚY^Y\—ÚY
-HÈ\]HÙ]X[WÚYY^ÛYYX[WÚY\ÜÚYÛ™YØOX]]ZY
+create or replace function public.review_join_request(_request_id uuid,_approve boolean) returns uuid
+language plpgsql security definer set search_path=public as $$
+declare req public.group_join_requests; p public.players; gid uuid;
+begin
+  select * into req from public.group_join_requests where id=_request_id for update;
+  if not found then raise exception 'SolicitaÃ§Ã£o nÃ£o encontrada'; end if;
+  if not public.is_group_admin(req.group_id) then raise exception 'Somente o administrador da quadra pode aprovar'; end if;
+  if req.status<>'pending' then raise exception 'Esta solicitaÃ§Ã£o jÃ¡ foi analisada'; end if;
+  gid:=req.group_id;
+  if not _approve then
+    update public.group_join_requests set status='rejected',decided_at=now(),decided_by=auth.uid() where id=req.id;
+    insert into public.audit_logs(group_id,actor_id,action,entity,entity_id) values(gid,auth.uid(),'join.rejected','join_request',req.id);
+    return gid;
+  end if;
+  if exists(select 1 from public.players where group_id=gid and venue_id=req.venue_id and user_id=req.user_id and id is distinct from req.player_id) then raise exception 'Esta conta jÃ¡ pertence Ã  quadra'; end if;
+  if exists(select 1 from public.players where group_id=gid and venue_id=req.venue_id and user_id=req.user_id and id is distinct from req.player_id) then raise exception 'Esta conta jÃ¡ estÃ¡ vinculada a outro jogador'; end if;
+  if req.player_id is not null then
+    select * into p from public.players where id=req.player_id and group_id=gid and venue_id=req.venue_id for update;
+    if not found then raise exception 'Cadastro do jogador nÃ£o existe mais'; end if;
+    if p.user_id is not null and p.user_id<>req.user_id then raise exception 'Este jogador estÃ¡ vinculado a outra conta'; end if;
+    if p.email is not null and lower(p.email)<>lower(req.email) then raise exception 'O e-mail do cadastro foi alterado; valide antes de aprovar'; end if;
+    update public.players set user_id=req.user_id,
+      dominant_foot=coalesce(dominant_foot,req.dominant_foot),
+      position=coalesce(position,req.position),
+      secondary_positions=case when cardinality(secondary_positions)=0 then req.secondary_positions else secondary_positions end
+      where id=p.id;
+  else
+    select * into p from public.players where group_id=gid and venue_id=req.venue_id and lower(email)=lower(req.email) for update;
+    if found then
+      if p.user_id is not null and p.user_id<>req.user_id then raise exception 'Este jogador estÃ¡ vinculado a outra conta'; end if;
+      update public.players set user_id=req.user_id,
+        dominant_foot=coalesce(dominant_foot,req.dominant_foot),
+        position=coalesce(position,req.position),
+        secondary_positions=case when cardinality(secondary_positions)=0 then req.secondary_positions else secondary_positions end
+        where id=p.id;
+    else
+      insert into public.players(group_id,venue_id,user_id,name,email,dominant_foot,position,secondary_positions)
+        values(gid,req.venue_id,req.user_id,req.name,req.email,req.dominant_foot,req.position,req.secondary_positions) returning * into p;
+    end if;
+  end if;
+  insert into public.group_members(group_id,user_id,role) values(gid,req.user_id,'player') on conflict(group_id,user_id) do nothing;
+  update public.group_join_requests set status='approved',decided_at=now(),decided_by=auth.uid() where id=req.id;
+  insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+    values(gid,auth.uid(),'join.approved','player',p.id,jsonb_build_object('request_id',req.id,'venue_id',req.venue_id));
+  return gid;
+end $$;
 
-NÂ™[™		Â‚˜Ü™X]HX›HX›XË™]™[Ü^Y\—İ›İ\È
-ˆY]ZYš[X\HÙ^HY˜][Ù[—Ü˜[™ÛWİ]ZY
+create or replace function public.admin_promote(_event_id uuid, _player_id uuid) returns void
+language plpgsql security definer set search_path=public as $$
+declare ev public.events;
+begin
+  ev := public._lock_event(_event_id);
+  if not public.has_group_permission(ev.group_id,'events') then raise exception 'Sem permissÃ£o'; end if;
+  if ev.status<>'scheduled' then raise exception 'NÃ£o Ã© possÃ­vel alterar participantes de um evento encerrado'; end if;
+  if not exists(select 1 from public.players where id=_player_id and group_id=ev.group_id and venue_id=ev.venue_id) then raise exception 'Jogador nÃ£o pertence a esta quadra'; end if;
+  perform 1 from public.attendances where event_id=_event_id and player_id=_player_id for update;
+  update public.attendances set status='confirmed',confirmed_at=now(),cancelled_at=null,offer_expires_at=null,updated_by=auth.uid()
+    where event_id=_event_id and player_id=_player_id;
+  if not found then insert into public.attendances(event_id,group_id,player_id,status,confirmed_at,updated_by)
+    values (_event_id,ev.group_id,_player_id,'confirmed',now(),auth.uid()); end if;
+  insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+    values (ev.group_id,auth.uid(),'attendance.promoted','event',_event_id,jsonb_build_object('player_id',_player_id,'venue_id',ev.venue_id));
+end $$;
 
-K]™[ÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™]™[ÊY
-HÛˆ[]HØ\ØØYKˆÜ›İ\ÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™Ü›İ\ÊY
-HÛˆ[]HØ\ØØYK™[YWÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™[Y\ÊY
-HÛˆ[]H™\İšXİˆ›İ\—ÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XËœ^Y\œÊY
-HÛˆ[]HØ\ØØYK\™Ù]ÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XËœ^Y\œÊY
-HÛˆ[]HØ\ØØYKˆ˜][™ÈÛX[[›İ[ÚXÚÊ˜][™È™]ÙY[ˆH[™L
-KÛÛ[Y[^Ü™X]YØ][Y\İ[\ˆ›İ[Y˜][›İÊ
-K\]YØ][Y\İ[\ˆ›İ[Y˜][›İÊ
-Kˆ[š\]YJ]™[ÚY›İ\—ÚY\™Ù]ÚY
-KÚXÚÊ›İ\—ÚY\™Ù]ÚY
-BŠNÂ˜Ü™X]HÜˆ™\XÙH[˜İ[ÛˆX›XË˜[Y]WÙ]™[Ü^Y\—İ›İJ
-H™]\›œÈšYÙÙ\‚›[™İXYÙHÜÜ[ÙXİ\š]HYš[™\ˆÙ]ÙX\˜ÚÜ]\X›XÈ\È		˜™YÚ[‚ˆYˆ›İ^\İÊÙ[XİHœ›ÛHX›XË™]™[ÈBˆ›Ú[ˆX›XËœ^Y\œÈ›İ\ˆÛˆ›İ\‹šY[™]Ë›İ\—ÚY[™›İ\‹™[YWÚYYK™[YWÚY[™›İ\‹™Ü›İ\ÚYYK™Ü›İ\ÚYˆ›Ú[ˆX›XËœ^Y\œÈ\™Ù]Ûˆ\™Ù]šY[™]Ë\™Ù]ÚY[™\™Ù]™[YWÚYYK™[YWÚY[™\™Ù]™Ü›İ\ÚYYK™Ü›İ\ÚYˆ›Ú[ˆX›XË˜][™[˜Ù\È]ˆÛˆ]‹™]™[ÚYYKšY[™]‹œ^Y\—ÚY]›İ\‹šY[™]‹˜][™Y]YBˆ›Ú[ˆX›XË˜][™[˜Ù\È]Ûˆ]™]™[ÚYYKšY[™]œ^Y\—ÚY]\™Ù]šY[™]˜][™Y]YBˆÚ\™HKšY[™]Ë™]™[ÚY[™K™Ü›İ\ÚY[™]Ë™Ü›İ\ÚY[™K™[YWÚY[™]Ë™[YWÚY[™Kœİ]\ÏIÙÛ™IÂˆ[™›İ\‹\Ù\—ÚYX]]ZY
+create or replace function public.admin_mark_attended(_event_id uuid, _player_id uuid, _attended boolean) returns void
+language plpgsql security definer set search_path=public as $$
+declare ev public.events;
+begin
+  ev := public._lock_event(_event_id);
+  if not public.has_group_permission(ev.group_id,'events') then raise exception 'Sem permissÃ£o'; end if;
+  if ev.status<>'scheduled' then raise exception 'NÃ£o Ã© possÃ­vel alterar presenÃ§a de um evento encerrado'; end if;
+  if not exists(select 1 from public.players where id=_player_id and group_id=ev.group_id and venue_id=ev.venue_id) then raise exception 'Jogador nÃ£o pertence a esta quadra'; end if;
+  insert into public.attendances(event_id,group_id,player_id,status,attended,updated_by)
+    values (_event_id,ev.group_id,_player_id,'confirmed',_attended,auth.uid())
+    on conflict (event_id,player_id) do update set attended=_attended,updated_by=auth.uid();
+  insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+    values (ev.group_id,auth.uid(),'attendance.marked','event',_event_id,jsonb_build_object('player_id',_player_id,'attended',_attended));
+end $$;
 
-H[™›İ\‹šY\™Ù]šY
-H[‚ˆ˜Z\ÙH^Ù\[Ûˆ	ÔğìÈ\XÚ\[\È™\Ù[\ÈÙ[H›İ\ˆ[Hİ]›ÜÈ™\Ù[\È\0ìÜÈÈ]™[ÉÎÂˆ[™YÂˆ™]\›ˆ™]ÎÂ™[™		Â˜Ü™X]HšYÙÙ\ˆ™×İ˜[Y]WÙ]™[Ü^Y\—İ›İH™Y›Ü™H[œÙ\Üˆ\]HÛˆX›XË™]™[Ü^Y\—İ›İ\Â™›ÜˆXXÚ›İÈ^Xİ]H[˜İ[ÛˆX›XË˜[Y]WÙ]™[Ü^Y\—İ›İJ
-NÂ˜[\ˆX›HX›XË™]™[Ü^Y\—İ›İ\È[˜X›H›İÈ]™[ÙXİ\š]NÂ™Ü˜[Ù[Xİ[œÙ\\]HÛˆX›XË™]™[Ü^Y\—İ›İ\ÈÈ]][XØ]YÂ™Ü˜[[ÛˆX›XË™]™[Ü^Y\—İ›İ\ÈÈÙ\šXÙWÜ›ÛNÂ˜Ü™X]HÛXŞH˜Ûİ\Y[X™\œÈ™XY]™[›İ\ÈˆÛˆX›XË™]™[Ü^Y\—İ›İ\È›ÜˆÙ[XİÈ]][XØ]Y\Ú[™È
-X›XËš\×ØÛİ\ÛY[X™\Š™[YWÚY
-JNÂ˜Ü™X]HÛXŞHœ^Y\œÈ›İH›Üˆ]™[Y\œÈˆÛˆX›XË™]™[Ü^Y\—İ›İ\È›Üˆ[œÙ\È]][XØ]YÚ]ÚXÚÈ
-ˆX›XËš\×ÙÜ›İ\ÛY[X™\ŠÜ›İ\ÚY
-H[™›İ\—ÚY[ˆ
-Ù[XİYœ›ÛHX›XËœ^Y\œÈÚ\™H\Ù\—ÚYX]]ZY
+create or replace function public.create_event_series(_group_id uuid, _venue_id uuid, _first_date date, _occurrences int, _start_time time, _template jsonb) returns uuid
+language plpgsql security definer set search_path=public as $$
+declare sid uuid; i int; d date; tz text := coalesce(_template->>'timezone','America/Sao_Paulo'); st timestamptz; dl numeric;
+begin
+  if not public.has_group_permission(_group_id,'events') then raise exception 'Sem permissÃ£o'; end if;
+  if not exists(select 1 from public.venues where id=_venue_id and group_id=_group_id and is_active) then raise exception 'Quadra invÃ¡lida ou inativa'; end if;
+  if _occurrences < 1 or _occurrences > 52 then raise exception 'Quantidade de ocorrÃªncias deve ser de 1 a 52'; end if;
+  insert into public.event_series(group_id,venue_id,weekday,start_time,created_by)
+    values (_group_id,_venue_id,extract(dow from _first_date),_start_time,auth.uid()) returning id into sid;
+  dl := nullif(_template->>'deadline_hours','')::numeric;
+  for i in 0.._occurrences-1 loop
+    d := _first_date + i*7; st := (d + _start_time) at time zone tz;
+    insert into public.events(group_id,venue_id,series_id,title,starts_at,duration_minutes,location,max_participants,teams_count,players_per_team,goalkeepers_wanted,price,confirm_deadline,cancellation_rules,waitlist_offer_minutes,notes,created_by)
+    values (_group_id,_venue_id,sid,coalesce(nullif(_template->>'title',''),'Pelada'),st,
+      coalesce((_template->>'duration_minutes')::int,90),coalesce(nullif(_template->>'location',''),(select address from public.venues where id=_venue_id)),
+      coalesce((_template->>'max_participants')::int,20),coalesce((_template->>'teams_count')::int,2),coalesce((_template->>'players_per_team')::int,10),
+      coalesce((_template->>'goalkeepers_wanted')::int,2),nullif(_template->>'price','')::numeric,
+      case when dl is not null then st-make_interval(secs=>dl*3600) end,_template->>'cancellation_rules',
+      nullif(_template->>'waitlist_offer_minutes','')::int,_template->>'notes',auth.uid());
+  end loop;
+  insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+    values (_group_id,auth.uid(),'series.created','series',sid,jsonb_build_object('venue_id',_venue_id,'occurrences',_occurrences));
+  return sid;
+end $$;
 
-H[™™[YWÚYY]™[Ü^Y\—İ›İ\Ë™[YWÚY
-Bˆ[™^\İÊÙ[XİHœ›ÛHX›XË™]™[ÈH›Ú[ˆX›XË˜][™[˜Ù\È]ˆÛˆ]‹™]™[ÚYYKšY[™]‹œ^Y\—ÚYY]™[Ü^Y\—İ›İ\Ë›İ\—ÚY[™]‹˜][™Y]YBˆ›Ú[ˆX›XË˜][™[˜Ù\È]Ûˆ]™]™[ÚYYKšY[™]œ^Y\—ÚYY]™[Ü^Y\—İ›İ\Ë\™Ù]ÚY[™]˜][™Y]YBˆÚ\™HKšYY]™[Ü^Y\—İ›İ\Ë™]™[ÚY[™K™Ü›İ\ÚYY]™[Ü^Y\—İ›İ\Ë™Ü›İ\ÚY[™K™[YWÚYY]™[Ü^Y\—İ›İ\Ë™[YWÚY[™Kœİ]\ÏIÙÛ™IÊBŠNÂ˜Ü™X]HÛXŞHœ^Y\œÈ\]HİÛˆ]™[›İ\ÈˆÛˆX›XË™]™[Ü^Y\—İ›İ\È›Üˆ\]HÈ]][XØ]Y\Ú[™È
-ˆ›İ\—ÚY[ˆ
-Ù[XİYœ›ÛHX›XËœ^Y\œÈÚ\™H\Ù\—ÚYX]]ZY
+create table public.event_teams (
+ id uuid primary key default gen_random_uuid(), event_id uuid not null references public.events(id) on delete cascade,
+ group_id uuid not null references public.groups(id) on delete cascade, venue_id uuid not null references public.venues(id) on delete restrict,
+ name text not null, created_by uuid not null references auth.users(id), created_at timestamptz not null default now(),
+ unique(event_id,name)
+);
+create table public.event_team_players (
+ event_id uuid not null references public.events(id) on delete cascade, team_id uuid not null references public.event_teams(id) on delete cascade,
+ player_id uuid not null references public.players(id) on delete restrict, group_id uuid not null references public.groups(id) on delete cascade,
+ venue_id uuid not null references public.venues(id) on delete restrict, assigned_by uuid references auth.users(id), created_at timestamptz not null default now(),
+ primary key(event_id,player_id)
+);
+create trigger trg_team_player_scope before insert or update on public.event_team_players
+for each row execute function public.validate_team_player_scope();
+alter table public.event_teams enable row level security;
+alter table public.event_team_players enable row level security;
+grant select,insert,update,delete on public.event_teams,public.event_team_players to authenticated;
+grant all on public.event_teams,public.event_team_players to service_role;
+create policy "court members read teams" on public.event_teams for select to authenticated using (public.is_court_member(venue_id));
+create policy "court admins manage teams" on public.event_teams for all to authenticated using (public.is_group_admin(group_id)) with check (public.is_group_admin(group_id));
+create policy "court members read team players" on public.event_team_players for select to authenticated using (public.is_court_member(venue_id));
+create policy "court admins manage team players" on public.event_team_players for all to authenticated using (public.is_group_admin(group_id)) with check (public.is_group_admin(group_id));
 
-H[™™[YWÚYY]™[Ü^Y\—İ›İ\Ë™[YWÚY
-BŠHÚ]ÚXÚÈ
-›İ\—ÚY[ˆ
-Ù[XİYœ›ÛHX›XËœ^Y\œÈÚ\™H\Ù\—ÚYX]]ZY
+create or replace function public.generate_event_teams(_event_id uuid) returns int
+language plpgsql security definer set search_path=public as $$
+declare ev public.events; n int;
+begin
+  ev := public._lock_event(_event_id);
+  if not public.is_group_admin(ev.group_id) then raise exception 'Somente o administrador pode tirar os times'; end if;
+  if ev.status='cancelled' then raise exception 'Evento cancelado'; end if;
+  delete from public.event_teams where event_id=_event_id;
+  insert into public.event_teams(event_id,group_id,venue_id,name,created_by)
+  select _event_id,ev.group_id,ev.venue_id,'Time '||g,auth.uid() from generate_series(1,ev.teams_count) g;
+  with eligible as (
+    select p.id,p.skill_level,p.goalkeeper_level,
+      row_number() over(order by coalesce(p.goalkeeper_level,0) desc, coalesce(p.skill_level,5) desc, p.id) rn
+    from public.attendances a join public.players p on p.id=a.player_id
+    where a.event_id=_event_id and p.venue_id=ev.venue_id and a.status='confirmed' and a.attended is distinct from false
+  ), placed as (
+    select *, case when floor((rn-1)::numeric/ev.teams_count)::int%2=0
+      then ((rn-1)%ev.teams_count)+1 else ev.teams_count-((rn-1)%ev.teams_count) end team_no from eligible
+  )
+  insert into public.event_team_players(event_id,team_id,player_id,group_id,venue_id,assigned_by)
+  select _event_id,t.id,p.id,ev.group_id,ev.venue_id,auth.uid() from placed p join public.event_teams t on t.event_id=_event_id and t.name='Time '||p.team_no;
+  get diagnostics n = row_count;
+  insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+    values (ev.group_id,auth.uid(),'teams.generated','event',_event_id,jsonb_build_object('venue_id',ev.venue_id,'players',n));
+  return n;
+end $$;
 
-H[™™[YWÚYY]™[Ü^Y\—İ›İ\Ë™[YWÚY
-JNÂ˜Ü™X]HšY]ÈX›XË™]™[İ›İWÜİ[[X\HÚ]
-ÙXİ\š]WÚ[›ÚÙ\]YJH\ÂˆÙ[Xİ]™[ÚY™[YWÚY\™Ù]ÚY›İ[™
-]™Ê˜][™ÊN›[Y\šXËŠH]™\˜YÙWÜ˜][™ËÛİ[
+create or replace function public.create_player_for_event_team(_event_id uuid,_team_id uuid,_name text,_email text default null) returns uuid
+language plpgsql security definer set search_path=public as $$
+declare ev public.events; pid uuid; em text:=nullif(lower(trim(_email)),'');
+begin
+  ev:=public._lock_event(_event_id);
+  if not public.is_group_admin(ev.group_id) then raise exception 'Somente o administrador pode incluir jogadores manualmente'; end if;
+  if not exists(select 1 from public.event_teams where id=_team_id and event_id=_event_id and venue_id=ev.venue_id) then raise exception 'Time nÃ£o pertence a esta quadra'; end if;
+  if length(trim(_name))<2 then raise exception 'Informe o nome do jogador'; end if;
+  if em is not null and exists(select 1 from public.players where venue_id=ev.venue_id and lower(email)=em) then raise exception 'JÃ¡ existe jogador com este e-mail nesta quadra'; end if;
+  insert into public.players(group_id,venue_id,name,email,participation_type,is_monthly,status,joined_at)
+    values(ev.group_id,ev.venue_id,trim(_name),em,'avulso',false,'active',current_date) returning id into pid;
+  insert into public.attendances(event_id,group_id,player_id,status,confirmed_at,attended,updated_by)
+    values(_event_id,ev.group_id,pid,'confirmed',now(),true,auth.uid());
+  insert into public.event_team_players(event_id,team_id,player_id,group_id,venue_id,assigned_by)
+    values(_event_id,_team_id,pid,ev.group_id,ev.venue_id,auth.uid());
+  insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+    values(ev.group_id,auth.uid(),'player.created_for_event','player',pid,jsonb_build_object('event_id',_event_id,'venue_id',ev.venue_id));
+  return pid;
+end $$;
 
-ŠH›İWØÛİ[ˆ
-Ù[XİÛİ[
+create or replace function public.add_player_to_event_team(_event_id uuid,_team_id uuid,_player_id uuid) returns void
+language plpgsql security definer set search_path=public as $$
+declare ev public.events;
+begin
+  ev:=public._lock_event(_event_id);
+  if not public.is_group_admin(ev.group_id) then raise exception 'Somente o administrador pode adicionar jogadores aos times'; end if;
+  if not exists(select 1 from public.event_teams where id=_team_id and event_id=_event_id and venue_id=ev.venue_id) then raise exception 'Time nÃ£o pertence a este evento'; end if;
+  if not exists(select 1 from public.players where id=_player_id and group_id=ev.group_id and venue_id=ev.venue_id) then raise exception 'Jogador nÃ£o pertence a esta quadra'; end if;
+  insert into public.attendances(event_id,group_id,player_id,status,confirmed_at,attended,updated_by)
+    values(_event_id,ev.group_id,_player_id,'confirmed',now(),true,auth.uid())
+    on conflict(event_id,player_id) do update set status='confirmed',attended=true,updated_by=auth.uid();
+  insert into public.event_team_players(event_id,team_id,player_id,group_id,venue_id,assigned_by)
+    values(_event_id,_team_id,_player_id,ev.group_id,ev.venue_id,auth.uid())
+    on conflict(event_id,player_id) do update set team_id=excluded.team_id,assigned_by=auth.uid();
+end $$;
 
-ŠHœ›ÛHX›XË™]™[Ü^Y\—İ›İ\È[ˆÚ\™H[‹™]™[ÚY]‹™]™[ÚY
-HİX›Z]Yİ›İ\Âˆœ›ÛHX›XË™]™[Ü^Y\—İ›İ\ÈˆÜ›İ\H]™[ÚY™[YWÚY\™Ù]ÚYÂ™Ü˜[Ù[XİÛˆX›XË™]™[İ›İWÜİ[[X\HÈ]][XØ]YÂ‚˜Ü™X]HX›HX›XË˜Ûİ\ØÚ[\[ÛœÚ\È
-ˆY]ZYš[X\HÙ^HY˜][Ù[—Ü˜[™ÛWİ]ZY
+create table public.event_player_votes (
+ id uuid primary key default gen_random_uuid(), event_id uuid not null references public.events(id) on delete cascade,
+ group_id uuid not null references public.groups(id) on delete cascade, venue_id uuid not null references public.venues(id) on delete restrict,
+ voter_id uuid not null references public.players(id) on delete cascade, target_id uuid not null references public.players(id) on delete cascade,
+ rating smallint not null check(rating between 1 and 10), comment text, created_at timestamptz not null default now(), updated_at timestamptz not null default now(),
+ unique(event_id,voter_id,target_id), check(voter_id<>target_id)
+);
+create or replace function public.validate_event_player_vote() returns trigger
+language plpgsql security definer set search_path=public as $$
+begin
+  if not exists(select 1 from public.events e
+    join public.players voter on voter.id=new.voter_id and voter.venue_id=e.venue_id and voter.group_id=e.group_id
+    join public.players target on target.id=new.target_id and target.venue_id=e.venue_id and target.group_id=e.group_id
+    join public.attendances av on av.event_id=e.id and av.player_id=voter.id and av.attended=true
+    join public.attendances at on at.event_id=e.id and at.player_id=target.id and at.attended=true
+    where e.id=new.event_id and e.group_id=new.group_id and e.venue_id=new.venue_id and e.status='done'
+      and voter.user_id=auth.uid() and voter.id<>target.id) then
+    raise exception 'SÃ³ participantes presentes podem votar em outros presentes apÃ³s o evento';
+  end if;
+  return new;
+end $$;
+create trigger trg_validate_event_player_vote before insert or update on public.event_player_votes
+for each row execute function public.validate_event_player_vote();
+alter table public.event_player_votes enable row level security;
+grant select,insert,update on public.event_player_votes to authenticated;
+grant all on public.event_player_votes to service_role;
+create policy "court members read event votes" on public.event_player_votes for select to authenticated using (public.is_court_member(venue_id));
+create policy "players vote for event peers" on public.event_player_votes for insert to authenticated with check (
+ public.is_group_member(group_id) and voter_id in (select id from public.players where user_id=auth.uid() and venue_id=event_player_votes.venue_id)
+ and exists(select 1 from public.events e join public.attendances av on av.event_id=e.id and av.player_id=event_player_votes.voter_id and av.attended=true
+   join public.attendances at on at.event_id=e.id and at.player_id=event_player_votes.target_id and at.attended=true
+   where e.id=event_player_votes.event_id and e.group_id=event_player_votes.group_id and e.venue_id=event_player_votes.venue_id and e.status='done')
+);
+create policy "players update own event votes" on public.event_player_votes for update to authenticated using (
+ voter_id in (select id from public.players where user_id=auth.uid() and venue_id=event_player_votes.venue_id)
+) with check (voter_id in (select id from public.players where user_id=auth.uid() and venue_id=event_player_votes.venue_id));
+create view public.event_vote_summary with (security_invoker=true) as
+ select event_id,venue_id,target_id,round(avg(rating)::numeric,2) average_rating,count(*) vote_count,
+   (select count(*) from public.event_player_votes allv where allv.event_id=v.event_id) submitted_votes
+ from public.event_player_votes v group by event_id,venue_id,target_id;
+grant select on public.event_vote_summary to authenticated;
 
-KÜ›İ\ÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™Ü›İ\ÊY
-HÛˆ[]HØ\ØØYKˆ™[YWÚY]ZY›İ[™Y™\™[˜Ù\ÈX›XË™[Y\ÊY
-HÛˆ[]HØ\ØØYK˜[YH^›İ[ÚXÚÊ[™İ
-š[J˜[YJJH™]ÙY[ˆˆ[™LŒ
-Kˆİ\×ÛÛˆ]K[™×ÛÛˆ]Kİ]\È^›İ[Y˜][	Ü[›™Y	ÈÚXÚÊİ]\È[ˆ
-	Ü[›™Y	Ë	ØXİ]™IË	ØÛÛ\]Y	Ë	ØØ[˜Ù[Y	ÊJKˆ›İ\È^Ü™X]YØH]ZY›İ[™Y™\™[˜Ù\È]]\Ù\œÊY
-KÜ™X]YØ][Y\İ[\ˆ›İ[Y˜][›İÊ
-KˆÚXÚÊ[™×ÛÛˆ\È[Üˆİ\×ÛÛˆ\È[Üˆ[™×ÛÛ\İ\×ÛÛŠBŠNÂ˜[\ˆX›HX›XË˜Ûİ\ØÚ[\[ÛœÚ\È[˜X›H›İÈ]™[ÙXİ\š]NÂ™Ü˜[Ù[Xİ[œÙ\\]HÛˆX›XË˜Ûİ\ØÚ[\[ÛœÚ\ÈÈ]][XØ]YÂ™Ü˜[[ÛˆX›XË˜Ûİ\ØÚ[\[ÛœÚ\ÈÈÙ\šXÙWÜ›ÛNÂ˜Ü™X]HÛXŞH˜Ûİ\Y[X™\œÈ™XYÚ[\[ÛœÚ\ÈˆÛˆX›XË˜Ûİ\ØÚ[\[ÛœÚ\È›ÜˆÙ[XİÈ]][XØ]Y\Ú[™È
-X›XËš\×ØÛİ\ÛY[X™\Š™[YWÚY
-JNÂ˜Ü™X]HÛXŞH˜Ûİ\YZ[œÈX[˜YÙHÚ[\[ÛœÚ\ÈˆÛˆX›XË˜Ûİ\ØÚ[\[ÛœÚ\È›Üˆ[È]][XØ]Y\Ú[™È
-X›XËš\×ÙÜ›İ\ØYZ[ŠÜ›İ\ÚY
-JHÚ]ÚXÚÈ
-X›XËš\×ÙÜ›İ\ØYZ[ŠÜ›İ\ÚY
-JNÂ˜Ü™X]HšYÙÙ\ˆ™×ØÚ[\[ÛœÚ\ÜØÛÜH™Y›Ü™H[œÙ\Üˆ\]HÙˆÜ›İ\ÚY™[YWÚYÛˆX›XË˜Ûİ\ØÚ[\[ÛœÚ\Â™›ÜˆXXÚ›İÈ^Xİ]H[˜İ[ÛˆX›XË˜[Y]WØÛİ\ÜØÛÜJ
-NÂ‚˜Ü™X]HÜˆ™\XÙH[˜İ[ÛˆX›XË™š[š\ÚÙ]™[
-Ù]™[ÚY]ZY
-H™]\›œÈ›ÚY›[™İXYÙHÜÜ[ÙXİ\š]HYš[™\ˆÙ]ÙX\˜ÚÜ]\X›XÈ\È		™XÛ\™H]ˆX›XË™]™[ÎÂ˜™YÚ[‚ˆ]\X›XË—ÛØÚ×Ù]™[
-Ù]™[ÚY
-NÂˆYˆ›İX›XËš\×ÙÜ›İ\ØYZ[Š]‹™Ü›İ\ÚY
-H[ˆ˜Z\ÙH^Ù\[Ûˆ	ÔÛÛY[HÈYZ[š\İ˜YÜˆÙHš[˜[^˜\ˆÈ]™[ÉÎÈ[™YÂˆYˆ]‹œİ]\Ï‰ÜØÚY[Y	È[ˆ˜Z\ÙH^Ù\[Ûˆ	ÔÛÛY[H]™[ÜÈYÙ[™YÜÈÙ[HÙ\ˆš[˜[^˜YÜÉÎÈ[™YÂˆYˆ]‹œİ\×Ø]
-ÈXZÙWÚ[\˜[
-Z[œÏO™]‹™\˜][Û—ÛZ[]\ÊO››İÊ
-H[ˆ˜Z\ÙH^Ù\[Ûˆ	ÓÈ]™[ÈğìÈÙHÙ\ˆš[˜[^˜YÈ\0ìÜÈÙ]HÜ°è\š[ÈH0ê\›Z[›ÉÎÈ[™YÂˆ\]HX›XË™]™[ÈÙ]İ]\ÏIÙÛ™IÈÚ\™HYWÙ]™[ÚYÂˆ[œÙ\[ÈX›XË˜]Y]ÛÙÜÊÜ›İ\ÚYXİÜ—ÚYXİ[Û‹[]K[]WÚY]Z[ÊBˆ˜[Y\Ê]‹™Ü›İ\ÚY]]ZY
+create table public.court_championships (
+ id uuid primary key default gen_random_uuid(), group_id uuid not null references public.groups(id) on delete cascade,
+ venue_id uuid not null references public.venues(id) on delete cascade, name text not null check(length(trim(name)) between 2 and 120),
+ starts_on date, ends_on date, status text not null default 'planned' check(status in ('planned','active','completed','cancelled')),
+ notes text, created_by uuid not null references auth.users(id), created_at timestamptz not null default now(),
+ check(ends_on is null or starts_on is null or ends_on>=starts_on)
+);
+alter table public.court_championships enable row level security;
+grant select,insert,update on public.court_championships to authenticated;
+grant all on public.court_championships to service_role;
+create policy "court members read championships" on public.court_championships for select to authenticated using (public.is_court_member(venue_id));
+create policy "court admins manage championships" on public.court_championships for all to authenticated using (public.is_group_admin(group_id)) with check (public.is_group_admin(group_id));
+create trigger trg_championship_scope before insert or update of group_id,venue_id on public.court_championships
+for each row execute function public.validate_court_scope();
 
-K	Ù]™[™š[š\ÚY	Ë	Ù]™[	ËÙ]™[ÚYœÛÛ˜—ØZ[ÛØš™Xİ
-	İ™[YWÚY	Ë]‹™[YWÚY
-JNÂ™[™		Â‚œ™]›ÚÙH^Xİ]HÛˆ[˜İ[ÛˆX›XË™Ù[™\˜]WÙ]™[İX[\Ê]ZY
-KX›XË˜YÜ^Y\—İ×Ù]™[İX[J]ZY]ZY]ZY
-KX›XË˜Ü™X]WÜ^Y\—Ù›Ü—Ù]™[İX[J]ZY]ZY^^
-KX›XË™š[š\ÚÙ]™[
-]ZY
-Hœ›ÛHX›XË[›ÛÂ™Ü˜[^Xİ]HÛˆ[˜İ[ÛˆX›XË™Ù[™\˜]WÙ]™[İX[\Ê]ZY
-KX›XË˜YÜ^Y\—İ×Ù]™[İX[J]ZY]ZY]ZY
-KX›XË˜Ü™X]WÜ^Y\—Ù›Ü—Ù]™[İX[J]ZY]ZY^^
-KX›XË™š[š\ÚÙ]™[
-]ZY
-HÈ]][XØ]YÂœ™]›ÚÙH^Xİ]HÛˆ[˜İ[ÛˆX›XË˜Ü™X]WÙ]™[ÜÙ\šY\Ê]ZY]ZY]K[[YKœÛÛ˜ŠHœ›ÛHX›XË[›ÛÂ™Ü˜[^Xİ]HÛˆ[˜İ[ÛˆX›XË˜Ü™X]WÙ]™[ÜÙ\šY\Ê]ZY]ZY]K[[YKœÛÛ˜ŠHÈ]][XØ]YÂ
+create or replace function public.finish_event(_event_id uuid) returns void
+language plpgsql security definer set search_path=public as $$
+declare ev public.events;
+begin
+ ev:=public._lock_event(_event_id);
+ if not public.is_group_admin(ev.group_id) then raise exception 'Somente o administrador pode finalizar o evento'; end if;
+ if ev.status<>'scheduled' then raise exception 'Somente eventos agendados podem ser finalizados'; end if;
+ if ev.starts_at + make_interval(mins=>ev.duration_minutes)>now() then raise exception 'O evento sÃ³ pode ser finalizado apÃ³s seu horÃ¡rio de tÃ©rmino'; end if;
+ update public.events set status='done' where id=_event_id;
+ insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+   values(ev.group_id,auth.uid(),'event.finished','event',_event_id,jsonb_build_object('venue_id',ev.venue_id));
+end $$;
+
+revoke execute on function public.generate_event_teams(uuid),public.add_player_to_event_team(uuid,uuid,uuid),public.create_player_for_event_team(uuid,uuid,text,text),public.finish_event(uuid) from public,anon;
+grant execute on function public.generate_event_teams(uuid),public.add_player_to_event_team(uuid,uuid,uuid),public.create_player_for_event_team(uuid,uuid,text,text),public.finish_event(uuid) to authenticated;
+revoke execute on function public.create_event_series(uuid,uuid,date,int,time,jsonb) from public,anon;
+grant execute on function public.create_event_series(uuid,uuid,date,int,time,jsonb) to authenticated;

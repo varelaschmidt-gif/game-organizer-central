@@ -29,13 +29,6 @@ import { ErrorState, LoadingState, StatCard } from "@/components/states";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
@@ -197,7 +190,7 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
               ))}
             </select>
           )}
-          {canInvite && <InviteDialog groupId={group.id} />}
+          {canInvite && <Button asChild variant="outline"><Link to="/jogadores"><UserPlus className="mr-2 h-4 w-4" />Convidar jogador</Link></Button>}
         </div>
       </div>
 
@@ -239,76 +232,5 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
         </div>
       </section>
     </div>
-  );
-}
-
-function InviteDialog({ groupId }: { groupId: string }) {
-  const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [link, setLink] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
-
-  async function submit(e: React.FormEvent) {
-    e.preventDefault();
-    setBusy(true);
-    const { data, error } = await supabase.rpc("create_invite", {
-      _group_id: groupId,
-      _email: email,
-      _role: "player",
-    });
-    setBusy(false);
-    if (error) { toast.error(error.message); return; }
-    setLink(`${window.location.origin}/convite/${data}`);
-  }
-
-  return (
-    <Dialog
-      open={open}
-      onOpenChange={(o) => {
-        setOpen(o);
-        if (!o) {
-          setLink(null);
-          setEmail("");
-        }
-      }}
-    >
-      <DialogTrigger asChild>
-        <Button>
-          <UserPlus className="mr-2 h-4 w-4" /> Convidar
-        </Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Convidar para o grupo</DialogTitle>
-        </DialogHeader>
-        {link ? (
-          <div className="space-y-3">
-            <p className="text-sm text-muted-foreground">
-              Envie este link para {email}. Ele vale por 7 dias e só funciona com esse e-mail.
-            </p>
-            <Input readOnly value={link} onFocus={(e) => e.target.select()} />
-            <Button
-              className="w-full"
-              onClick={() => {
-                navigator.clipboard.writeText(link);
-                toast.success("Link copiado");
-              }}
-            >
-              Copiar link
-            </Button>
-          </div>
-        ) : (
-          <form onSubmit={submit} className="space-y-3">
-            <div>
-              <Label htmlFor="iemail">E-mail</Label>
-              <Input id="iemail" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <Button type="submit" className="w-full" disabled={busy}>
-              {busy ? "Gerando..." : "Gerar convite"}
-            </Button>
-          </form>
-        )}
-      </DialogContent>
-    </Dialog>
   );
 }
