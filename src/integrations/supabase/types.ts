@@ -220,6 +220,71 @@ export type Database = {
           },
         ]
       }
+      event_player_ratings: {
+        Row: {
+          created_at: string
+          event_id: string
+          group_id: string
+          id: string
+          player_id: string
+          rated_by: string
+          rating: number
+          updated_at: string
+          venue_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_id: string
+          group_id: string
+          id?: string
+          player_id: string
+          rated_by: string
+          rating: number
+          updated_at?: string
+          venue_id: string
+        }
+        Update: {
+          created_at?: string
+          event_id?: string
+          group_id?: string
+          id?: string
+          player_id?: string
+          rated_by?: string
+          rating?: number
+          updated_at?: string
+          venue_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_player_ratings_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "event_player_ratings_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "event_player_ratings_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "players"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "event_player_ratings_venue_id_fkey"
+            columns: ["venue_id"]
+            isOneToOne: false
+            referencedRelation: "venues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       event_player_votes: {
         Row: {
           comment: string | null
@@ -1205,6 +1270,14 @@ export type Database = {
       }
       finish_event: { Args: { _event_id: string }; Returns: undefined }
       generate_event_teams: { Args: { _event_id: string }; Returns: number }
+      get_court_rating_averages: {
+        Args: { _venue_id: string }
+        Returns: {
+          average: number
+          player_id: string
+          ratings_count: number
+        }[]
+      }
       get_invite: {
         Args: { _token: string }
         Returns: {
@@ -1239,6 +1312,10 @@ export type Database = {
       is_group_admin: { Args: { _group_id: string }; Returns: boolean }
       is_group_member: { Args: { _group_id: string }; Returns: boolean }
       process_event: { Args: { _event_id: string }; Returns: undefined }
+      remove_player_rating: {
+        Args: { _event_id: string; _player_id: string }
+        Returns: undefined
+      }
       request_court_membership: {
         Args: {
           _dominant_foot: string
@@ -1260,6 +1337,10 @@ export type Database = {
       rsvp_confirm: {
         Args: { _event_id: string; _player_id?: string }
         Returns: string
+      }
+      set_player_rating: {
+        Args: { _event_id: string; _player_id: string; _rating: number }
+        Returns: undefined
       }
       shares_group_with: { Args: { _user_id: string }; Returns: boolean }
       update_events_scoped: {

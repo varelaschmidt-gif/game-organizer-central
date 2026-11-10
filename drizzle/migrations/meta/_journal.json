@@ -57,6 +57,13 @@
       "when": 1793050000000,
       "tag": "0007_legacy_court_link_resolution",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794345101177,
+      "tag": "0008_admin_only_rsvp_and_event_ratings",
+      "breakpoints": true
     }
   ]
 }
