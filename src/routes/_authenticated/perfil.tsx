@@ -62,10 +62,12 @@ function ProfilePage() {
   function selectPhoto(file?: File) {
     if (!file) { setPhotoFile(null); return; }
     if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+      setPhotoFile(null);
       toast.error("Escolha uma imagem JPG, PNG ou WebP.");
       return;
     }
     if (file.size > 5 * 1024 * 1024) {
+      setPhotoFile(null);
       toast.error("A foto deve ter no máximo 5 MB.");
       return;
     }
