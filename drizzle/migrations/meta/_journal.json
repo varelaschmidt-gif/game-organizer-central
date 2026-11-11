@@ -64,6 +64,13 @@
       "when": 1794345101177,
       "tag": "0008_admin_only_rsvp_and_event_ratings",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1794360076000,
+      "tag": "0009_event_guests_and_responsive_attendance",
+      "breakpoints": true
     }
   ]
 }
