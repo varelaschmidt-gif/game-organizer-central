@@ -84,7 +84,7 @@ function addDays(date: string, days: number) {
 }
 function exportCsv(rows: Array<Record<string, unknown>>, fileName: string) {
   if (!rows.length) { toast.info("Não há dados para exportar."); return; }
-  const keys = Object.keys(rows[0]);
+  const keys = Object.keys(rows[0] ?? {});
   const csv = [keys.join(";"), ...rows.map((row) => keys.map((key) => {
     const value = String(row[key] ?? "").replaceAll('"', '""');
     return `"${value}"`;
