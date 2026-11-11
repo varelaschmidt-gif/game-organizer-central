@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Download, Link2, Pencil, Plus, Upload, UserX, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { PlayerAvatar } from "@/components/PlayerAvatar";
+import { loadVenueProfileAvatars } from "@/lib/profile-avatar";
 import type { Database } from "@/integrations/supabase/types";
 import { useActiveGroup, useActiveCourt, errMsg } from "@/lib/groups";
 import { download, parseCsv, toCsv } from "@/lib/csv";
@@ -70,6 +72,12 @@ function PlayersPage() {
     },
   });
 
+  const profileAvatars = useQuery({
+    enabled: !!court.venue,
+    queryKey: ["venue-profile-avatars", court.venue?.id],
+    queryFn: () => loadVenueProfileAvatars(court.venue!.id),
+  });
+
   const refresh = () => qc.invalidateQueries({ queryKey: ["players"] });
 
   async function exportCsv() {
@@ -128,7 +136,7 @@ function PlayersPage() {
           rowKey={(r: Player) => r.id}
           empty={<EmptyState icon={<Users className="h-8 w-8" />} title="Nenhum jogador encontrado" description={manager ? "Cadastre o primeiro jogador ou ajuste os filtros." : "Ajuste os filtros."} action={manager ? <Button onClick={() => setEditing("new")}>Novo jogador</Button> : undefined} />}
           columns={[
-            { key: "name", header: "Jogador", render: (r: Player) => <PlayerCell p={r} /> },
+            { key: "name", header: "Jogador", render: (r: Player) => <PlayerCell p={r} profileAvatar={profileAvatars.data?.[r.id]} /> },
             { key: "pos", header: "Posição", render: (r: Player) => [r.position, ...r.secondary_positions].filter(Boolean).join(", ") || "—" },
             { key: "type", header: "Tipo", render: (r: Player) => TYPE_LABEL[r.participation_type] },
             { key: "notes", header: "Nota", render: (r: Player) => `${r.skill_level ?? "—"}${r.goalkeeper_level != null ? ` / G ${r.goalkeeper_level}` : ""}` },
@@ -172,11 +180,10 @@ function usePhotoUrl(path: string | null) {
   }).data;
 }
 
-function PlayerCell({ p }: { p: Player }) {
-  const url = usePhotoUrl(p.photo_path);
+function PlayerCell({ p, profileAvatar }: { p: Player; profileAvatar?: string }) {
   return (
     <div className="flex items-center gap-3">
-      {url ? <img src={url} alt="" className="h-9 w-9 rounded-full object-cover" /> : <div className="flex h-9 w-9 items-center justify-center rounded-full bg-muted font-semibold">{p.name[0]?.toUpperCase()}</div>}
+      <PlayerAvatar name={p.name} profileAvatar={profileAvatar} photoPath={p.photo_path} />
       <div>
         <div className="font-medium">{p.name}</div>
         <div className="text-xs text-muted-foreground">{p.nickname || p.email || ""}</div>
