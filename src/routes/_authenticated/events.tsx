@@ -5,6 +5,7 @@ import { CalendarDays, Check, Clock3, Copy, MapPin, Plus, Users, X } from "lucid
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { getActiveGroupId, myGroupsQuery, useActiveCourt } from "@/lib/groups";
+import { isMissingGuestSchema } from "@/lib/schema-compat";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -40,8 +41,13 @@ function EventsPage() {
     queryKey: ["event-rosters", group?.id, court.venue?.id, eventIds],
     enabled: !!group && !!court.venue && eventIds.length > 0,
     queryFn: async () => {
-      const { data, error } = await db.from("attendances").select("id,event_id,player_id,status,confirmed_at,waitlisted_at,offer_expires_at,created_at,players(id,name,nickname,position,goalkeeper_level,user_id,participation_type,is_event_guest,guest_responsible_player_id,guest_responsible:players!players_guest_responsible_player_id_fkey(name,nickname))")
+      const selection = "id,event_id,player_id,status,confirmed_at,waitlisted_at,offer_expires_at,created_at,players(id,name,nickname,position,goalkeeper_level,user_id,participation_type,is_event_guest,guest_responsible_player_id,guest_responsible:players!players_guest_responsible_player_id_fkey(name,nickname))";
+      let { data, error } = await db.from("attendances").select(selection)
         .eq("group_id", group!.id).in("event_id", eventIds);
+      if (error && isMissingGuestSchema(error)) {
+        ({ data, error } = await db.from("attendances").select("id,event_id,player_id,status,confirmed_at,waitlisted_at,offer_expires_at,created_at,players(id,name,nickname,position,goalkeeper_level,user_id)")
+          .eq("group_id", group!.id).in("event_id", eventIds));
+      }
       if (error) throw error;
       return data ?? [];
     },
