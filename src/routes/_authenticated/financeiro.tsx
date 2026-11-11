@@ -575,7 +575,7 @@ function FinancePage() {
         </form>
       </Panel>
       <Panel title="Mensalidades e datas">
-        <p className="text-sm text-muted-foreground">O botão de geração aparece no resumo e cria cobranças uma única vez para o mês atual. A geração automática depende de uma rotina mensal configurada no banco, ainda não confirmada. Até lá, use o botão de forma recorrente.</p>
+        <p className="text-sm text-muted-foreground">A geração automática roda diariamente e cria as cobranças do mês no dia de vencimento configurado. O botão permite gerar ou recuperar as cobranças do mês manualmente; cobranças duplicadas são evitadas.</p>
       </Panel>
     </div>}
   </div>;

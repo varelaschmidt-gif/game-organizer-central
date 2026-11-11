@@ -21,18 +21,31 @@ insert into public.players(id,group_id,venue_id,user_id,name,participation_type,
 insert into public.events(id,group_id,venue_id,title,starts_at,max_participants,created_by,daily_fee_cents) values
  ('40000000-0000-0000-0000-000000000001','10000000-0000-0000-0000-000000000001','20000000-0000-0000-0000-000000000001','Jogo',now()+interval '2 day',20,'00000000-0000-0000-0000-00000000000a',1500);
 select public.finance_save_settings('20000000-0000-0000-0000-000000000001','{"monthly_fee_cents":10000,"due_day":1,"opening_balance_cents":5000,"opening_balance_date":"2000-01-01"}');
--- monthly idempotent
+-- manual generation is idempotent
 select public.finance_generate_monthly('20000000-0000-0000-0000-000000000001') = 2 as t_monthly_first;
 select public.finance_generate_monthly('20000000-0000-0000-0000-000000000001') = 0 as t_monthly_idempotent;
+-- emulate an unused month to verify the scheduled generator and its idempotency
+delete from public.finance_charges where venue_id='20000000-0000-0000-0000-000000000001' and kind='monthly'
+  and period=date_trunc('month', public._fin_today())::date;
+select public.finance_generate_due_monthly() = 2 as t_monthly_scheduler_first;
+select public.finance_generate_due_monthly() = 0 as t_monthly_scheduler_idempotent;
+select (select count(*) from cron.job where jobname = 'finance-generate-monthly-charges') = 1 as t_monthly_scheduler_installed;
 select pg_temp.expect_error($$select public.finance_generate_monthly('20000000-0000-0000-0000-000000000001', '2001-01-01')$$,'mês atual');
 -- overdue: force due date in past (test-only; superuser)
-update public.finance_charges set due_date = current_date - 3 where player_id='30000000-0000-0000-0000-000000000001';
+update public.finance_charges set due_date = current_date - 3 where venue_id='20000000-0000-0000-0000-000000000001' and kind='monthly';
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000b');
 select public.finance_player_overdue_cents('30000000-0000-0000-0000-000000000001') = 10000 as t_overdue;
 select pg_temp.expect_error($$select public.rsvp_confirm('40000000-0000-0000-0000-000000000001', null)$$,'atraso');
 -- player can't record payment
-select pg_temp.expect_error($$select public.finance_record_payment((select id from finance_charges where player_id='30000000-0000-0000-0000-000000000001'),100,'pix',current_date,null,'player-key-1')$$,'Sem permissão');
+select pg_temp.expect_error($select public.finance_record_payment((select id from finance_charges where player_id='30000000-0000-0000-0000-000000000001'),100,'pix',current_date,null,'player-key-1')$,'Sem permissão');
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000a');
+-- Admin can override monthly arrears, but this is audited.
+select public.rsvp_confirm('40000000-0000-0000-0000-000000000001','30000000-0000-0000-0000-000000000004') = 'confirmed' as t_admin_monthly_override;
+select exists(select 1 from public.audit_logs where group_id='10000000-0000-0000-0000-000000000001'
+  and actor_id='00000000-0000-0000-0000-00000000000a' and action='attendance.finance_override'
+  and entity_id='40000000-0000-0000-0000-000000000001'
+  and details->>'player_id'='30000000-0000-0000-0000-000000000004') as t_admin_override_audited;
+select pg_temp.expect_error($select public.rsvp_confirm('40000000-0000-0000-0000-000000000001','30000000-0000-0000-0000-000000000002')$,'Diária pendente');
 -- partial, overpay rejected, idempotent, settle
 select public.finance_record_payment((select id from finance_charges where player_id='30000000-0000-0000-0000-000000000001'),4000,'pix',current_date,null,'pay-partial-1') is not null;
 select public.finance_record_payment((select id from finance_charges where player_id='30000000-0000-0000-0000-000000000001'),4000,'pix',current_date,null,'pay-partial-1') is not null as replay;

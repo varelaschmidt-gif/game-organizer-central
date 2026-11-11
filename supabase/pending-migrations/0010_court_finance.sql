@@ -1,6 +1,8 @@
 -- 0010 — Módulo financeiro da quadra (PENDENTE DE APROVAÇÃO — NÃO APLICADA)
 -- Somente acréscimos. Nenhuma tabela/coluna existente é removida ou alterada de tipo.
 -- Todos os valores em centavos inteiros. Todas as escritas passam por RPCs security definer.
+-- Supabase Cron (pg_cron) agenda a geração recorrente das mensalidades.
+create extension if not exists pg_cron;
 -- Única função existente substituída: rsvp_confirm (implementação da 0008 reproduzida
 -- integralmente + verificação financeira para autoconfirmação).
 
@@ -224,7 +226,7 @@ revoke all on function public._fin_assert_can_confirm(public.events, uuid) from 
 -- ---------------------------------------------------------------- rsvp_confirm (0008 + finance check)
 create or replace function public.rsvp_confirm(_event_id uuid, _player_id uuid default null)
 returns text language plpgsql security definer set search_path to 'public' as $$
-declare ev public.events; pid uuid; cur public.attendances; taken int; is_adm boolean; st text; pst text; has_attendance boolean; on_behalf boolean;
+declare ev public.events; p public.players; pid uuid; cur public.attendances; taken int; is_adm boolean; st text; overdue bigint := 0; has_attendance boolean; on_behalf boolean;
 begin
   ev := public._lock_event(_event_id);
   pid := public._resolve_player(ev, _player_id);
@@ -232,15 +234,22 @@ begin
   on_behalf := not exists(select 1 from public.players where id=pid and user_id=auth.uid());
   if ev.status <> 'scheduled' then raise exception 'Este evento não está aberto'; end if;
   if not is_adm and ev.confirm_deadline is not null and now() > ev.confirm_deadline then raise exception 'Prazo de confirmação encerrado'; end if;
-  select status into pst from public.players where id=pid;
-  if pst <> 'active' and not is_adm then raise exception 'Jogador inativo ou suspenso'; end if;
+  select * into p from public.players where id=pid;
+  if p.status <> 'active' and not is_adm then raise exception 'Jogador inativo ou suspenso'; end if;
   perform public._expire_offers(_event_id);
   select * into cur from public.attendances where event_id=_event_id and player_id=pid for update;
   has_attendance := found;
   if has_attendance and cur.status in ('confirmed','waitlist') then return cur.status; end if;
-  -- Finance (0010): self-confirmation requires no overdue debt (mensalista) / paid daily fee (avulso).
-  -- Admin confirmations on behalf remain an explicit, audited override.
-  if not is_adm then perform public._fin_assert_can_confirm(ev, pid); end if;
+  -- Finance (0010): players cannot self-confirm while overdue or before avulso payment.
+  -- An administrator may override monthly arrears, but not an unpaid event daily fee.
+  if not is_adm or p.participation_type <> 'mensalista' or p.is_event_guest then
+    perform public._fin_assert_can_confirm(ev, pid);
+  else
+    select coalesce(sum(greatest(public._fin_charge_outstanding(c.id), 0)), 0) into overdue
+      from public.finance_charges c
+     where c.player_id = pid and c.venue_id = ev.venue_id and c.status = 'open'
+       and c.due_date < public._fin_today();
+  end if;
   if has_attendance and cur.status = 'offered' then
     update public.attendances set status='confirmed', confirmed_at=now(), offer_expires_at=null, updated_by=auth.uid() where id=cur.id;
     st := 'confirmed';
@@ -258,6 +267,11 @@ begin
   if on_behalf then
     insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
       values (ev.group_id,auth.uid(),'attendance.admin_added','event',_event_id,jsonb_build_object('player_id',pid,'venue_id',ev.venue_id,'status',st));
+  end if;
+  if is_adm and overdue > 0 then
+    insert into public.audit_logs(group_id,actor_id,action,entity,entity_id,details)
+      values (ev.group_id,auth.uid(),'attendance.finance_override','event',_event_id,
+        jsonb_build_object('player_id',pid,'venue_id',ev.venue_id,'overdue_cents',overdue,'status',st));
   end if;
   return st;
 end $$;
@@ -371,6 +385,53 @@ begin
     values (v.group_id, auth.uid(), 'finance.monthly_generated', 'venue', v.id, jsonb_build_object('period', per, 'created', n));
   return n;
 end $$;
+
+-- Scheduled task: catch up the current month's charges once the configured due day arrives.
+-- It runs daily at 00:10 São Paulo time (03:10 UTC); unique constraints keep it idempotent.
+create or replace function public.finance_generate_due_monthly() returns integer
+language plpgsql security definer set search_path = public as $$
+declare
+  today date := public._fin_today();
+  per date := date_trunc('month', public._fin_today())::date;
+  cfg record;
+  created integer;
+  total integer := 0;
+begin
+  for cfg in
+    select s.venue_id, s.group_id, s.monthly_fee_cents, s.due_day
+      from public.finance_settings s
+     where s.monthly_fee_cents > 0
+       and s.due_day <= extract(day from today)::integer
+     order by s.venue_id
+  loop
+    perform pg_advisory_xact_lock(hashtextextended(cfg.venue_id::text, 0));
+    insert into public.finance_charges(venue_id, group_id, player_id, kind, period, description,
+      amount_cents, due_date, created_by, idempotency_key)
+    select cfg.venue_id, cfg.group_id, p.id, 'monthly', per,
+      'Mensalidade ' || to_char(per, 'MM/YYYY'), cfg.monthly_fee_cents,
+      per + (cfg.due_day - 1), null, 'monthly:' || p.id || ':' || per
+      from public.players p
+     where p.venue_id = cfg.venue_id and p.group_id = cfg.group_id and p.status = 'active'
+       and p.participation_type = 'mensalista' and not p.is_event_guest
+    on conflict do nothing;
+    get diagnostics created = row_count;
+    total := total + created;
+    if created > 0 then
+      insert into public.audit_logs(group_id, actor_id, action, entity, entity_id, details)
+        values (cfg.group_id, null, 'finance.monthly_generated_automatic', 'venue', cfg.venue_id,
+          jsonb_build_object('period', per, 'created', created, 'due_day', cfg.due_day));
+    end if;
+  end loop;
+  return total;
+end $$;
+revoke all on function public.finance_generate_due_monthly() from public, anon, authenticated;
+
+-- Supabase Cron executes as the role that scheduled the job (migration owner).
+select cron.schedule(
+  'finance-generate-monthly-charges',
+  '10 3 * * *',
+  'select public.finance_generate_due_monthly();'
+);
 
 create or replace function public.finance_create_charge(_venue_id uuid, _player_id uuid, _kind text, _description text,
   _amount_cents bigint, _due_date date, _event_id uuid, _idempotency_key text) returns uuid
