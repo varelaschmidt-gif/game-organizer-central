@@ -37,7 +37,7 @@ select pg_temp.as_user('00000000-0000-0000-0000-00000000000b');
 select public.finance_player_overdue_cents('30000000-0000-0000-0000-000000000001') = 10000 as t_overdue;
 select pg_temp.expect_error($$select public.rsvp_confirm('40000000-0000-0000-0000-000000000001', null)$$,'atraso');
 -- player can't record payment
-select pg_temp.expect_error($select public.finance_record_payment((select id from finance_charges where player_id='30000000-0000-0000-0000-000000000001'),100,'pix',current_date,null,'player-key-1')$,'Sem permissão');
+select pg_temp.expect_error($$select public.finance_record_payment((select id from finance_charges where player_id='30000000-0000-0000-0000-000000000001'),100,'pix',current_date,null,'player-key-1')$$,'Sem permissão');
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000a');
 -- Admin can override monthly arrears, but this is audited.
 select public.rsvp_confirm('40000000-0000-0000-0000-000000000001','30000000-0000-0000-0000-000000000004') = 'confirmed' as t_admin_monthly_override;
@@ -45,7 +45,7 @@ select exists(select 1 from public.audit_logs where group_id='10000000-0000-0000
   and actor_id='00000000-0000-0000-0000-00000000000a' and action='attendance.finance_override'
   and entity_id='40000000-0000-0000-0000-000000000001'
   and details->>'player_id'='30000000-0000-0000-0000-000000000004') as t_admin_override_audited;
-select pg_temp.expect_error($select public.rsvp_confirm('40000000-0000-0000-0000-000000000001','30000000-0000-0000-0000-000000000002')$,'Diária pendente');
+select pg_temp.expect_error($$select public.rsvp_confirm('40000000-0000-0000-0000-000000000001','30000000-0000-0000-0000-000000000002')$$,'Diária pendente');
 -- partial, overpay rejected, idempotent, settle
 select public.finance_record_payment((select id from finance_charges where player_id='30000000-0000-0000-0000-000000000001'),4000,'pix',current_date,null,'pay-partial-1') is not null;
 select public.finance_record_payment((select id from finance_charges where player_id='30000000-0000-0000-0000-000000000001'),4000,'pix',current_date,null,'pay-partial-1') is not null as replay;
