@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { setActiveGroupId, ROLE_LABEL } from "@/lib/groups";
+import { isProfileComplete, setActiveGroupId, ROLE_LABEL } from "@/lib/groups";
 import { Button } from "@/components/ui/button";
 import { ErrorState, LoadingState } from "@/components/states";
 
@@ -35,9 +35,9 @@ function InvitePage() {
       ]);
       if (error) throw error;
       const { data: profile } = u.user
-        ? await supabase.from("profiles").select("full_name,age,address,city,neighborhood").eq("id", u.user.id).maybeSingle()
+        ? await supabase.from("profiles").select("full_name,phone,age,position,dominant_foot").eq("id", u.user.id).maybeSingle()
         : { data: null };
-      return { invite: data?.[0] ?? null, user: u.user, profile };
+      return { invite: data?.[0] ?? null, user: u.user, profile: profile ? { ...profile, email: u.user?.email ?? "" } : null };
     },
   });
 
@@ -71,7 +71,7 @@ function InvitePage() {
           </p>
           <p className="mt-1 text-sm text-muted-foreground">Convite para: {invite.email}</p>
           {user ? (
-            !profile?.full_name?.trim() || !profile.age || !profile.address?.trim() || !profile.city?.trim() || !profile.neighborhood?.trim() ? (
+            !isProfileComplete(profile) ? (
               <div className="mt-4 space-y-3"><p className="text-sm text-muted-foreground">Complete seu perfil antes de solicitar acesso.</p><Button asChild className="w-full"><Link to="/perfil" search={{ redirect }}>Completar perfil</Link></Button></div>
             ) :
             user.email?.toLowerCase() === invite.email ? (

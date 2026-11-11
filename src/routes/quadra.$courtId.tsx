@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MapPin, Users } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { myGroupsQuery, profileQuery, setActiveCourtId, setActiveGroupId } from "@/lib/groups";
+import { isProfileComplete, myGroupsQuery, profileQuery, setActiveCourtId, setActiveGroupId } from "@/lib/groups";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,11 +18,12 @@ function JoinCourtPage(){
  const user=useQuery({queryKey:["court-link-user"],queryFn:async()=>{const {data}=await supabase.auth.getUser();return data.user??null}});
  const court=useQuery({queryKey:["public-court",courtId],queryFn:async()=>{const {data,error}=await db.rpc("get_public_court",{_venue_id:courtId});if(error)throw error;return Array.isArray(data)?data[0]:data}});
  const profile=useQuery({...profileQuery,enabled:!!user.data});const groups=useQuery({...myGroupsQuery,enabled:!!user.data});
+ useEffect(()=>{if(!profile.data)return;setFoot((value)=>value||profile.data.dominant_foot||"");setPosition((value)=>value||profile.data.position||"")},[profile.data]);
  const venueId=court.data?.id??courtId;
  const requests=useQuery({queryKey:["court-access",venueId,user.data?.id],enabled:!!user.data&&!!court.data,queryFn:async()=>{const {data,error}=await db.from("group_join_requests").select("id,status,created_at").eq("venue_id",venueId).eq("user_id",user.data!.id).order("created_at",{ascending:false}).limit(1);if(error)throw error;return data?.[0]??null}});
  const player=useQuery({queryKey:["court-player",venueId,user.data?.id],enabled:!!user.data&&!!court.data,queryFn:async()=>{const {data,error}=await db.from("players").select("id,group_id").eq("venue_id",venueId).eq("user_id",user.data!.id).maybeSingle();if(error)throw error;return data}});
  const membership=groups.data?.find((g:any)=>g.id===player.data?.group_id);
- const complete=!!profile.data?.full_name?.trim()&&!!profile.data?.age&&!!profile.data?.address?.trim()&&!!profile.data?.city?.trim()&&!!profile.data?.neighborhood?.trim();
+ const complete=isProfileComplete(profile.data);
  const latest=requests.data;const pending=latest?.status==="pending";const approved=!!player.data;
  async function request(e:React.FormEvent){e.preventDefault();if(!court.data)return;setBusy(true);const {error}=await db.rpc("request_court_membership",{_venue_id:venueId,_dominant_foot:foot,_position:position,_secondary_positions:secondary});setBusy(false);if(error){toast.error(error.message);return}toast.success("Solicitação enviada ao administrador da quadra");await Promise.all([qc.invalidateQueries({queryKey:["court-access",venueId]}),requests.refetch()])}
  if(court.isLoading||user.isLoading)return <main className="mx-auto max-w-xl p-6 text-muted-foreground">Carregando quadra…</main>;

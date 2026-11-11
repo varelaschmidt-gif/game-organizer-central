@@ -41,13 +41,30 @@ export const canCreateGroupQuery = queryOptions({
   },
 });
 
+const PROFILE_POSITIONS = new Set(["Goleiro", "Zagueiro", "Lateral", "Volante", "Meia", "Ponta", "Atacante"]);
+const PROFILE_FEET = new Set(["direito", "esquerdo", "ambos"]);
+
+export function isProfileComplete(profile: {
+  email?: string | null; full_name?: string | null; phone?: string | null;
+  age?: number | string | null; position?: string | null; dominant_foot?: string | null;
+} | null | undefined): boolean {
+  return Boolean(
+    profile?.email?.trim() &&
+    profile.full_name?.trim() &&
+    profile.phone?.trim() &&
+    Number(profile.age) >= 1 && Number(profile.age) <= 120 &&
+    PROFILE_POSITIONS.has(profile.position ?? "") &&
+    PROFILE_FEET.has(profile.dominant_foot ?? "")
+  );
+}
+
 export const profileQuery = queryOptions({
   queryKey: ["profile"],
   queryFn: async () => {
     const { data: u } = await supabase.auth.getUser();
     if (!u.user) return null;
     const { data } = await supabase.from("profiles").select("*").eq("id", u.user.id).maybeSingle();
-    return { email: u.user.email ?? "", ...(data ?? { full_name: "", age: null, address: null, city: null, neighborhood: null }) };
+    return { email: u.user.email ?? "", ...(data ?? { full_name: "", phone: "", age: null, position: null, dominant_foot: null, avatar_url: null }) };
   },
 });
 

@@ -1,4 +1,5 @@
 import { Link, Outlet, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   Bell,
@@ -14,6 +15,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { myGroupsQuery, profileQuery, getActiveGroupId, setActiveCourtId, useActiveCourt } from "@/lib/groups";
+import { resolveProfileAvatar } from "@/lib/profile-avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,7 +24,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const NAV = [
   { to: "/dashboard", label: "Início", icon: LayoutDashboard },
@@ -42,6 +44,12 @@ export function AppShell() {
   const active = groups?.find((g) => g.id === getActiveGroupId()) ?? groups?.[0];
   const court = useActiveCourt(active?.id);
   const name = profile?.full_name || profile?.email || "";
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+  useEffect(() => {
+    let active = true;
+    void resolveProfileAvatar(profile?.avatar_url).then((url) => { if (active) setAvatarUrl(url); });
+    return () => { active = false; };
+  }, [profile?.avatar_url]);
 
   async function signOut() {
     await qc.cancelQueries();
@@ -95,6 +103,7 @@ export function AppShell() {
             <DropdownMenu>
               <DropdownMenuTrigger aria-label="Perfil" className="rounded-full">
                 <Avatar className="h-9 w-9">
+                  <AvatarImage src={avatarUrl ?? undefined} alt="" />
                   <AvatarFallback className="bg-primary text-primary-foreground">
                     {(name[0] ?? "?").toUpperCase()}
                   </AvatarFallback>
