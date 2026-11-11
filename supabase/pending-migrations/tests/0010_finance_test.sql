@@ -78,9 +78,16 @@ select (select sum(amount_cents) from finance_charges where kind='expense_share'
 select pg_temp.expect_error($$select public.finance_split_expense((select id from finance_expenses where idempotency_key='exp-bola-01'),'monthly','equal',null,null,null,current_date)$$,'já foi rateada');
 -- balance = opening + real movements: 5000 + 4000 + 6000 - 6000 + 1500 - 1000 = 9500
 select (public.finance_summary('20000000-0000-0000-0000-000000000001','2000-01-01',current_date)->>'balance_cents')::bigint = 9500 as t_balance;
+select (public.finance_summary('20000000-0000-0000-0000-000000000001',date_trunc('month',current_date)::date,current_date)->>'period_ending_balance_cents')::bigint = 9500 as t_period_end_balance;
 -- closing
 select pg_temp.expect_error($$select public.finance_close_month('20000000-0000-0000-0000-000000000001', current_date)$$,'concluídos');
 select public.finance_close_month('20000000-0000-0000-0000-000000000001', (date_trunc('month',current_date)-interval '1 month')::date);
+select (snapshot->>'period_ending_balance_cents')::bigint = 5000 as t_closed_snapshot_uses_month_end
+  from public.finance_month_closings where venue_id='20000000-0000-0000-0000-000000000001'
+    and period=(date_trunc('month',current_date)-interval '1 month')::date;
+select (snapshot->>'period_in_cents')::bigint = 0 as t_closed_snapshot_excludes_later_receipts
+  from public.finance_month_closings where venue_id='20000000-0000-0000-0000-000000000001'
+    and period=(date_trunc('month',current_date)-interval '1 month')::date;
 select pg_temp.expect_error($$select public.finance_adjust_balance('20000000-0000-0000-0000-000000000001',100,(date_trunc('month',current_date)-interval '1 day')::date,'teste','adj-closed-1')$$,'fechado');
 select pg_temp.expect_error($$select public.finance_reopen_month('20000000-0000-0000-0000-000000000001', (date_trunc('month',current_date)-interval '1 month')::date, '')$$,'motivo');
 select public.finance_reopen_month('20000000-0000-0000-0000-000000000001', (date_trunc('month',current_date)-interval '1 month')::date, 'correção de lançamento');

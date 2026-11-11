@@ -638,22 +638,47 @@ end $$;
 -- ---------------------------------------------------------------- summary & closing
 create or replace function public.finance_summary(_venue_id uuid, _from date, _to date) returns jsonb
 language plpgsql stable security definer set search_path = public as $$
-declare v public.venues; s public.finance_settings; bal bigint; today date := public._fin_today();
+declare
+  v public.venues;
+  s public.finance_settings;
+  bal bigint;
+  today date := public._fin_today();
+  period_end date;
 begin
+  if _from is null or _to is null or _from > _to then raise exception 'Período financeiro inválido'; end if;
   v := public._fin_venue_for_manager(_venue_id);
   select * into s from public.finance_settings where venue_id = v.id;
-  select coalesce(s.opening_balance_cents, 0) + coalesce(sum(amount_cents), 0) into bal from public.finance_ledger
-    where venue_id = v.id and occurred_on >= coalesce(s.opening_balance_date, '-infinity'::date);
+  period_end := least(_to, today);
+  select coalesce(s.opening_balance_cents, 0) + coalesce(sum(amount_cents), 0) into bal
+    from public.finance_ledger
+   where venue_id = v.id and occurred_on >= coalesce(s.opening_balance_date, '-infinity'::date)
+     and occurred_on <= today;
   return jsonb_build_object(
     'balance_cents', bal,
     'opening_balance_cents', coalesce(s.opening_balance_cents, 0), 'opening_balance_date', s.opening_balance_date,
     'receivable_cents', (select coalesce(sum(outstanding_cents), 0) from public.finance_charge_balances where venue_id = v.id and status = 'open' and due_date >= today),
     'overdue_cents', (select coalesce(sum(outstanding_cents), 0) from public.finance_charge_balances where venue_id = v.id and status = 'open' and due_date < today),
-    'period_in_cents', (select coalesce(sum(amount_cents), 0) from public.finance_ledger where venue_id = v.id and occurred_on between _from and _to and entry_type in ('payment','payment_reversal')),
-    'period_out_cents', (select coalesce(-sum(amount_cents), 0) from public.finance_ledger where venue_id = v.id and occurred_on between _from and _to and entry_type in ('expense','expense_reversal')),
-    'period_adjust_cents', (select coalesce(sum(amount_cents), 0) from public.finance_ledger where venue_id = v.id and occurred_on between _from and _to and entry_type = 'adjustment'),
+    'period_in_cents', (select coalesce(sum(amount_cents), 0) from public.finance_ledger where venue_id = v.id and occurred_on between _from and period_end and entry_type in ('payment','payment_reversal')),
+    'period_out_cents', (select coalesce(-sum(amount_cents), 0) from public.finance_ledger where venue_id = v.id and occurred_on between _from and period_end and entry_type in ('expense','expense_reversal')),
+    'period_adjust_cents', (select coalesce(sum(amount_cents), 0) from public.finance_ledger where venue_id = v.id and occurred_on between _from and period_end and entry_type = 'adjustment'),
+    'period_ending_balance_cents', case when s.opening_balance_date is null or s.opening_balance_date > period_end then null else
+      coalesce(s.opening_balance_cents, 0) + coalesce((select sum(l.amount_cents) from public.finance_ledger l
+        where l.venue_id = v.id and l.occurred_on >= s.opening_balance_date and l.occurred_on <= period_end), 0) end,
+    'period_receivable_cents', (select coalesce(sum(greatest(c.amount_cents - coalesce((select sum(l.amount_cents)
+        from public.finance_ledger l where l.charge_id = c.id and l.entry_type in ('payment','payment_reversal')
+          and l.occurred_on <= period_end), 0), 0)), 0)
+      from public.finance_charges c where c.venue_id = v.id and c.status = 'open' and c.created_at::date <= period_end),
+    'period_overdue_cents', (select coalesce(sum(greatest(c.amount_cents - coalesce((select sum(l.amount_cents)
+        from public.finance_ledger l where l.charge_id = c.id and l.entry_type in ('payment','payment_reversal')
+          and l.occurred_on <= period_end), 0), 0)), 0)
+      from public.finance_charges c where c.venue_id = v.id and c.status = 'open'
+        and c.created_at::date <= period_end and c.due_date <= period_end),
+    'period_expense_pending_cents', (select coalesce(sum(greatest(x.amount_cents - coalesce((select -sum(l.amount_cents)
+        from public.finance_ledger l where l.expense_id = x.id and l.entry_type in ('expense','expense_reversal')
+          and l.occurred_on <= period_end), 0), 0)), 0)
+      from public.finance_expenses x where x.venue_id = v.id and x.created_at::date <= period_end),
     'by_category', (select coalesce(jsonb_object_agg(cat, total), '{}') from (select coalesce(category, entry_type) cat, sum(amount_cents) total
-        from public.finance_ledger where venue_id = v.id and occurred_on between _from and _to group by 1) t)
+        from public.finance_ledger where venue_id = v.id and occurred_on between _from and period_end group by 1) t)
   );
 end $$;
 

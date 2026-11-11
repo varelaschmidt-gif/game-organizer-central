@@ -380,6 +380,7 @@ function FinancePage() {
     return sum + Math.max(0, Number(expense.amount_cents) - paid);
   }, 0);
   const currentClosing = (finance.data?.closings ?? []).find((item: any) => item.period === monthStart(month));
+  const closingReport = currentClosing?.status === "closed" ? currentClosing.snapshot ?? {} : finance.data?.summary ?? {};
   const managerTabs = () => <div className="flex w-full gap-1 overflow-x-auto rounded-lg border border-border bg-muted/40 p-1">
     {activeTabs.map(([key, label]) => <button key={key} onClick={() => setTab(key)} className={`shrink-0 rounded-md px-3 py-2 text-sm font-medium ${tab === key ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-background"}`}>{label}</button>)}
   </div>;
@@ -445,8 +446,17 @@ function FinancePage() {
         <ChargeList charges={charges.slice(0, 8)} names={names} manager={false} paymentInputs={paymentInputs} setPaymentInputs={setPaymentInputs} onPayment={recordPayment} busy={busy} />
         <SecondaryButton className="mt-3" onClick={() => setTab("cobrancas")}>Ver todas as cobranças</SecondaryButton>
       </Panel>
-      <Panel title="Fechamento mensal">
-        <p className="text-sm text-muted-foreground">Receitas e despesas são consideradas pela data real em que foram pagas. Só meses encerrados podem ser fechados.</p>\n        {currentClosing && <p className="mt-2 text-sm">Situação de {month}: <strong>{currentClosing.status === "closed" ? "Fechado" : "Reaberto"}</strong> · {currentClosing.closed_at ? new Date(currentClosing.closed_at).toLocaleString("pt-BR") : ""}{currentClosing.reopen_reason ? ` · Motivo da reabertura: ${currentClosing.reopen_reason}` : ""}</p>}
+      <Panel title={`Fechamento mensal · ${month}`}>
+        <p className="text-sm text-muted-foreground">Receitas e despesas são consideradas pela data real em que foram pagas. Só meses encerrados podem ser fechados.</p>
+        <div className="mt-3 grid grid-cols-2 gap-2 lg:grid-cols-3">
+          <Kpi title="Receitas recebidas" value={formatBRL(Number(closingReport.period_in_cents ?? 0))} />
+          <Kpi title="Despesas pagas" value={formatBRL(Math.abs(Number(closingReport.period_out_cents ?? 0)))} />
+          <Kpi title="Valores a receber" value={formatBRL(Number(closingReport.period_receivable_cents ?? 0))} />
+          <Kpi title="Cobranças vencidas" value={formatBRL(Number(closingReport.period_overdue_cents ?? 0))} tone="danger" />
+          <Kpi title="Despesas pendentes" value={formatBRL(Number(closingReport.period_expense_pending_cents ?? 0))} />
+          <Kpi title="Saldo final do período" value={closingReport.period_ending_balance_cents == null ? "—" : formatBRL(Number(closingReport.period_ending_balance_cents))} />
+        </div>
+        {currentClosing?.status === "closed" && <p className="mt-2 text-xs text-muted-foreground">Resumo congelado no fechamento em {new Date(currentClosing.closed_at).toLocaleString("pt-BR")}.</p>}\n        {currentClosing && <p className="mt-2 text-sm">Situação de {month}: <strong>{currentClosing.status === "closed" ? "Fechado" : "Reaberto"}</strong> · {currentClosing.closed_at ? new Date(currentClosing.closed_at).toLocaleString("pt-BR") : ""}{currentClosing.reopen_reason ? ` · Motivo da reabertura: ${currentClosing.reopen_reason}` : ""}</p>}
         <div className="mt-3 flex flex-wrap gap-2">
           <PrimaryButton disabled={busy || month >= currentMonth} onClick={() => mutate(async () => {
             const { error } = await db.rpc("finance_close_month", { _venue_id: court.venue!.id, _period: monthStart(month) });
