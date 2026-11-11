@@ -1,7 +1,12 @@
 \set ON_ERROR_STOP 1
 -- Run only on an isolated local database with 0000-0010 applied. Everything rolls back.
 begin;
-create or replace function pg_temp.as_user(u uuid) returns void language sql as $$ select set_config('request.uid', u::text, true) $$;
+create or replace function pg_temp.as_user(u uuid) returns void language plpgsql as $
+begin
+  perform set_config('request.jwt.claim.sub', u::text, true);
+  perform set_config('request.jwt.claims', json_build_object('sub', u::text, 'role', 'authenticated')::text, true);
+  perform set_config('request.uid', u::text, true);
+end $;
 create or replace function pg_temp.expect_error(q text, pat text) returns void language plpgsql as $$
 begin execute q; raise exception 'EXPECTED ERROR NOT RAISED: %', pat;
 exception when others then if sqlerrm not ilike '%'||pat||'%' then raise exception 'wrong error: % (wanted %)', sqlerrm, pat; end if; end $;
@@ -15,6 +20,7 @@ insert into public.group_members(group_id,user_id,role) values ('10000000-0000-0
  ('10000000-0000-0000-0000-000000000002','00000000-0000-0000-0000-00000000000d','admin');
 insert into public.venues(id,group_id,name) values ('20000000-0000-0000-0000-000000000001','10000000-0000-0000-0000-000000000001','Q1'),('20000000-0000-0000-0000-000000000002','10000000-0000-0000-0000-000000000002','Q2');
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000a');
+select pg_temp.expect_true(auth.uid() = '00000000-0000-0000-0000-00000000000a'::uuid, 'test actor identity');
 insert into public.players(id,group_id,venue_id,user_id,name,participation_type,is_monthly,status,joined_at) values
  ('30000000-0000-0000-0000-000000000001','10000000-0000-0000-0000-000000000001','20000000-0000-0000-0000-000000000001','00000000-0000-0000-0000-00000000000b','Mensal','mensalista',true,'active',current_date),
  ('30000000-0000-0000-0000-000000000002','10000000-0000-0000-0000-000000000001','20000000-0000-0000-0000-000000000001','00000000-0000-0000-0000-00000000000c','Avulso','avulso',false,'active',current_date),
