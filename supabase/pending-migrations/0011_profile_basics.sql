@@ -102,6 +102,7 @@ begin
   return gid;
 end $$;
 revoke execute on function public.create_group(text,boolean) from public,anon,authenticated;
+grant execute on function public.create_group(text,boolean) to authenticated;
 
 create or replace function public.request_court_membership(
   _venue_id uuid,_dominant_foot text,_position text,_secondary_positions text[] default '{}'
