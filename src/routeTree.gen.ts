@@ -16,6 +16,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedCampeonatosRouteImport } from './routes/_authenticated/campeonatos'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedEventsRouteImport } from './routes/_authenticated/events'
+import { Route as AuthenticatedFinanceiroRouteImport } from './routes/_authenticated/financeiro'
 import { Route as AuthenticatedJogadoresRouteImport } from './routes/_authenticated/jogadores'
 import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
 import { Route as AuthenticatedPlayersRouteImport } from './routes/_authenticated/players'
@@ -53,6 +54,11 @@ const AuthenticatedCampeonatosRoute =
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFinanceiroRoute = AuthenticatedFinanceiroRouteImport.update({
+  id: '/financeiro',
+  path: '/financeiro',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedEventsRoute = AuthenticatedEventsRouteImport.update({
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/campeonatos': typeof AuthenticatedCampeonatosRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/events': typeof AuthenticatedEventsRouteWithChildren
+  '/financeiro': typeof AuthenticatedFinanceiroRoute
   '/jogadores': typeof AuthenticatedJogadoresRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/players': typeof AuthenticatedPlayersRoute
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/campeonatos': typeof AuthenticatedCampeonatosRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/events': typeof AuthenticatedEventsRouteWithChildren
+  '/financeiro': typeof AuthenticatedFinanceiroRoute
   '/jogadores': typeof AuthenticatedJogadoresRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/players': typeof AuthenticatedPlayersRoute
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   '/_authenticated/campeonatos': typeof AuthenticatedCampeonatosRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/events': typeof AuthenticatedEventsRouteWithChildren
+  '/_authenticated/financeiro': typeof AuthenticatedFinanceiroRoute
   '/_authenticated/jogadores': typeof AuthenticatedJogadoresRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/_authenticated/players': typeof AuthenticatedPlayersRoute
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/campeonatos'
     | '/dashboard'
     | '/events'
+    | '/financeiro'
     | '/jogadores'
     | '/perfil'
     | '/players'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/campeonatos'
     | '/dashboard'
     | '/events'
+    | '/financeiro'
     | '/jogadores'
     | '/perfil'
     | '/players'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/convite/$token'
     | '/quadra/$courtId'
     | '/_authenticated/events/$eventId'
+    | '/_authenticated/financeiro'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -263,6 +275,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/events'
       preLoaderRoute: typeof AuthenticatedEventsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/financeiro': {
+      id: '/_authenticated/financeiro'
+      path: '/financeiro'
+      fullPath: '/financeiro'
+      preLoaderRoute: typeof AuthenticatedFinanceiroRouteImport
+      parentRoute: typeof AuthenticatedRouteRouteImport
     }
     '/_authenticated/jogadores': {
       id: '/_authenticated/jogadores'
@@ -338,6 +357,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCampeonatosRoute: typeof AuthenticatedCampeonatosRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedEventsRoute: typeof AuthenticatedEventsRouteWithChildren
+  AuthenticatedFinanceiroRoute: typeof AuthenticatedFinanceiroRoute
   AuthenticatedJogadoresRoute: typeof AuthenticatedJogadoresRoute
   AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
   AuthenticatedPlayersRoute: typeof AuthenticatedPlayersRoute
@@ -349,6 +369,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCampeonatosRoute: AuthenticatedCampeonatosRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedEventsRoute: AuthenticatedEventsRouteWithChildren,
+  AuthenticatedFinanceiroRoute: AuthenticatedFinanceiroRoute,
   AuthenticatedJogadoresRoute: AuthenticatedJogadoresRoute,
   AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
   AuthenticatedPlayersRoute: AuthenticatedPlayersRoute,
