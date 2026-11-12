@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
   BarChart3,
@@ -20,7 +20,6 @@ import {
   myGroupsQuery,
   getActiveGroupId,
   setActiveGroupId,
-  setActiveCourtId,
   ROLE_LABEL,
   useActiveCourt,
   type MyGroup,
@@ -30,6 +29,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { AdminNotificationComposer, NotificationsPanel } from "@/components/NotificationsCenter";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
@@ -44,18 +44,24 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 });
 
 const MODULES = [
-  { label: "Eventos", icon: CalendarDays, text: "Crie jogos, séries recorrentes e gerencie confirmações.", to: "/events" },
-  { label: "Jogadores", icon: Users, text: "Cadastre jogadores, envie convites e organize sua lista.", to: "/jogadores" },
-  { label: "Quadras", icon: MapPin, text: "Cadastre os locais utilizados nos jogos.", to: "/quadras" },
-  { label: "Times", icon: Shirt, text: "Nenhum time montado ainda." },
-  { label: "Partidas", icon: Swords, text: "Nenhuma partida registrada." },
-  { label: "Financeiro", icon: Wallet, text: "Nenhuma movimentação registrada." },
-  { label: "Estatísticas", icon: BarChart3, text: "Sem dados para estatísticas." },
-  { label: "Relatórios", icon: FileText, text: "Nenhum relatório disponível." },
-  { label: "Configurações", icon: Settings, text: "Defina dia, horário e local do grupo." },
+  { label: "Eventos", icon: CalendarDays, to: "/events" },
+  { label: "Jogadores", icon: Users, to: "/jogadores" },
+  { label: "Quadras", icon: MapPin, to: "/quadras" },
+  { label: "Times", icon: Shirt },
+  { label: "Partidas", icon: Swords },
+  { label: "Financeiro", icon: Wallet },
+  { label: "Estatísticas", icon: BarChart3 },
+  { label: "Relatórios", icon: FileText },
+  { label: "Configurações", icon: Settings },
 ] as const;
 
 function Dashboard() {
+  const [, refresh] = useState(0);
+  useEffect(() => {
+    const update = () => refresh((value) => value + 1);
+    window.addEventListener("rdq-group-change", update);
+    return () => window.removeEventListener("rdq-group-change", update);
+  }, []);
   const groups = useQuery({ ...myGroupsQuery, refetchInterval: 15_000 });
   if (groups.isLoading) return <LoadingState />;
   if (groups.error)
@@ -63,7 +69,7 @@ function Dashboard() {
   const list = groups.data ?? [];
   if (list.length === 0) return <NoGroup />;
   const active = list.find((g) => g.id === getActiveGroupId()) ?? list[0]!;
-  return <GroupDashboard group={active} all={list} />;
+  return <GroupDashboard group={active} />;
 }
 
 function NoGroup() {
@@ -118,7 +124,7 @@ function NoGroup() {
   );
 }
 
-function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
+function GroupDashboard({ group }: { group: MyGroup }) {
   const qc = useQueryClient();
   const court = useActiveCourt(group.id);
   const players = useQuery({
@@ -173,25 +179,13 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
           </Badge>
         </div>
           <div className="flex gap-2">
-          {court.venues.length>1&&<select aria-label="Quadra" className="rounded-md border border-input bg-background px-3 py-2 text-sm" value={court.venue?.id??""} onChange={e=>setActiveCourtId(e.target.value)}>{court.venues.map((v:any)=><option key={v.id} value={v.id}>{v.name}</option>)}</select>}
-          {all.length > 1 && (
-            <select
-              className="rounded-md border border-input bg-background px-3 py-2 text-sm"
-              value={group.id}
-              onChange={(e) => {
-                setActiveGroupId(e.target.value);
-                window.location.reload();
-              }}
-            >
-              {all.map((g) => (
-                <option key={g.id} value={g.id}>
-                  {g.name}
-                </option>
-              ))}
-            </select>
-          )}
           {canInvite && <Button asChild variant="outline"><Link to="/jogadores"><UserPlus className="mr-2 h-4 w-4" />Convidar jogador</Link></Button>}
         </div>
+      </div>
+
+      <div className="grid gap-3 lg:grid-cols-2">
+        <NotificationsPanel />
+        {group.role === "admin" && <AdminNotificationComposer group={group} />}
       </div>
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -213,19 +207,18 @@ function GroupDashboard({ group, all }: { group: MyGroup; all: MyGroup[] }) {
 
       <section>
         <h2 className="mb-3 text-xl font-semibold uppercase">Módulos</h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {MODULES.map((m) => (
-            <div key={m.label} className="rounded-xl border border-border bg-card p-4">
-              <div className="flex items-center gap-2 font-display text-lg font-semibold">
-                <m.icon className="h-5 w-5 text-primary" /> {m.label}
+            <div key={m.label} className="flex min-h-24 items-center justify-between gap-2 rounded-xl border border-border bg-card p-3 sm:p-4">
+              <div className="flex min-w-0 items-center gap-2 font-display text-base font-semibold sm:text-lg">
+                <m.icon className="h-5 w-5 shrink-0 text-primary" /> <span className="truncate">{m.label}</span>
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">{m.text}</p>
               {"to" in m ? (
-                <Button asChild size="sm" variant="outline" className="mt-3">
+                <Button asChild size="sm" variant="outline" className="shrink-0">
                   <Link to={m.to}>Abrir</Link>
                 </Button>
               ) : (
-                <Button size="sm" variant="outline" className="mt-3" disabled>Configurar (em breve)</Button>
+                <Badge className="shrink-0" variant="secondary">Em breve</Badge>
               )}
             </div>
           ))}

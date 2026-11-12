@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { getActiveGroupId, myGroupsQuery, useActiveCourt } from "@/lib/groups";
+import { useActiveGroup, useActiveCourt } from "@/lib/groups";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,7 +12,7 @@ export const Route=createFileRoute("/_authenticated/campeonatos")({component:Cha
 const db=supabase as any;
 const statusLabel:Record<string,string>={planned:"Agendado",active:"Em andamento",completed:"Finalizado",cancelled:"Cancelado"};
 function ChampionshipsPage(){
- const qc=useQueryClient();const groups=useQuery(myGroupsQuery);const group=groups.data?.find(g=>g.id===getActiveGroupId())??groups.data?.[0];const court=useActiveCourt(group?.id);const [form,setForm]=useState(false);const [name,setName]=useState("");const [starts,setStarts]=useState("");const [ends,setEnds]=useState("");const [busy,setBusy]=useState(false);const admin=group?.role==="admin";
+ const qc=useQueryClient();const {group}=useActiveGroup();const court=useActiveCourt(group?.id);const [form,setForm]=useState(false);const [name,setName]=useState("");const [starts,setStarts]=useState("");const [ends,setEnds]=useState("");const [busy,setBusy]=useState(false);const admin=group?.role==="admin";
  const q=useQuery({queryKey:["championships",group?.id,court.venue?.id],enabled:!!group&&!!court.venue,queryFn:async()=>{const {data,error}=await db.from("court_championships").select("*").eq("group_id",group!.id).eq("venue_id",court.venue!.id).order("starts_on",{ascending:false});if(error)throw error;return data??[]}});
  async function save(e:React.FormEvent){e.preventDefault();if(!group||!court.venue)return;setBusy(true);const {data:user}=await supabase.auth.getUser();const {error}=await db.from("court_championships").insert({group_id:group.id,venue_id:court.venue.id,name:name.trim(),starts_on:starts||null,ends_on:ends||null,created_by:user.user?.id});setBusy(false);if(error)toast.error(error.message);else{toast.success("Campeonato criado");setForm(false);setName("");setStarts("");setEnds("");await qc.invalidateQueries({queryKey:["championships",group.id,court.venue.id]})}}
  async function changeStatus(item:any,status:string){const {error}=await db.from("court_championships").update({status}).eq("id",item.id).eq("venue_id",court.venue.id);if(error)toast.error(error.message);else{toast.success("Status atualizado");await q.refetch()}}

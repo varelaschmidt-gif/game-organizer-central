@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { getActiveGroupId, myGroupsQuery, useActiveCourt } from "@/lib/groups";
+import { useActiveGroup, useActiveCourt } from "@/lib/groups";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,8 +12,7 @@ export const Route = createFileRoute("/_authenticated/times")({ component: Teams
 const db = supabase as any;
 
 function TeamsPage() {
-  const qc=useQueryClient(); const groups=useQuery(myGroupsQuery);
-  const group=groups.data?.find(g=>g.id===getActiveGroupId())??groups.data?.[0];
+  const qc=useQueryClient(); const { group } = useActiveGroup();
   const court=useActiveCourt(group?.id); const [eventId,setEventId]=useState(""); const [newName,setNewName]=useState("");
   const [newEmail,setNewEmail]=useState(""); const [busy,setBusy]=useState(false); const [teamChoice,setTeamChoice]=useState("");
   const canManage=group?.role==="admin";

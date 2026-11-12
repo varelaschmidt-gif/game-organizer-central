@@ -397,9 +397,7 @@ function FinancePage() {
   }, 0);
   const currentClosing = (finance.data?.closings ?? []).find((item: any) => item.period === monthStart(month));
   const closingReport = currentClosing?.status === "closed" ? currentClosing.snapshot ?? {} : finance.data?.summary ?? {};
-  const managerTabs = () => <div className="flex w-full gap-1 overflow-x-auto rounded-lg border border-border bg-muted/40 p-1">
-    {activeTabs.map(([key, label]) => <button key={key} onClick={() => setTab(key)} className={`shrink-0 rounded-md px-3 py-2 text-sm font-medium ${tab === key ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-background"}`}>{label}</button>)}
-  </div>;
+  const managerTabs = () => <select aria-label="Seção do financeiro" value={tab} onChange={(e) => setTab(e.target.value)} className="min-h-11 w-full rounded-lg border border-border bg-card px-3 text-sm font-medium sm:w-64">{activeTabs.map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select>;
   const playerStatement = () => <div className="space-y-4">
     <Panel title="Sua situação">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -432,15 +430,16 @@ function FinancePage() {
     {message && <div role="alert" className="rounded-lg border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive">{message}</div>}
     {tab === "extrato" && playerStatement()}
     {tab === "resumo" && manager && <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-5">
         <Kpi title="Saldo atual" value={formatBRL(Number(finance.data?.summary?.balance_cents ?? 0))} />
         <Kpi title="A receber" value={formatBRL(Number(finance.data?.summary?.receivable_cents ?? 0))} />
-        <Kpi title="Em atraso" value={formatBRL(Number(finance.data?.summary?.overdue_cents ?? 0))} tone="danger" />\n        <Kpi title="Despesas pendentes" value={formatBRL(expensePendingTotal)} />
+        <Kpi title="Em atraso" value={formatBRL(Number(finance.data?.summary?.overdue_cents ?? 0))} tone="danger" />
+        <Kpi title="Despesas pendentes" value={formatBRL(expensePendingTotal)} />
         <Kpi title="Movimento no mês" value={`+${formatBRL(Number(finance.data?.summary?.period_in_cents ?? 0))} / −${formatBRL(Math.abs(Number(finance.data?.summary?.period_out_cents ?? 0))) }`} />
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
         <Panel title="Mensalidades">
-          <p className="text-sm text-muted-foreground">Gerar cobranças abertas apenas para mensalistas ativos no mês atual. A operação pode ser repetida sem duplicar cobranças.</p>
+          <p className="hidden text-sm text-muted-foreground sm:block">Cobranças do mês atual para mensalistas ativos. Repetir não duplica os lançamentos.</p>
           <p className="mt-2 text-2xl font-bold">{players.filter((p) => p.participation_type === "mensalista" && p.is_event_guest !== true).length} mensalistas ativos</p>
           <p className="text-sm">Valor atual por pessoa: {formatBRL(Number(settings?.monthly_fee_cents ?? 0))}</p>
           <PrimaryButton disabled={busy || !settings?.monthly_fee_cents} className="mt-4" onClick={() => mutate(async () => {
@@ -449,7 +448,10 @@ function FinancePage() {
             toast.info(`${data ?? 0} cobrança(s) nova(s)`);
           }, "Geração mensal concluída.")}><RefreshCw className="h-4 w-4" /> Gerar cobranças do mês</PrimaryButton>
         </Panel>
-        <Panel title="Resumo por categoria">\n        <div className="flex flex-wrap gap-2">{Object.entries((finance.data?.summary?.by_category ?? {}) as Record<string, number>).length ? Object.entries(finance.data?.summary?.by_category ?? {}).map(([category, value]) => <span key={category} className="rounded-full bg-muted px-3 py-1 text-sm">{category}: {formatBRL(Number(value))}</span>) : <p className="text-sm text-muted-foreground">Sem movimentações no período.</p>}</div>\n      </Panel>\n      <Panel title="Situação das cobranças">
+        <Panel title="Resumo por categoria">
+        <div className="flex flex-wrap gap-2">{Object.entries((finance.data?.summary?.by_category ?? {}) as Record<string, number>).length ? Object.entries(finance.data?.summary?.by_category ?? {}).map(([category, value]) => <span key={category} className="rounded-full bg-muted px-3 py-1 text-sm">{category}: {formatBRL(Number(value))}</span>) : <p className="text-sm text-muted-foreground">Sem movimentações no período.</p>}</div>
+      </Panel>
+      <Panel title="Situação das cobranças">
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg bg-muted/40 p-3"><p className="text-xs text-muted-foreground">Cobranças</p><p className="text-xl font-bold">{charges.length}</p></div>
             <div className="rounded-lg bg-muted/40 p-3"><p className="text-xs text-muted-foreground">Jogadores em atraso</p><p className="text-xl font-bold text-destructive">{new Set(charges.filter((c) => c.status === "open" && c.outstanding_cents > 0 && c.due_date < today).map((c) => c.player_id)).size}</p></div>
@@ -472,7 +474,8 @@ function FinancePage() {
           <Kpi title="Despesas pendentes" value={formatBRL(Number(closingReport.period_expense_pending_cents ?? 0))} />
           <Kpi title="Saldo final do período" value={closingReport.period_ending_balance_cents == null ? "—" : formatBRL(Number(closingReport.period_ending_balance_cents))} />
         </div>
-        {currentClosing?.status === "closed" && <p className="mt-2 text-xs text-muted-foreground">Resumo congelado no fechamento em {new Date(currentClosing.closed_at).toLocaleString("pt-BR")}.</p>}\n        {currentClosing && <p className="mt-2 text-sm">Situação de {month}: <strong>{currentClosing.status === "closed" ? "Fechado" : "Reaberto"}</strong> · {currentClosing.closed_at ? new Date(currentClosing.closed_at).toLocaleString("pt-BR") : ""}{currentClosing.reopen_reason ? ` · Motivo da reabertura: ${currentClosing.reopen_reason}` : ""}</p>}
+        {currentClosing?.status === "closed" && <p className="mt-2 text-xs text-muted-foreground">Resumo congelado no fechamento em {new Date(currentClosing.closed_at).toLocaleString("pt-BR")}.</p>}
+        {currentClosing && <p className="mt-2 text-sm">Situação de {month}: <strong>{currentClosing.status === "closed" ? "Fechado" : "Reaberto"}</strong> · {currentClosing.closed_at ? new Date(currentClosing.closed_at).toLocaleString("pt-BR") : ""}{currentClosing.reopen_reason ? ` · Motivo da reabertura: ${currentClosing.reopen_reason}` : ""}</p>}
         <div className="mt-3 flex flex-wrap gap-2">
           <PrimaryButton disabled={busy || month >= currentMonth} onClick={() => mutate(async () => {
             const { error } = await db.rpc("finance_close_month", { _venue_id: court.venue!.id, _period: monthStart(month) });
@@ -494,7 +497,8 @@ function FinancePage() {
           <SelectField label="Jogador" required value={chargeForm.playerId} onChange={(e) => setChargeForm({ ...chargeForm, playerId: e.target.value })}>
             <option value="">Selecionar</option>{players.filter((p) => p.status === "active" && !p.is_event_guest && p.participation_type !== "convidado" && (chargeForm.kind !== "daily" || p.participation_type === "avulso")).map((p) => <option key={p.id} value={p.id}>{p.nickname || p.name}</option>)}
           </SelectField>
-          <SelectField label="Tipo" value={chargeForm.kind} onChange={(e) => setChargeForm({ ...chargeForm, kind: e.target.value, description: e.target.value === "daily" ? "Diária" : chargeForm.description })}><option value="manual">Cobrança manual</option><option value="daily">Diária de avulso</option></SelectField>\n          {chargeForm.kind === "daily" && <SelectField label="Evento" required value={chargeForm.eventId} onChange={(e) => setChargeForm({ ...chargeForm, eventId: e.target.value })}><option value="">Selecionar</option>{(finance.data?.events ?? []).map((e: any) => <option key={e.id} value={e.id}>{e.title} · {new Date(e.starts_at).toLocaleDateString("pt-BR")}</option>)}</SelectField>}
+          <SelectField label="Tipo" value={chargeForm.kind} onChange={(e) => setChargeForm({ ...chargeForm, kind: e.target.value, description: e.target.value === "daily" ? "Diária" : chargeForm.description })}><option value="manual">Cobrança manual</option><option value="daily">Diária de avulso</option></SelectField>
+          {chargeForm.kind === "daily" && <SelectField label="Evento" required value={chargeForm.eventId} onChange={(e) => setChargeForm({ ...chargeForm, eventId: e.target.value })}><option value="">Selecionar</option>{(finance.data?.events ?? []).map((e: any) => <option key={e.id} value={e.id}>{e.title} · {new Date(e.starts_at).toLocaleDateString("pt-BR")}</option>)}</SelectField>}
           <Field label="Descrição" required value={chargeForm.description} onChange={(e) => setChargeForm({ ...chargeForm, description: e.target.value })} />
           <Field label={chargeForm.kind === "daily" ? "Valor (R$), vazio usa a diária do evento" : "Valor (R$)"} inputMode="decimal" required={chargeForm.kind === "manual"} value={chargeForm.amount} onChange={(e) => setChargeForm({ ...chargeForm, amount: e.target.value })} />
           <Field label="Vencimento" type="date" required value={chargeForm.dueDate} onChange={(e) => setChargeForm({ ...chargeForm, dueDate: e.target.value })} />
@@ -608,7 +612,7 @@ function FinancePage() {
 }
 
 function Kpi({ title, value, tone = "normal" }: { title: string; value: string; tone?: string }) {
-  return <div className="rounded-xl border border-border bg-card p-4"><p className="text-xs uppercase tracking-wide text-muted-foreground">{title}</p><p className={`mt-1 break-words text-lg font-bold md:text-2xl ${tone === "danger" ? "text-destructive" : ""}`}>{value}</p></div>;
+  return <div className="min-w-0 rounded-xl border border-border bg-card p-3 sm:p-4"><p className="truncate text-[10px] uppercase tracking-wide text-muted-foreground sm:text-xs">{title}</p><p className={`mt-1 break-words text-base font-bold sm:text-lg md:text-2xl ${tone === "danger" ? "text-destructive" : ""}`}>{value}</p></div>;
 }
 
 function ChargeList({ charges, names, manager, paymentInputs, setPaymentInputs, onPayment, busy }: {

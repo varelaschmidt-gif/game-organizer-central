@@ -62,7 +62,10 @@ export const ROLE_LABEL: Record<GroupRole, string> = {
 const KEY = "rdq-active-group";
 export const getActiveGroupId = () =>
   typeof window === "undefined" ? null : window.localStorage.getItem(KEY);
-export const setActiveGroupId = (id: string) => window.localStorage.setItem(KEY, id);
+export const setActiveGroupId = (id: string) => {
+  window.localStorage.setItem(KEY, id);
+  window.dispatchEvent(new Event("rdq-group-change"));
+};
 
 const COURT_KEY = "rdq-active-court";
 export const getActiveCourtId = () => typeof window === "undefined" ? null : window.localStorage.getItem(COURT_KEY);
@@ -100,6 +103,13 @@ export function useActiveCourt(groupId?: string) {
 
 export function useActiveGroup() {
   const q = useQuery(myGroupsQuery);
+  const [, refresh] = useState(0);
+  useEffect(() => {
+    const update = () => refresh((value) => value + 1);
+    window.addEventListener("rdq-group-change", update);
+    window.addEventListener("storage", update);
+    return () => { window.removeEventListener("rdq-group-change", update); window.removeEventListener("storage", update); };
+  }, []);
   const list = q.data ?? [];
   const group = list.find((g) => g.id === getActiveGroupId()) ?? list[0];
   const can = (perm: string) =>
