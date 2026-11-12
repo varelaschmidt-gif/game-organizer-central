@@ -180,7 +180,7 @@ function usePhotoUrl(path: string | null) {
   }).data;
 }
 
-function PlayerCell({ p, profileAvatar }: { p: Player; profileAvatar?: string }) {
+function PlayerCell({ p, profileAvatar }: { p: Player; profileAvatar?: string | undefined }) {
   return (
     <div className="flex items-center gap-3">
       <PlayerAvatar name={p.name} profileAvatar={profileAvatar} photoPath={p.photo_path} />

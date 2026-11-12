@@ -2,7 +2,7 @@ const PROFILE_POSITIONS = new Set(["Goleiro", "Zagueiro", "Lateral", "Volante", 
 const PROFILE_FEET = new Set(["direito", "esquerdo", "ambos"]);
 
 export type BasicProfile = {
-  email?: string | null;
+  email?: string | null | undefined;
   full_name?: string | null;
   phone?: string | null;
   age?: number | string | null;

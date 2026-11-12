@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 type Props = {
   name?: string | null;
-  profileAvatar?: string | null;
+  profileAvatar?: string | null | undefined;
   photoPath?: string | null;
   size?: string;
 };
