@@ -1003,10 +1003,12 @@ export type Database = {
           avatar_url: string | null
           city: string | null
           created_at: string
+          dominant_foot: string | null
           full_name: string
           id: string
           neighborhood: string | null
           phone: string | null
+          position: string | null
           updated_at: string
         }
         Insert: {
@@ -1015,10 +1017,12 @@ export type Database = {
           avatar_url?: string | null
           city?: string | null
           created_at?: string
+          dominant_foot?: string | null
           full_name?: string
           id: string
           neighborhood?: string | null
           phone?: string | null
+          position?: string | null
           updated_at?: string
         }
         Update: {
@@ -1027,10 +1031,12 @@ export type Database = {
           avatar_url?: string | null
           city?: string | null
           created_at?: string
+          dominant_foot?: string | null
           full_name?: string
           id?: string
           neighborhood?: string | null
           phone?: string | null
+          position?: string | null
           updated_at?: string
         }
         Relationships: []
