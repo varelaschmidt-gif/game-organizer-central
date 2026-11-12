@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
+  Bell,
   BarChart3,
   CalendarDays,
   FileText,
@@ -47,9 +48,9 @@ const MODULES = [
   { label: "Eventos", icon: CalendarDays, to: "/events" },
   { label: "Jogadores", icon: Users, to: "/jogadores" },
   { label: "Quadras", icon: MapPin, to: "/quadras" },
-  { label: "Times", icon: Shirt },
-  { label: "Partidas", icon: Swords },
-  { label: "Financeiro", icon: Wallet },
+  { label: "Times", icon: Shirt, to: "/times" },
+  { label: "Campeonatos", icon: Swords, to: "/campeonatos" },
+  { label: "Financeiro", icon: Wallet, to: "/financeiro" },
   { label: "Estatísticas", icon: BarChart3 },
   { label: "Relatórios", icon: FileText },
   { label: "Configurações", icon: Settings },
@@ -183,10 +184,16 @@ function GroupDashboard({ group }: { group: MyGroup }) {
         </div>
       </div>
 
-      <div className="grid gap-3 lg:grid-cols-2">
-        <NotificationsPanel />
-        {group.role === "admin" && <AdminNotificationComposer group={group} />}
-      </div>
+      <details className="group rounded-xl border border-border bg-card p-4 sm:p-5">
+        <summary className="flex cursor-pointer list-none items-center gap-2 font-display text-lg font-bold [&::-webkit-details-marker]:hidden">
+          <Bell className="h-5 w-5 text-primary" /> Notificações
+          <span className="ml-auto text-sm font-normal text-muted-foreground transition-transform group-open:rotate-180">⌄</span>
+        </summary>
+        <div className="mt-4 space-y-3">
+          <NotificationsPanel compact />
+          {group.role === "admin" && <AdminNotificationComposer group={group} />}
+        </div>
+      </details>
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         <StatCard label="Jogadores" icon={<Users className="h-4 w-4" />} value={players.data ?? "—"} />
@@ -208,18 +215,19 @@ function GroupDashboard({ group }: { group: MyGroup }) {
       <section>
         <h2 className="mb-3 text-xl font-semibold uppercase">Módulos</h2>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {MODULES.map((m) => (
+          {MODULES.map((m) => "to" in m ? (
+            <Link key={m.label} to={m.to} className="flex min-h-24 items-center justify-between gap-2 rounded-xl border border-border bg-card p-3 transition-colors hover:border-primary/50 hover:bg-muted/40 sm:p-4">
+              <div className="flex min-w-0 items-center gap-2 font-display text-base font-semibold sm:text-lg">
+                <m.icon className="h-5 w-5 shrink-0 text-primary" /> <span className="truncate">{m.label}</span>
+              </div>
+              <span aria-hidden="true" className="text-lg text-muted-foreground">›</span>
+            </Link>
+          ) : (
             <div key={m.label} className="flex min-h-24 items-center justify-between gap-2 rounded-xl border border-border bg-card p-3 sm:p-4">
               <div className="flex min-w-0 items-center gap-2 font-display text-base font-semibold sm:text-lg">
                 <m.icon className="h-5 w-5 shrink-0 text-primary" /> <span className="truncate">{m.label}</span>
               </div>
-              {"to" in m ? (
-                <Button asChild size="sm" variant="outline" className="shrink-0">
-                  <Link to={m.to}>Abrir</Link>
-                </Button>
-              ) : (
-                <Badge className="shrink-0" variant="secondary">Em breve</Badge>
-              )}
+              <Badge className="shrink-0" variant="secondary">Em breve</Badge>
             </div>
           ))}
         </div>

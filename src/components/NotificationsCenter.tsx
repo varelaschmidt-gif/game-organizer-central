@@ -5,14 +5,14 @@ import { Bell, CheckCheck, Megaphone } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { myGroupsQuery, type MyGroup, useActiveCourt } from "@/lib/groups";
+import { myGroupsQuery, setActiveCourtId, setActiveGroupId, type MyGroup, useActiveCourt } from "@/lib/groups";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const db = supabase as any;
-type Notice = { id: string; group_id: string; kind: "message" | "charge"; title: string; body: string; event_id: string | null; metadata: any; created_at: string; read_at: string | null };
+type Notice = { id: string; group_id: string; kind: "message" | "charge" | "request"; title: string; body: string; event_id: string | null; metadata: any; created_at: string; read_at: string | null };
 
 function useNotifications() {
   return useQuery<Notice[]>({
@@ -47,18 +47,19 @@ function NoticeItem({ notice, groupName }: { notice: Notice; groupName: string }
       <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{notice.body}</p>
     </button>
     <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground"><span>{groupName}</span><span>·</span><time>{new Date(notice.created_at).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" })}</time></div>
-    {charge && <div className="mt-2 rounded-md bg-muted/60 p-2 text-sm"><span className="font-medium">{notice.metadata?.description || "Cobrança"}</span>{amount && <span> · {amount}</span>}{due && <span className="text-muted-foreground"> · vence {due}</span>}<Link className="ml-1 font-semibold text-primary underline" to="/financeiro">Ver Financeiro</Link></div>}
+    {charge && <div className="mt-2 rounded-md bg-muted/60 p-2 text-sm"><span className="font-medium">{notice.metadata?.description || "Cobrança"}</span>{amount && <span> · {amount}</span>}{due && <span className="text-muted-foreground"> · vence {due}</span>}<Link className="ml-1 font-semibold text-primary underline" onClick={() => { setActiveGroupId(notice.group_id); if (notice.metadata?.venue_id) setActiveCourtId(notice.metadata.venue_id); }} to="/financeiro">Ver Financeiro</Link></div>}
     {notice.event_id && <Link className="mt-2 inline-block text-sm font-medium text-primary underline" to="/events/$eventId" params={{ eventId: notice.event_id }}>Abrir evento</Link>}
+    {notice.kind === "request" && <Link className="mt-2 inline-block text-sm font-medium text-primary underline" onClick={() => setActiveGroupId(notice.group_id)} to="/dashboard">Ver solicitações</Link>}
   </article>;
 }
 
-export function NotificationsPanel() {
+export function NotificationsPanel({ compact = false }: { compact?: boolean }) {
   const { data: notices, isLoading, isError } = useNotifications();
   const groups = useQuery(myGroupsQuery);
   const byId = useMemo(() => new Map((groups.data ?? []).map((group) => [group.id, group.name])), [groups.data]);
   const unread = (notices ?? []).filter((notice) => !notice.read_at).length;
-  return <section className="rounded-xl border bg-card p-4 sm:p-5">
-    <div className="mb-3 flex items-center justify-between"><h2 className="flex items-center gap-2 font-display text-lg font-bold"><Bell className="h-5 w-5 text-primary" />Notificações</h2>{unread > 0 && <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">{unread} novas</span>}</div>
+  return <section className={compact ? "space-y-2" : "rounded-xl border bg-card p-4 sm:p-5"}>
+    {!compact && <div className="mb-3 flex items-center justify-between"><h2 className="flex items-center gap-2 font-display text-lg font-bold"><Bell className="h-5 w-5 text-primary" />Notificações</h2>{unread > 0 && <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">{unread} novas</span>}</div>}
     {isLoading ? <p className="text-sm text-muted-foreground">Carregando…</p> : isError ? <p className="text-sm text-muted-foreground">As notificações aparecerão após a ativação da estrutura no banco.</p> : (notices ?? []).length ? <div className="space-y-2">{(notices ?? []).slice(0, 5).map((notice) => <NoticeItem key={notice.id} notice={notice} groupName={byId.get(notice.group_id) ?? "Quadra"} />)}</div> : <p className="text-sm text-muted-foreground">Você não tem notificações novas.</p>}
   </section>;
 }

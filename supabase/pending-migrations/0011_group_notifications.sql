@@ -6,15 +6,17 @@ create table public.group_notifications (
   group_id uuid not null references public.groups(id) on delete cascade,
   recipient_user_id uuid not null references auth.users(id) on delete cascade,
   sender_user_id uuid references auth.users(id) on delete set null,
-  kind text not null check (kind in ('message', 'charge')),
+  kind text not null check (kind in ('message', 'charge', 'request')),
   title text not null check (length(trim(title)) between 2 and 160),
   body text not null check (length(trim(body)) between 1 and 4000),
   event_id uuid references public.events(id) on delete set null,
   charge_id uuid references public.finance_charges(id) on delete set null,
+  request_id uuid references public.group_join_requests(id) on delete cascade,
   metadata jsonb not null default '{}'::jsonb,
   created_at timestamptz not null default now(),
   read_at timestamptz,
-  unique (charge_id, recipient_user_id)
+  unique (charge_id, recipient_user_id),
+  unique (request_id, recipient_user_id)
 );
 
 create index group_notifications_inbox_idx
@@ -83,7 +85,8 @@ begin
     'Uma cobrança foi lançada para você. Consulte o Financeiro para ver o valor, vencimento e instruções.',
     new.event_id, new.id,
     jsonb_build_object('kind', new.kind, 'description', new.description,
-      'amount_cents', new.amount_cents, 'due_date', new.due_date, 'period', new.period)
+      'amount_cents', new.amount_cents, 'due_date', new.due_date, 'period', new.period,
+      'venue_id', new.venue_id)
   ) on conflict (charge_id, recipient_user_id) do nothing;
   return new;
 end $$;
@@ -92,3 +95,24 @@ revoke all on function public.notify_player_of_finance_charge() from public, ano
 create trigger trg_notify_player_of_finance_charge
   after insert on public.finance_charges
   for each row execute function public.notify_player_of_finance_charge();
+
+create or replace function public.notify_court_admins_join_request()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  insert into public.group_notifications(
+    group_id, recipient_user_id, sender_user_id, kind, title, body, request_id, metadata
+  )
+  select new.group_id, gm.user_id, new.user_id, 'request', 'Solicitação para entrar',
+    new.name || ' solicitou acesso à quadra ' || new.court_name || '.', new.id,
+    jsonb_build_object('request_id', new.id, 'venue_id', new.venue_id,
+      'name', new.name, 'email', new.email, 'position', new.position)
+  from public.group_members gm
+  where gm.group_id = new.group_id and gm.role = 'admin'
+  on conflict (request_id, recipient_user_id) do nothing;
+  return new;
+end $$;
+revoke all on function public.notify_court_admins_join_request() from public, anon, authenticated;
+
+create trigger trg_notify_court_admins_join_request
+  after insert on public.group_join_requests
+  for each row execute function public.notify_court_admins_join_request();
