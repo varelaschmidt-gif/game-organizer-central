@@ -1317,7 +1317,10 @@ export type Database = {
           email: string | null
           goalkeeper_level: number | null
           group_id: string
+          guest_event_id: string | null
+          guest_responsible_player_id: string | null
           id: string
+          is_event_guest: boolean
           is_monthly: boolean
           joined_at: string
           name: string
@@ -1339,7 +1342,10 @@ export type Database = {
           email?: string | null
           goalkeeper_level?: number | null
           group_id: string
+          guest_event_id?: string | null
+          guest_responsible_player_id?: string | null
           id?: string
+          is_event_guest?: boolean
           is_monthly?: boolean
           joined_at?: string
           name: string
@@ -1361,7 +1367,10 @@ export type Database = {
           email?: string | null
           goalkeeper_level?: number | null
           group_id?: string
+          guest_event_id?: string | null
+          guest_responsible_player_id?: string | null
           id?: string
+          is_event_guest?: boolean
           is_monthly?: boolean
           joined_at?: string
           name?: string
@@ -1383,6 +1392,20 @@ export type Database = {
             columns: ["group_id"]
             isOneToOne: false
             referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "players_guest_event_id_fkey"
+            columns: ["guest_event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "players_guest_responsible_player_id_fkey"
+            columns: ["guest_responsible_player_id"]
+            isOneToOne: false
+            referencedRelation: "players"
             referencedColumns: ["id"]
           },
           {
@@ -1754,6 +1777,15 @@ export type Database = {
       add_player_to_event_team: {
         Args: { _event_id: string; _player_id: string; _team_id: string }
         Returns: undefined
+      }
+      admin_add_event_guest: {
+        Args: {
+          _event_id: string
+          _name: string
+          _position: string
+          _responsible_player_id: string
+        }
+        Returns: string
       }
       admin_mark_attended: {
         Args: { _attended: boolean; _event_id: string; _player_id: string }
