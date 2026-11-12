@@ -532,6 +532,7 @@ export type Database = {
           confirm_deadline: string | null
           created_at: string
           created_by: string
+          daily_fee_cents: number | null
           duration_minutes: number
           goalkeepers_wanted: number
           group_id: string
@@ -555,6 +556,7 @@ export type Database = {
           confirm_deadline?: string | null
           created_at?: string
           created_by: string
+          daily_fee_cents?: number | null
           duration_minutes?: number
           goalkeepers_wanted?: number
           group_id: string
@@ -578,6 +580,7 @@ export type Database = {
           confirm_deadline?: string | null
           created_at?: string
           created_by?: string
+          daily_fee_cents?: number | null
           duration_minutes?: number
           goalkeepers_wanted?: number
           group_id?: string
@@ -615,6 +618,401 @@ export type Database = {
             foreignKeyName: "events_venue_id_fkey"
             columns: ["venue_id"]
             isOneToOne: false
+            referencedRelation: "venues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      finance_charges: {
+        Row: {
+          amount_cents: number
+          cancel_reason: string | null
+          cancelled_at: string | null
+          cancelled_by: string | null
+          created_at: string
+          created_by: string | null
+          description: string
+          due_date: string
+          event_id: string | null
+          expense_id: string | null
+          group_id: string
+          id: string
+          idempotency_key: string
+          kind: string
+          period: string | null
+          player_id: string
+          status: string
+          venue_id: string
+        }
+        Insert: {
+          amount_cents: number
+          cancel_reason?: string | null
+          cancelled_at?: string | null
+          cancelled_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          description: string
+          due_date: string
+          event_id?: string | null
+          expense_id?: string | null
+          group_id: string
+          id?: string
+          idempotency_key: string
+          kind: string
+          period?: string | null
+          player_id: string
+          status?: string
+          venue_id: string
+        }
+        Update: {
+          amount_cents?: number
+          cancel_reason?: string | null
+          cancelled_at?: string | null
+          cancelled_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string
+          due_date?: string
+          event_id?: string | null
+          expense_id?: string | null
+          group_id?: string
+          id?: string
+          idempotency_key?: string
+          kind?: string
+          period?: string | null
+          player_id?: string
+          status?: string
+          venue_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "finance_charges_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_charges_expense_id_fkey"
+            columns: ["expense_id"]
+            isOneToOne: false
+            referencedRelation: "finance_expenses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_charges_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_charges_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "players"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_charges_venue_id_fkey"
+            columns: ["venue_id"]
+            isOneToOne: false
+            referencedRelation: "venues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      finance_expenses: {
+        Row: {
+          amount_cents: number
+          category: string
+          created_at: string
+          created_by: string
+          description: string
+          due_on: string | null
+          group_id: string
+          id: string
+          idempotency_key: string
+          incurred_on: string
+          notes: string | null
+          split_at: string | null
+          venue_id: string
+        }
+        Insert: {
+          amount_cents: number
+          category: string
+          created_at?: string
+          created_by: string
+          description: string
+          due_on?: string | null
+          group_id: string
+          id?: string
+          idempotency_key: string
+          incurred_on: string
+          notes?: string | null
+          split_at?: string | null
+          venue_id: string
+        }
+        Update: {
+          amount_cents?: number
+          category?: string
+          created_at?: string
+          created_by?: string
+          description?: string
+          due_on?: string | null
+          group_id?: string
+          id?: string
+          idempotency_key?: string
+          incurred_on?: string
+          notes?: string | null
+          split_at?: string | null
+          venue_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "finance_expenses_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_expenses_venue_id_fkey"
+            columns: ["venue_id"]
+            isOneToOne: false
+            referencedRelation: "venues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      finance_ledger: {
+        Row: {
+          amount_cents: number
+          category: string | null
+          charge_id: string | null
+          created_at: string
+          created_by: string
+          entry_type: string
+          expense_id: string | null
+          group_id: string
+          id: string
+          idempotency_key: string
+          method: string | null
+          notes: string | null
+          occurred_on: string
+          player_id: string | null
+          reverses_id: string | null
+          venue_id: string
+        }
+        Insert: {
+          amount_cents: number
+          category?: string | null
+          charge_id?: string | null
+          created_at?: string
+          created_by: string
+          entry_type: string
+          expense_id?: string | null
+          group_id: string
+          id?: string
+          idempotency_key: string
+          method?: string | null
+          notes?: string | null
+          occurred_on: string
+          player_id?: string | null
+          reverses_id?: string | null
+          venue_id: string
+        }
+        Update: {
+          amount_cents?: number
+          category?: string | null
+          charge_id?: string | null
+          created_at?: string
+          created_by?: string
+          entry_type?: string
+          expense_id?: string | null
+          group_id?: string
+          id?: string
+          idempotency_key?: string
+          method?: string | null
+          notes?: string | null
+          occurred_on?: string
+          player_id?: string | null
+          reverses_id?: string | null
+          venue_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "finance_ledger_charge_id_fkey"
+            columns: ["charge_id"]
+            isOneToOne: false
+            referencedRelation: "finance_charge_balances"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_ledger_charge_id_fkey"
+            columns: ["charge_id"]
+            isOneToOne: false
+            referencedRelation: "finance_charges"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_ledger_expense_id_fkey"
+            columns: ["expense_id"]
+            isOneToOne: false
+            referencedRelation: "finance_expenses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_ledger_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_ledger_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "players"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_ledger_reverses_id_fkey"
+            columns: ["reverses_id"]
+            isOneToOne: true
+            referencedRelation: "finance_ledger"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_ledger_venue_id_fkey"
+            columns: ["venue_id"]
+            isOneToOne: false
+            referencedRelation: "venues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      finance_month_closings: {
+        Row: {
+          closed_at: string
+          closed_by: string
+          group_id: string
+          period: string
+          reopen_reason: string | null
+          reopened_at: string | null
+          reopened_by: string | null
+          snapshot: Json
+          status: string
+          venue_id: string
+        }
+        Insert: {
+          closed_at: string
+          closed_by: string
+          group_id: string
+          period: string
+          reopen_reason?: string | null
+          reopened_at?: string | null
+          reopened_by?: string | null
+          snapshot?: Json
+          status: string
+          venue_id: string
+        }
+        Update: {
+          closed_at?: string
+          closed_by?: string
+          group_id?: string
+          period?: string
+          reopen_reason?: string | null
+          reopened_at?: string | null
+          reopened_by?: string | null
+          snapshot?: Json
+          status?: string
+          venue_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "finance_month_closings_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_month_closings_venue_id_fkey"
+            columns: ["venue_id"]
+            isOneToOne: false
+            referencedRelation: "venues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      finance_settings: {
+        Row: {
+          created_at: string
+          daily_fee_cents: number
+          due_day: number
+          group_id: string
+          monthly_capacity: number
+          monthly_court_cost_cents: number
+          monthly_fee_cents: number
+          opening_balance_cents: number
+          opening_balance_date: string
+          payment_instructions: string | null
+          pix_key: string | null
+          pix_key_type: string | null
+          pix_receiver_name: string | null
+          updated_at: string
+          updated_by: string | null
+          venue_id: string
+        }
+        Insert: {
+          created_at?: string
+          daily_fee_cents?: number
+          due_day?: number
+          group_id: string
+          monthly_capacity?: number
+          monthly_court_cost_cents?: number
+          monthly_fee_cents?: number
+          opening_balance_cents?: number
+          opening_balance_date?: string
+          payment_instructions?: string | null
+          pix_key?: string | null
+          pix_key_type?: string | null
+          pix_receiver_name?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          venue_id: string
+        }
+        Update: {
+          created_at?: string
+          daily_fee_cents?: number
+          due_day?: number
+          group_id?: string
+          monthly_capacity?: number
+          monthly_court_cost_cents?: number
+          monthly_fee_cents?: number
+          opening_balance_cents?: number
+          opening_balance_date?: string
+          payment_instructions?: string | null
+          pix_key?: string | null
+          pix_key_type?: string | null
+          pix_receiver_name?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          venue_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "finance_settings_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_settings_venue_id_fkey"
+            columns: ["venue_id"]
+            isOneToOne: true
             referencedRelation: "venues"
             referencedColumns: ["id"]
           },
@@ -1165,9 +1563,152 @@ export type Database = {
           },
         ]
       }
+      finance_charge_balances: {
+        Row: {
+          amount_cents: number | null
+          cancel_reason: string | null
+          cancelled_at: string | null
+          cancelled_by: string | null
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          due_date: string | null
+          event_id: string | null
+          expense_id: string | null
+          group_id: string | null
+          id: string | null
+          idempotency_key: string | null
+          kind: string | null
+          outstanding_cents: number | null
+          paid_cents: number | null
+          period: string | null
+          player_id: string | null
+          status: string | null
+          venue_id: string | null
+        }
+        Insert: {
+          amount_cents?: number | null
+          cancel_reason?: string | null
+          cancelled_at?: string | null
+          cancelled_by?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          due_date?: string | null
+          event_id?: string | null
+          expense_id?: string | null
+          group_id?: string | null
+          id?: string | null
+          idempotency_key?: string | null
+          kind?: string | null
+          outstanding_cents?: never
+          paid_cents?: never
+          period?: string | null
+          player_id?: string | null
+          status?: string | null
+          venue_id?: string | null
+        }
+        Update: {
+          amount_cents?: number | null
+          cancel_reason?: string | null
+          cancelled_at?: string | null
+          cancelled_by?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          due_date?: string | null
+          event_id?: string | null
+          expense_id?: string | null
+          group_id?: string | null
+          id?: string | null
+          idempotency_key?: string | null
+          kind?: string | null
+          outstanding_cents?: never
+          paid_cents?: never
+          period?: string | null
+          player_id?: string | null
+          status?: string | null
+          venue_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "finance_charges_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_charges_expense_id_fkey"
+            columns: ["expense_id"]
+            isOneToOne: false
+            referencedRelation: "finance_expenses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_charges_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_charges_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "players"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "finance_charges_venue_id_fkey"
+            columns: ["venue_id"]
+            isOneToOne: false
+            referencedRelation: "venues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       _expire_offers: { Args: { _event_id: string }; Returns: undefined }
+      _fin_assert_can_confirm: {
+        Args: {
+          _ev: Database["public"]["Tables"]["events"]["Row"]
+          _player_id: string
+        }
+        Returns: undefined
+      }
+      _fin_charge_outstanding: { Args: { _charge_id: string }; Returns: number }
+      _fin_require_key: { Args: { _key: string }; Returns: string }
+      _fin_today: { Args: never; Returns: string }
+      _fin_venue_for_manager: {
+        Args: { _venue_id: string }
+        Returns: {
+          address: string | null
+          city: string | null
+          covered: boolean
+          created_at: string
+          created_by: string | null
+          group_id: string
+          habitual_time: string | null
+          habitual_weekday: number | null
+          id: string
+          is_active: boolean
+          name: string
+          neighborhood: string | null
+          notes: string | null
+          phone: string | null
+          price_per_hour: number | null
+          surface: string | null
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "venues"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       _lock_event: {
         Args: { _event_id: string }
         Returns: {
@@ -1175,6 +1716,7 @@ export type Database = {
           confirm_deadline: string | null
           created_at: string
           created_by: string
+          daily_fee_cents: number | null
           duration_minutes: number
           goalkeepers_wanted: number
           group_id: string
@@ -1221,6 +1763,7 @@ export type Database = {
         Args: { _event_id: string; _player_id: string }
         Returns: undefined
       }
+      can_manage_finance: { Args: { _group_id: string }; Returns: boolean }
       create_court: {
         Args: {
           _address: string
@@ -1274,6 +1817,112 @@ export type Database = {
         }
         Returns: string
       }
+      finance_adjust_balance: {
+        Args: {
+          _amount_cents: number
+          _idempotency_key: string
+          _occurred_on: string
+          _reason: string
+          _venue_id: string
+        }
+        Returns: string
+      }
+      finance_cancel_charge: {
+        Args: { _charge_id: string; _reason: string }
+        Returns: undefined
+      }
+      finance_close_month: {
+        Args: { _period: string; _venue_id: string }
+        Returns: undefined
+      }
+      finance_create_charge: {
+        Args: {
+          _amount_cents: number
+          _description: string
+          _due_date: string
+          _event_id: string
+          _idempotency_key: string
+          _kind: string
+          _player_id: string
+          _venue_id: string
+        }
+        Returns: string
+      }
+      finance_generate_due_monthly: { Args: never; Returns: number }
+      finance_generate_monthly: {
+        Args: { _period?: string; _venue_id: string }
+        Returns: number
+      }
+      finance_get_instructions: { Args: { _venue_id: string }; Returns: Json }
+      finance_pay_expense: {
+        Args: {
+          _expense_id: string
+          _idempotency_key: string
+          _paid_on: string
+        }
+        Returns: string
+      }
+      finance_player_overdue_cents: {
+        Args: { _player_id: string }
+        Returns: number
+      }
+      finance_record_expense: {
+        Args: {
+          _amount_cents: number
+          _category: string
+          _description: string
+          _due_on: string
+          _idempotency_key: string
+          _incurred_on: string
+          _notes: string
+          _paid_on: string
+          _venue_id: string
+        }
+        Returns: string
+      }
+      finance_record_payment: {
+        Args: {
+          _amount_cents: number
+          _charge_id: string
+          _idempotency_key: string
+          _method: string
+          _notes: string
+          _received_on: string
+        }
+        Returns: string
+      }
+      finance_reopen_month: {
+        Args: { _period: string; _reason: string; _venue_id: string }
+        Returns: undefined
+      }
+      finance_reverse_entry: {
+        Args: { _entry_id: string; _idempotency_key: string; _reason: string }
+        Returns: string
+      }
+      finance_save_settings: {
+        Args: { _s: Json; _venue_id: string }
+        Returns: undefined
+      }
+      finance_set_event_daily_fee: {
+        Args: { _cents: number; _event_id: string }
+        Returns: undefined
+      }
+      finance_split_expense: {
+        Args: {
+          _amounts: number[]
+          _due_date: string
+          _event_id: string
+          _expense_id: string
+          _mode: string
+          _player_ids: string[]
+          _target: string
+        }
+        Returns: number
+      }
+      finance_summary: {
+        Args: { _from: string; _to: string; _venue_id: string }
+        Returns: Json
+      }
       finish_event: { Args: { _event_id: string }; Returns: undefined }
       generate_event_teams: { Args: { _event_id: string }; Returns: number }
       get_court_rating_averages: {
@@ -1306,6 +1955,13 @@ export type Database = {
           neighborhood: string
         }[]
       }
+      get_venue_player_avatars: {
+        Args: { _venue_id: string }
+        Returns: {
+          avatar_path: string
+          player_id: string
+        }[]
+      }
       has_group_permission: {
         Args: { _group_id: string; _perm: string }
         Returns: boolean
@@ -1317,6 +1973,17 @@ export type Database = {
       is_court_member: { Args: { _venue_id: string }; Returns: boolean }
       is_group_admin: { Args: { _group_id: string }; Returns: boolean }
       is_group_member: { Args: { _group_id: string }; Returns: boolean }
+      list_group_members: {
+        Args: { _group_id: string }
+        Returns: {
+          email: string
+          full_name: string
+          is_creator: boolean
+          member_id: string
+          role: Database["public"]["Enums"]["group_role"]
+          user_id: string
+        }[]
+      }
       process_event: { Args: { _event_id: string }; Returns: undefined }
       remove_player_rating: {
         Args: { _event_id: string; _player_id: string }
@@ -1343,6 +2010,10 @@ export type Database = {
       rsvp_confirm: {
         Args: { _event_id: string; _player_id?: string }
         Returns: string
+      }
+      set_group_admin: {
+        Args: { _admin: boolean; _group_id: string; _user_id: string }
+        Returns: undefined
       }
       set_player_rating: {
         Args: { _event_id: string; _player_id: string; _rating: number }
