@@ -25,7 +25,7 @@ import {
   useActiveCourt,
   type MyGroup,
 } from "@/lib/groups";
-import { ErrorState, LoadingState, StatCard } from "@/components/states";
+import { ErrorState, LoadingState } from "@/components/states";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -128,29 +128,6 @@ function NoGroup() {
 function GroupDashboard({ group }: { group: MyGroup }) {
   const qc = useQueryClient();
   const court = useActiveCourt(group.id);
-  const players = useQuery({
-    queryKey: ["players-count", group.id, court.venue?.id],
-    enabled: !!court.venue,
-    queryFn: async () => {
-      const { count, error } = await (supabase as any)
-        .from("players")
-        .select("id", { count: "exact", head: true })
-        .eq("group_id", group.id).eq("venue_id", court.venue!.id);
-      if (error) throw error;
-      return count ?? 0;
-    },
-  });
-  const members = useQuery({
-    queryKey: ["members-count", group.id],
-    queryFn: async () => {
-      const { count, error } = await supabase
-        .from("group_members")
-        .select("id", { count: "exact", head: true })
-        .eq("group_id", group.id);
-      if (error) throw error;
-      return count ?? 0;
-    },
-  });
   const canInvite = group.role === "admin" || group.permissions.includes("members");
   const requests = useQuery({
     queryKey: ["join-requests", group.id, court.venue?.id],
@@ -167,7 +144,7 @@ function GroupDashboard({ group }: { group: MyGroup }) {
     const { error } = await (supabase as any).rpc("review_join_request", { _request_id: id, _approve: approve });
     if (error) { toast.error(error.message); return; }
     toast.success(approve ? "Jogador aprovado e vinculado à quadra" : "Solicitação recusada");
-    await Promise.all([qc.invalidateQueries({ queryKey: ["my-groups"] }), qc.invalidateQueries({ queryKey: ["players-count", group.id] }), requests.refetch()]);
+    await Promise.all([qc.invalidateQueries({ queryKey: ["my-groups"] }), qc.invalidateQueries({ queryKey: ["players", group.id] }), requests.refetch()]);
   }
 
   return (
@@ -194,11 +171,6 @@ function GroupDashboard({ group }: { group: MyGroup }) {
           {group.role === "admin" && <AdminNotificationComposer group={group} />}
         </div>
       </details>
-
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-        <StatCard label="Jogadores" icon={<Users className="h-4 w-4" />} value={players.data ?? "—"} />
-        <StatCard label="Membros" icon={<Shield className="h-4 w-4" />} value={members.data ?? "—"} />
-      </div>
 
       {group.role === "admin" && (requests.data?.length ?? 0) > 0 && (
         <section className="rounded-xl border border-border bg-card p-4">
