@@ -43,7 +43,7 @@ revoke all on function public.group_notification_mark_read(uuid) from public;
 grant execute on function public.group_notification_mark_read(uuid) to authenticated;
 
 create or replace function public.admin_publish_group_notification(
-  _group_id uuid, _title text, _body text, _event_id uuid default null
+  _group_id uuid, _title text, _body text, event_id uuid default null
 ) returns integer language plpgsql security definer set search_path = public as $$
 declare event_data jsonb := '{}'::jsonb; inserted_count integer;
 begin
@@ -54,18 +54,18 @@ begin
     or length(trim(coalesce(_body, ''))) not between 1 and 4000 then
     raise exception 'Informe um título e uma mensagem válida';
   end if;
-  if _event_id is not null then
+  if event_id is not null then
     select jsonb_build_object('title', title, 'starts_at', starts_at, 'venue_id', venue_id)
-      into event_data from public.events where id = _event_id and group_id = _group_id;
+      into event_data from public.events where id = event_id and group_id = _group_id;
     if event_data is null then raise exception 'Evento não pertence a esta quadra'; end if;
   end if;
   insert into public.group_notifications(group_id, recipient_user_id, sender_user_id, kind, title, body, event_id, metadata)
-    select _group_id, gm.user_id, auth.uid(), 'message', trim(_title), trim(_body), _event_id,
-      case when _event_id is null then '{}'::jsonb else jsonb_build_object('event', event_data) end
+    select _group_id, gm.user_id, auth.uid(), 'message', trim(_title), trim(_body), event_id,
+      case when event_id is null then '{}'::jsonb else jsonb_build_object('event', event_data) end
     from public.group_members gm where gm.group_id = _group_id;
   get diagnostics inserted_count = row_count;
   insert into public.audit_logs(group_id, actor_id, action, entity, entity_id, details)
-    values (_group_id, auth.uid(), 'notification.broadcast', 'group_notification', _event_id,
+    values (_group_id, auth.uid(), 'notification.broadcast', 'group_notification', event_id,
       jsonb_build_object('title', trim(_title), 'recipients', inserted_count));
   return inserted_count;
 end $$;
@@ -116,3 +116,5 @@ revoke all on function public.notify_court_admins_join_request() from public, an
 create trigger trg_notify_court_admins_join_request
   after insert on public.group_join_requests
   for each row execute function public.notify_court_admins_join_request();
+
+notify pgrst, 'reload schema';

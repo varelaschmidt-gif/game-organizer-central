@@ -95,7 +95,7 @@ export function AdminNotificationComposer({ group }: { group: MyGroup }) {
   async function publish(event: React.FormEvent) {
     event.preventDefault();
     if (title.trim().length < 2 || !body.trim()) return;
-    const { error } = await db.rpc("admin_publish_group_notification", { _group_id: group.id, _title: title.trim(), _body: body.trim(), _event_id: eventId || null });
+    const { error } = await db.rpc("admin_publish_group_notification", { _group_id: group.id, _title: title.trim(), _body: body.trim(), event_id: eventId || null });
     if (error) { toast.error(error.message); return; }
     toast.success("Notificação enviada aos membros da quadra.");
     setTitle(""); setBody(""); setEventId("");
