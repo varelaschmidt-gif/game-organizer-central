@@ -113,8 +113,8 @@ function CourtsPage() {
       address: form.address.trim() || null,
       phone: form.phone.trim() || null,
       surface: form.surface.trim() || null,
-      price_per_hour: form.price_per_hour === "" ? null : Number(form.price_per_hour),
       notes: form.notes.trim() || null,
+      ...(isAdmin ? { price_per_hour: form.price_per_hour === "" ? null : Number(form.price_per_hour) } : {}),
       ...(!editing ? { created_by: authData.user?.id } : {}),
     };
     const db = supabase as any;
@@ -188,7 +188,7 @@ function CourtsPage() {
                 <span className="rounded-full bg-muted px-2 py-1 text-xs">{court.is_active ? "Ativa" : "Inativa"}</span>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
-                {[court.surface, court.covered ? "Coberta" : null, court.phone, court.price_per_hour != null ? `R$ ${Number(court.price_per_hour).toFixed(2)}/hora` : null]
+                {[court.surface, court.covered ? "Coberta" : null, court.phone, isAdmin && court.price_per_hour != null ? `R$ ${Number(court.price_per_hour).toFixed(2)}/hora` : null]
                   .filter(Boolean).join(" · ") || "Detalhes não informados"}
               </p>
               {court.notes && <p className="mt-2 whitespace-pre-wrap text-sm">{court.notes}</p>}
@@ -245,7 +245,7 @@ function CourtsPage() {
               <div><Label htmlFor="court-phone">Telefone</Label><Input id="court-phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} /></div>
               <div><Label htmlFor="court-surface">Tipo de piso</Label><Input id="court-surface" placeholder="Sintético, society…" value={form.surface} onChange={(e) => setForm({ ...form, surface: e.target.value })} /></div>
             </div>
-            <div><Label htmlFor="court-price">Valor por hora (R$)</Label><Input id="court-price" type="number" min="0" step="0.01" value={form.price_per_hour} onChange={(e) => setForm({ ...form, price_per_hour: e.target.value })} /></div>
+            {isAdmin && <div><Label htmlFor="court-price">Valor por hora (R$)</Label><Input id="court-price" type="number" min="0" step="0.01" value={form.price_per_hour} onChange={(e) => setForm({ ...form, price_per_hour: e.target.value })} /></div>}
             <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={form.covered} onChange={(e) => setForm({ ...form, covered: e.target.checked })} /> Quadra coberta</label>
             <div><Label htmlFor="court-notes">Observações</Label><Textarea id="court-notes" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} /></div>
             <div className="flex justify-end gap-2"><Button type="button" variant="outline" onClick={() => setEditing(undefined)}>Cancelar</Button><Button disabled={busy}>{busy ? "Salvando…" : "Salvar quadra"}</Button></div>
