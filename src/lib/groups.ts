@@ -83,7 +83,9 @@ export function useActiveCourt(groupId?: string) {
     queryKey: ["venues", groupId],
     enabled: !!groupId,
     queryFn: async () => {
-      const { data, error } = await (supabase as any).from("venues").select("*").eq("group_id", groupId).eq("is_active", true).order("name");
+      const { data, error } = await (supabase as any).from("venues")
+        .select("id,group_id,name,address,phone,surface,covered,notes,is_active,created_by,created_at,updated_at")
+        .eq("group_id", groupId).eq("is_active", true).order("name");
       if (error) throw error;
       return data ?? [];
     },

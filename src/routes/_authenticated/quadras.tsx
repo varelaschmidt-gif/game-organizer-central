@@ -45,16 +45,17 @@ function CourtsPage() {
   const navigate = useNavigate();
   const { group, can, isLoading } = useActiveGroup();
   const qc = useQueryClient();
+  const isAdmin = group?.role === "admin";
   const [editing, setEditing] = useState<Court | null | undefined>(undefined);
   const [form, setForm] = useState(blank);
   const [busy, setBusy] = useState(false);
   const courts = useQuery({
-    queryKey: ["venues", group?.id],
+    queryKey: ["venues", group?.id, isAdmin],
     enabled: !!group,
     queryFn: async () => {
       const { data, error } = await (supabase as any)
         .from("venues")
-        .select("*")
+        .select(isAdmin ? "*" : "id,group_id,name,address,phone,surface,covered,notes,is_active,created_by,created_at,updated_at")
         .eq("group_id", group!.id)
         .order("is_active", { ascending: false })
         .order("name");
@@ -63,7 +64,6 @@ function CourtsPage() {
     },
   });
   const manager = can("events");
-  const isAdmin = group?.role === "admin";
   const [creating, setCreating] = useState(false);
   const [nc, setNc] = useState({ name: "", address: "", weekday: "0", time: "09:00" });
 
