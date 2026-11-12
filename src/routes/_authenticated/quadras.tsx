@@ -1,11 +1,12 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { MapPin, Pencil, Plus } from "lucide-react";
+import { MapPin, Pencil, Plus, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useActiveGroup } from "@/lib/groups";
-import { setActiveCourtId } from "@/lib/groups";
+import { setActiveCourtId, setActiveGroupId } from "@/lib/groups";
+import { AdminManager } from "@/components/AdminManager";
 import { publicAppUrl } from "@/lib/public-app-url";
 import { EmptyState, ErrorState, LoadingState } from "@/components/states";
 import { Button } from "@/components/ui/button";
@@ -62,6 +63,25 @@ function CourtsPage() {
     },
   });
   const manager = can("events");
+  const isAdmin = group?.role === "admin";
+  const [creating, setCreating] = useState(false);
+  const [nc, setNc] = useState({ name: "", address: "", weekday: "0", time: "09:00" });
+
+  async function createCourt(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    const { data, error } = await supabase.rpc("create_court", { _name: nc.name, _address: nc.address, _weekday: Number(nc.weekday), _time: nc.time });
+    setBusy(false);
+    if (error) return void toast.error(error.message);
+    setActiveGroupId(data as string);
+    const { data: v } = await (supabase as any).from("venues").select("id").eq("group_id", data).limit(1).maybeSingle();
+    if (v?.id) setActiveCourtId(v.id);
+    setCreating(false);
+    setNc({ name: "", address: "", weekday: "0", time: "09:00" });
+    toast.success("Nova quadra criada! Você é o administrador.");
+    await qc.invalidateQueries({ queryKey: ["my-groups"] });
+    await qc.invalidateQueries({ queryKey: ["venues"] });
+  }
 
   function startNew() {
     setForm(blank);
@@ -131,10 +151,21 @@ function CourtsPage() {
       <header className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-3xl font-bold">Quadras</h1>
-          <p className="text-sm text-muted-foreground">Locais do grupo para organizar os eventos.</p>
+          <p className="text-sm text-muted-foreground">Locais de {group.name}. "Nova quadra" cria um grupo separado do qual você será administrador.</p>
         </div>
-        {manager && <Button onClick={startNew}><Plus className="mr-2 h-4 w-4" />Nova quadra</Button>}
+        <div className="flex flex-wrap gap-2">
+          {manager && <Button variant="outline" onClick={startNew}><Plus className="mr-2 h-4 w-4" />Adicionar local a este grupo</Button>}
+          <Button onClick={() => setCreating(true)}><Plus className="mr-2 h-4 w-4" />Nova quadra</Button>
+        </div>
       </header>
+
+      {isAdmin && (
+        <section className="rounded-xl border bg-card p-4">
+          <h2 className="flex items-center gap-2 font-semibold"><ShieldCheck className="h-5 w-5 text-primary" />Administradores de {group.name}</h2>
+          <p className="mb-3 text-sm text-muted-foreground">Até 3 administradores por quadra, valendo para todos os locais deste grupo.</p>
+          <AdminManager groupId={group.id} />
+        </section>
+      )}
 
       {courts.data?.length ? (
         <div className="grid gap-3 md:grid-cols-2">
@@ -181,10 +212,26 @@ function CourtsPage() {
         />
       )}
 
+      {creating && (
+        <div className="fixed inset-0 z-50 overflow-auto bg-black/50 p-4" role="presentation">
+          <form onSubmit={createCourt} className="mx-auto my-8 grid max-w-xl gap-4 rounded-xl bg-background p-5">
+            <h2 className="text-xl font-bold">Nova quadra</h2>
+            <p className="text-sm text-muted-foreground">Cria uma quadra/grupo independente. Você vira administrador e continua participando das quadras atuais.</p>
+            <div><Label htmlFor="nc-name">Nome da quadra ou grupo</Label><Input id="nc-name" required minLength={2} value={nc.name} onChange={(e) => setNc({ ...nc, name: e.target.value })} /></div>
+            <div><Label htmlFor="nc-address">Endereço</Label><Input id="nc-address" required value={nc.address} onChange={(e) => setNc({ ...nc, address: e.target.value })} /></div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div><Label htmlFor="nc-day">Dia habitual</Label><select id="nc-day" className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" value={nc.weekday} onChange={(e) => setNc({ ...nc, weekday: e.target.value })}>{["Domingo","Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado"].map((d,i)=><option key={d} value={i}>{d}</option>)}</select></div>
+              <div><Label htmlFor="nc-time">Horário habitual</Label><Input id="nc-time" type="time" required value={nc.time} onChange={(e) => setNc({ ...nc, time: e.target.value })} /></div>
+            </div>
+            <div className="flex justify-end gap-2"><Button type="button" variant="outline" onClick={() => setCreating(false)}>Cancelar</Button><Button disabled={busy}>{busy ? "Criando…" : "Criar quadra"}</Button></div>
+          </form>
+        </div>
+      )}
+
       {editing !== undefined && (
         <div className="fixed inset-0 z-50 overflow-auto bg-black/50 p-4" role="presentation">
           <form onSubmit={save} className="mx-auto my-8 grid max-w-xl gap-4 rounded-xl bg-background p-5">
-            <h2 className="text-xl font-bold">{editing ? "Editar quadra" : "Cadastrar quadra"}</h2>
+            <h2 className="text-xl font-bold">{editing ? "Editar local" : "Adicionar local a este grupo"}</h2>
             <div><Label htmlFor="court-name">Nome</Label><Input id="court-name" required maxLength={100} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
             <div><Label htmlFor="court-address">Endereço</Label><Input id="court-address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} /></div>
             <div className="grid gap-4 sm:grid-cols-2">

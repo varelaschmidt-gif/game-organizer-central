@@ -56,14 +56,14 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedFinanceiroRoute = AuthenticatedFinanceiroRouteImport.update({
-  id: '/financeiro',
-  path: '/financeiro',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedEventsRoute = AuthenticatedEventsRouteImport.update({
   id: '/events',
   path: '/events',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFinanceiroRoute = AuthenticatedFinanceiroRouteImport.update({
+  id: '/financeiro',
+  path: '/financeiro',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedJogadoresRoute = AuthenticatedJogadoresRouteImport.update({
@@ -205,6 +205,7 @@ export interface FileRouteTypes {
     | '/_authenticated/campeonatos'
     | '/_authenticated/dashboard'
     | '/_authenticated/events'
+    | '/_authenticated/financeiro'
     | '/_authenticated/jogadores'
     | '/_authenticated/perfil'
     | '/_authenticated/players'
@@ -213,7 +214,6 @@ export interface FileRouteTypes {
     | '/convite/$token'
     | '/quadra/$courtId'
     | '/_authenticated/events/$eventId'
-    | '/_authenticated/financeiro'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -281,7 +281,7 @@ declare module '@tanstack/react-router' {
       path: '/financeiro'
       fullPath: '/financeiro'
       preLoaderRoute: typeof AuthenticatedFinanceiroRouteImport
-      parentRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/jogadores': {
       id: '/_authenticated/jogadores'
