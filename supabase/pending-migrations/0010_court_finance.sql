@@ -1,4 +1,5 @@
--- 0010 — Módulo financeiro da quadra (PENDENTE DE APROVAÇÃO — NÃO APLICADA)
+-- 0010 — Módulo financeiro da quadra (APLICADA no backend Lovable em 2026-11-12)
+-- Cópia de referência da SQL executada no projeto; não reaplicar. Verificação pós-aplicação confirmou tabelas, RLS, RPCs, coluna de diária e job Cron.
 -- Somente acréscimos. Nenhuma tabela/coluna existente é removida ou alterada de tipo.
 -- Todos os valores em centavos inteiros. Todas as escritas passam por RPCs security definer.
 -- Supabase Cron (pg_cron) agenda a geração recorrente das mensalidades.
