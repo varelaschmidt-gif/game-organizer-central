@@ -358,13 +358,29 @@ function FinancePage() {
   if (!group) return <EmptyState title="Você ainda não participa de uma quadra" />;
   if (!court.venue) return <EmptyState title="Selecione uma quadra para ver o financeiro" />;
   if (finance.isLoading) return <LoadingState />;
-  if (finance.error) return <div className="mx-auto max-w-3xl space-y-5">
-    <h1 className="font-display text-3xl font-bold">Financeiro</h1>
-    <Panel title="Módulo aguardando ativação do banco">
-      <p className="text-sm text-muted-foreground">O código e a migration foram preparados, mas a migration ainda não foi aplicada ao banco desta aplicação. Depois da revisão e aprovação da mudança no banco, esta área carregará os dados da quadra.</p>
-      <p className="mt-3 text-xs text-muted-foreground">{finance.error instanceof Error ? finance.error.message : "Banco de dados indisponível"}</p>
-    </Panel>
-  </div>;
+  if (finance.error) {
+    const queryError = finance.error as { message?: string; details?: string; hint?: string; code?: string };
+    const missingFinanceSchema = ["42883", "42P01", "PGRST202", "PGRST205"].includes(queryError.code ?? "");
+    const errorDetails = [queryError.message, queryError.details, queryError.hint]
+      .filter((part): part is string => Boolean(part))
+      .join(" · ");
+
+    return <div className="mx-auto max-w-3xl space-y-5">
+      <h1 className="font-display text-3xl font-bold">Financeiro</h1>
+      <Panel title={missingFinanceSchema ? "Estrutura financeira indisponível" : "Não foi possível carregar o financeiro"}>
+        <p className="text-sm text-muted-foreground">
+          {missingFinanceSchema
+            ? "O banco desta aplicação não encontrou uma tabela ou função do módulo financeiro. É necessário conferir a migration 0010 no banco integrado ao Lovable."
+            : "O aplicativo encontrou um erro ao consultar os dados financeiros desta quadra. Tente carregar novamente; se persistir, use o detalhe abaixo para identificar a falha."}
+        </p>
+        {errorDetails && <p role="alert" className="mt-3 break-words text-xs text-destructive">{errorDetails}</p>}
+        {queryError.code && <p className="mt-2 text-xs text-muted-foreground">Código: {queryError.code}</p>}
+        <PrimaryButton className="mt-4" onClick={() => void finance.refetch()}>
+          <RefreshCw className="h-4 w-4" /> Tentar novamente
+        </PrimaryButton>
+      </Panel>
+    </div>;
+  }
 
   if (!manager && !selfPlayer.data) return <EmptyState title="Seu perfil ainda não está vinculado a esta quadra" description="Peça ao administrador para vincular seu cadastro de jogador." />;
 
