@@ -1,5 +1,5 @@
 -- 0013: criação livre de quadra/grupo + até 3 administradores por grupo.
--- Aditiva. NÃO aplicada no banco remoto. Revisar antes de aplicar.
+-- Aditiva. Aplicada ao banco integrado do Lovable em 12/11/2026.
 
 -- 1) create_group: remove só a exigência do papel global group_creator.
 CREATE OR REPLACE FUNCTION public.create_group(_name text, _as_player boolean DEFAULT true)

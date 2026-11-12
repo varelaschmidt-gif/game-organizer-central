@@ -143,7 +143,7 @@ function CourtsPage() {
   }
 
   if (isLoading || courts.isLoading) return <LoadingState />;
-  if (!group) return <EmptyState title="Você ainda não participa de uma quadra" description="Crie uma quadra gratuitamente ou abra o convite recebido na tela inicial." action={<Button asChild><Link to="/dashboard">Ir para início</Link></Button>} />;
+  // A new user can create the first court before joining any group.
   if (courts.error) return <ErrorState message={(courts.error as Error).message} onRetry={() => courts.refetch()} />;
 
   return (
@@ -151,10 +151,10 @@ function CourtsPage() {
       <header className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-3xl font-bold">Quadras</h1>
-          <p className="text-sm text-muted-foreground">Locais de {group.name}. "Nova quadra" cria um grupo separado do qual você será administrador.</p>
+          <p className="text-sm text-muted-foreground">{group ? `Locais de ${group.name}. "Nova quadra" cria um grupo separado do qual você será administrador.` : "Crie uma quadra para organizar seus jogos; você será o administrador."}</p>
         </div>
         <div className="flex flex-wrap gap-2">
-          {manager && <Button variant="outline" onClick={startNew}><Plus className="mr-2 h-4 w-4" />Adicionar local a este grupo</Button>}
+          {group && manager && <Button variant="outline" onClick={startNew}><Plus className="mr-2 h-4 w-4" />Adicionar local a este grupo</Button>}
           <Button onClick={() => setCreating(true)}><Plus className="mr-2 h-4 w-4" />Nova quadra</Button>
         </div>
       </header>
@@ -167,7 +167,14 @@ function CourtsPage() {
         </section>
       )}
 
-      {courts.data?.length ? (
+      {!group ? (
+        <EmptyState
+          icon={<MapPin className="h-8 w-8" />}
+          title="Você ainda não participa de uma quadra"
+          description="Crie sua quadra gratuitamente ou abra o convite recebido na tela inicial."
+          action={<Button onClick={() => setCreating(true)}><Plus className="mr-2 h-4 w-4" />Criar minha quadra</Button>}
+        />
+      ) : courts.data?.length ? (
         <div className="grid gap-3 md:grid-cols-2">
           {courts.data.map((court) => (
             <article key={court.id} className="rounded-xl border bg-card p-4">
