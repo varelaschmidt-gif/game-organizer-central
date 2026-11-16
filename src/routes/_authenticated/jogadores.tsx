@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { CourtPlayerRatingRanking } from "@/components/court-player-rating-ranking";
 
 type Player = Database["public"]["Tables"]["players"]["Row"];
 
@@ -114,6 +115,7 @@ function PlayersPage() {
           </div>
         )}
       </div>
+      <CourtPlayerRatingRanking venueId={court.venue.id} />
       <FilterBar>
         <Input placeholder="Buscar por nome, apelido ou e-mail" value={search} onChange={(e) => setSearch(e.target.value)} className="max-w-xs" />
         <select className={sel} value={status} onChange={(e) => setStatus(e.target.value)} aria-label="Status">

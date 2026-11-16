@@ -2141,6 +2141,21 @@ export type Database = {
       };
       finish_event: { Args: { _event_id: string }; Returns: undefined };
       generate_event_teams: { Args: { _event_id: string }; Returns: number };
+      get_court_player_ranking: {
+        Args: { _venue_id: string };
+        Returns: {
+          average: number;
+          blocked: boolean;
+          default_count: number;
+          events_count: number;
+          explicit_count: number;
+          name: string;
+          nickname: string;
+          player_id: string;
+          rank: number;
+          restarted: boolean;
+        }[];
+      };
       get_court_rating_averages: {
         Args: { _venue_id: string };
         Returns: {
