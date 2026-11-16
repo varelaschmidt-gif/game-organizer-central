@@ -116,3 +116,19 @@ Recomendar Em conferência do ranking/avaliações com limites acima. Nenhum car
 3. Conferir casos de atraso 10/11 dias e reinício com pagamentos do ambiente de testes; não criar cobranças produtivas para validar.
 4. Conferir que usuário de outro grupo não obtém ranking/notas, membro não vê extratos alheios e nenhum detalhe financeiro de terceiros aparece.
 5. Após aprovação, receber autorização separada para envio/integração em main e aplicação em produção. Só habilitar o ranking no backend produtivo depois de aplicar/verificar a migration nele. Publicação é uma etapa separada.
+
+## Atualização — publicação autorizada em 16/11/2026
+
+O usuário autorizou publicar esta versão e definiu commit e publicação como padrão para futuras alterações do projeto, salvo pedido contrário. Essa orientação foi registrada em AGENTS.md. As restrições de publicação do registro histórico abaixo foram superadas para esta entrega de ranking.
+
+Integração preparada sobre main 8c04b16d7368f2c903d636a24dfb37dedccb1823, preservando avatares, escopo de eventos, seletor de quadras e financeiro atuais. Commit de integração inicial dc55629; ativação produtiva em commit posterior desta branch codex/fase3-publicacao. Sem force push, reset ou mistura das alterações locais pendentes.
+
+A SQL versionada do ranking foi executada em transação no Lovable de produção, sem alterar dados de jogadores, avaliações ou financeiro. Cache da API atualizado. As duas funções têm definições iguais às da cópia após normalizar CRLF. EXECUTE anônimo permanece negado, facade pública invoker e helper privado definer. Uma consulta com papel authenticated e identidade administrativa existente retornou 3 linhas acessíveis, sem pontuação fora de 0–5. Nenhuma fixture foi inserida em produção.
+
+Habilitação agora inclui tanto a cópia Supabase como o endereço produtivo existente owneaksnqdgpilnhjzwp.supabase.co, com a mesma conexão e chaves já usadas pelo sistema. Não há troca de backend.
+
+Validação da árvore integrada: 10 arquivos / 43 testes passaram; TypeScript e build padrão passaram. Os 30 testes reais de RPC e os 26 cenários SELECT permanecem comprovados na cópia, conforme registro abaixo. Login e interface autenticada de ponta a ponta não foram alegados como testados nesta publicação.
+
+A confirmação do envio ao GitHub, versão reconhecida pelo Lovable e resultado da hospedagem será informada na resposta desta rodada. Este trecho registra a versão preparada para publicação; o restante é o histórico anterior da entrega em testes.
+
+## Registro anterior — entrega na cópia de testes

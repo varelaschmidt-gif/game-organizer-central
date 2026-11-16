@@ -10,10 +10,13 @@ export type PlayerRatingRank = Omit<GeneratedRanking, "average" | "rank" | "nick
   nickname: string | null;
 };
 
-// Migration is installed only on this independent test copy. Never probe or
-// enable the new RPC on production before separate deployment authorization.
+// Explicit allowlist of backends where the ranking migration was applied.
+// Never probe an unknown backend for a function that might not be installed.
 export function isPlayerRatingRankingEnabled(url = import.meta.env["VITE_SUPABASE_URL"]): boolean {
-  return url?.replace(/\/+$/, "") === "https://iuwgpfhvauyhxfzlxlbu.supabase.co";
+  return [
+    "https://iuwgpfhvauyhxfzlxlbu.supabase.co",
+    "https://owneaksnqdgpilnhjzwp.supabase.co",
+  ].includes(url?.replace(/\/+$/, "") ?? "");
 }
 
 export const RANKING_PAGE_SIZE = 50;
