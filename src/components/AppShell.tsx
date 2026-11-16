@@ -33,7 +33,7 @@ const NAV = [
   { to: "/quadras", label: "Quadras", icon: MapPin },
   { to: "/financeiro", label: "Financeiro", icon: Wallet },
   { to: "/dashboard", label: "Estatísticas", icon: BarChart3, soon: true },
-  { to: "/dashboard", label: "Configurações", icon: Settings, soon: true },
+  { to: "/financeiro", hash: "configuracoes", label: "Configurações financeiras", icon: Settings },
 ] as const;
 
 export function AppShell() {
@@ -81,7 +81,7 @@ export function AppShell() {
           {NAV.map((n) => (
             <Link
               key={n.label}
-              to={n.to}
+              to={n.to} {...("hash" in n ? { hash: () => n.hash } : {})}
               disabled={"soon" in n}
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-sidebar-foreground hover:bg-sidebar-accent data-[disabled=true]:opacity-50"
               data-disabled={"soon" in n}
@@ -149,7 +149,7 @@ export function AppShell() {
         {NAV.slice(0, 5).map((n) => (
           <Link
             key={n.label}
-            to={n.to}
+            to={n.to} {...("hash" in n ? { hash: () => n.hash } : {})}
             disabled={"soon" in n}
             className="flex flex-col items-center gap-1 py-2 text-[11px] text-muted-foreground data-[disabled=true]:opacity-50"
             data-disabled={"soon" in n}
