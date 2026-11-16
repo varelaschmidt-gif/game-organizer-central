@@ -24,6 +24,7 @@ export function financeStatus(
   outstandingCents: number,
   status = "open",
   today = todaySaoPaulo(),
+  paidCents = 0,
 ): FinanceStatus {
   if (status === "cancelled") return { label: "Cancelada", tone: "neutral" };
   if (outstandingCents <= 0) return { label: "Pago", tone: "success" };
@@ -36,6 +37,7 @@ export function financeStatus(
 
   const days = Math.round((due - current) / 86_400_000);
   if (days < 0) return { label: `Atraso · ${Math.abs(days)} dia(s)`, tone: "danger" };
+  if (paidCents > 0) return { label: "Pago parcialmente", tone: "warning" };
   if (days === 0) return { label: "Vence hoje", tone: "warning" };
   if (days <= 7) return { label: `Vence em ${days} dia(s)`, tone: "warning" };
   return { label: "Em aberto", tone: "warning" };
