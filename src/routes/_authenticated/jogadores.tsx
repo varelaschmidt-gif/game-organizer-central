@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Download, Link2, Pencil, Plus, Upload, UserX, Users } from "lucide-react";
+import { Download, Link2, Pencil, Plus, Trophy, Upload, UserX, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { PlayerAvatar } from "@/components/PlayerAvatar";
 import { loadVenueProfileAvatars } from "@/lib/profile-avatar";
@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { CourtPlayerRatingRanking } from "@/components/court-player-rating-ranking";
+import { isPlayerRatingRankingEnabled } from "@/lib/player-rating-ranking";
 
 type Player = Database["public"]["Tables"]["players"]["Row"];
 
@@ -107,15 +107,15 @@ function PlayersPage() {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div><h1 className="text-3xl font-bold uppercase">Jogadores</h1><p className="text-sm text-muted-foreground">{court.venue.name}</p></div>
-        {manager && (
-          <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2">
+          {isPlayerRatingRankingEnabled() && <Button asChild variant="outline"><Link to="/jogadores/ranking"><Trophy className="mr-2 h-4 w-4" />Ranking</Link></Button>}
+          {manager && <>
             <Button variant="outline" onClick={exportCsv}><Download className="mr-2 h-4 w-4" />Exportar CSV</Button>
             <Button variant="outline" onClick={() => setImporting(true)}><Upload className="mr-2 h-4 w-4" />Importar CSV</Button>
             <Button onClick={() => setEditing("new")}><Plus className="mr-2 h-4 w-4" />Novo jogador</Button>
-          </div>
-        )}
+          </>}
+        </div>
       </div>
-      <CourtPlayerRatingRanking venueId={court.venue.id} />
       <FilterBar>
         <Input placeholder="Buscar por nome, apelido ou e-mail" value={search} onChange={(e) => setSearch(e.target.value)} className="max-w-xs" />
         <select className={sel} value={status} onChange={(e) => setStatus(e.target.value)} aria-label="Status">
