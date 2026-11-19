@@ -1,4 +1,4 @@
-import { ChevronDown, Footprints, Medal, Star, Trophy } from "lucide-react";
+import { ChevronDown, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { PlayerRatingRank } from "@/lib/player-rating-ranking";
 
@@ -16,7 +16,7 @@ const averageFormat = new Intl.NumberFormat("pt-BR", {
   maximumFractionDigits: 2,
 });
 
-function RatingScore({ average, compact = false }: { average: number | null; compact?: boolean }) {
+function RatingScore({ average }: { average: number | null }) {
   if (average === null)
     return (
       <span aria-label="Sem média" className="text-muted-foreground">
@@ -24,7 +24,6 @@ function RatingScore({ average, compact = false }: { average: number | null; com
       </span>
     );
   const label = averageFormat.format(average);
-  const starSize = compact ? "size-2 sm:size-3" : "size-3 sm:size-3.5";
   return (
     <span
       className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap"
@@ -32,100 +31,19 @@ function RatingScore({ average, compact = false }: { average: number | null; com
     >
       <span className="inline-flex gap-px text-amber-400" aria-hidden="true">
         {[0, 1, 2, 3, 4].map((star) => (
-          <span key={star} className={`relative block ${starSize}`}>
+          <span key={star} className="relative block size-3 sm:size-3.5">
             <Star className="size-full opacity-35" />
             <span
               className="absolute inset-y-0 left-0 overflow-hidden"
               style={{ width: `${Math.max(0, Math.min(1, average - star)) * 100}%` }}
             >
-              <Star className={`fill-current ${starSize}`} />
+              <Star className="size-3 fill-current sm:size-3.5" />
             </span>
           </span>
         ))}
       </span>
       <span className="text-xs font-bold tabular-nums sm:text-sm">{label}</span>
     </span>
-  );
-}
-
-const medals = [
-  { label: "Ouro", style: "min-h-32 border-amber-400/45 bg-amber-400/15 text-amber-300" },
-  {
-    label: "Prata",
-    style: "min-h-28 border-slate-400/50 bg-slate-400/15 text-slate-200",
-  },
-  {
-    label: "Bronze",
-    style: "min-h-24 border-orange-500/40 bg-orange-500/10 text-orange-300",
-  },
-] as const;
-
-export function RankingPodiums({
-  top,
-  bottom,
-}: {
-  top: PlayerRatingRank[];
-  bottom: PlayerRatingRank[];
-}) {
-  if (!top.length && !bottom.length) return null;
-  const topHasTie = new Set(top.map((row) => row.rank)).size !== top.length;
-  return (
-    <div className="grid gap-3 lg:grid-cols-2">
-      <section
-        aria-label="Pódio das maiores médias"
-        className="rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-500/15 to-background p-3 sm:p-4"
-      >
-        <h2 className="mb-3 flex items-center gap-2 font-bold">
-          <Trophy aria-hidden="true" className="size-4 text-amber-500" /> Maiores médias
-        </h2>
-        <ul className="grid auto-cols-fr grid-flow-col max-[340px]:grid-flow-row items-end gap-1.5 sm:gap-2">
-          {top.map((row, index) => {
-            const medal = medals[Math.max(0, Math.min(2, (row.rank ?? index + 1) - 1))]!;
-            const order =
-              top.length === 3 && !topHasTie ? ["order-2", "order-1", "order-3"][index] : "";
-            return (
-              <li
-                key={row.player_id}
-                className={`flex min-w-0 flex-col items-center justify-end gap-1 rounded-xl border px-1 py-2 text-center max-[340px]:order-none max-[340px]:min-h-0 max-[340px]:flex-row max-[340px]:justify-between max-[340px]:gap-2 max-[340px]:px-2 max-[340px]:text-left ${medal.style} ${order}`}
-              >
-                <span className="inline-flex items-center gap-1 text-[11px] font-semibold">
-                  <Medal aria-hidden="true" className="size-3" />
-                  {medal.label}
-                </span>
-                <span className="min-w-0 w-full break-words text-xs font-bold text-foreground sm:text-sm">
-                  {row.nickname || row.name}
-                </span>
-                <span className="text-foreground">
-                  <RatingScore average={row.average} compact />
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-
-      <section
-        aria-label="Pódio das menores médias"
-        className="rounded-2xl border border-rose-500/30 bg-gradient-to-br from-rose-500/15 to-background p-3 sm:p-4"
-      >
-        <h2 className="mb-3 flex items-center gap-2 font-bold">
-          <Footprints aria-hidden="true" className="size-4 text-rose-500" /> Menores médias
-        </h2>
-        <ul className="grid auto-cols-fr grid-flow-col max-[340px]:grid-flow-row gap-1.5 sm:gap-2">
-          {bottom.map((row) => (
-            <li
-              key={row.player_id}
-              className="flex min-w-0 flex-col items-center justify-center gap-1 rounded-xl border border-rose-500/25 bg-rose-500/5 px-1 py-3 text-center max-[340px]:flex-row max-[340px]:justify-between max-[340px]:gap-2 max-[340px]:px-2 max-[340px]:py-2 max-[340px]:text-left"
-            >
-              <span className="w-full break-words text-xs font-bold sm:text-sm">
-                {row.nickname || row.name}
-              </span>
-              <RatingScore average={row.average} compact />
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
   );
 }
 
@@ -160,7 +78,7 @@ export function PlayerRatingRanking({ rows, loading, error, onRetry }: Props) {
       ) : !rows.length ? (
         <p className="text-sm text-muted-foreground">Nenhum jogador disponível nesta quadra.</p>
       ) : (
-        <ul className="grid gap-2 lg:grid-cols-2" aria-label="Médias e contagens por jogador">
+        <ul className="grid gap-2" aria-label="Médias e contagens por jogador">
           {rows.map((row) => {
             const status = ratingStatus(row);
             return (

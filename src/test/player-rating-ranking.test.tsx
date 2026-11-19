@@ -1,10 +1,6 @@
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import {
-  PlayerRatingRanking,
-  RankingPodiums,
-  type PlayerRatingRank,
-} from "@/components/player-rating-ranking";
+import { PlayerRatingRanking, type PlayerRatingRank } from "@/components/player-rating-ranking";
 
 afterEach(cleanup);
 const row = (values: Partial<PlayerRatingRank> = {}): PlayerRatingRank => ({
@@ -79,21 +75,5 @@ describe("player rating ranking presentation", () => {
     expect(screen.getByRole("status")).toHaveTextContent("Carregando");
     view.rerender(<PlayerRatingRanking rows={[]} />);
     expect(screen.getByText("Nenhum jogador disponível nesta quadra.")).toBeInTheDocument();
-  });
-
-  it("uses the actual ranking positions for medals and omits medals from the lowest scores", () => {
-    const best = [
-      row({ average: 5 }),
-      row({ player_id: "p2", rank: 2 }),
-      row({ player_id: "p3", rank: 2 }),
-    ];
-    render(<RankingPodiums top={best} bottom={[row({ player_id: "p4", average: 1, rank: 8 })]} />);
-    const top = within(screen.getByRole("region", { name: "Pódio das maiores médias" }));
-    const bottom = within(screen.getByRole("region", { name: "Pódio das menores médias" }));
-    expect(top.getByText("Ouro")).toBeInTheDocument();
-    expect(top.getAllByText("Prata")).toHaveLength(2);
-    expect(top.queryByText("Bronze")).not.toBeInTheDocument();
-    expect(bottom.getByLabelText("Média 1,00 de 5")).toBeInTheDocument();
-    expect(bottom.queryByText(/Ouro|Prata|Bronze/)).not.toBeInTheDocument();
   });
 });

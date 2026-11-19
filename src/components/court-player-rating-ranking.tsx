@@ -6,7 +6,7 @@ import {
   RANKING_PAGE_SIZE,
   type PlayerRatingRank,
 } from "@/lib/player-rating-ranking";
-import { PlayerRatingRanking, RankingPodiums } from "@/components/player-rating-ranking";
+import { PlayerRatingRanking } from "@/components/player-rating-ranking";
 import { Button } from "@/components/ui/button";
 
 export function CourtPlayerRatingRanking({ venueId }: { venueId: string }) {
@@ -16,23 +16,6 @@ export function CourtPlayerRatingRanking({ venueId }: { venueId: string }) {
 
 function CourtRanking({ venueId }: { venueId: string }) {
   const [page, setPage] = useState(0);
-  const podiums = useQuery({
-    queryKey: ["court-rating-avg", venueId, "podiums"],
-    queryFn: async () => {
-      const load = (ascending: boolean) =>
-        supabase
-          .rpc("get_court_player_ranking", { _venue_id: venueId })
-          .gt("events_count", 0)
-          .order("average", { ascending, nullsFirst: false })
-          .order("player_id")
-          .limit(3);
-      const [top, bottom] = await Promise.all([load(false), load(true)]);
-      if (top.error) throw top.error;
-      if (bottom.error) throw bottom.error;
-      return { top: top.data ?? [], bottom: bottom.data ?? [] };
-    },
-    refetchInterval: 60_000,
-  });
   const ranking = useQuery({
     queryKey: ["court-rating-avg", venueId, "ranking", page],
     queryFn: async () => {
@@ -50,16 +33,6 @@ function CourtRanking({ venueId }: { venueId: string }) {
   const hasNext = (ranking.data?.length ?? 0) > RANKING_PAGE_SIZE;
   return (
     <div id="ranking" className="min-w-0 scroll-mt-24 space-y-4">
-      {podiums.isError ? (
-        <div role="status" className="flex flex-wrap items-center gap-2 text-sm">
-          <p>Não foi possível carregar os pódios.</p>
-          <Button size="sm" variant="outline" onClick={() => void podiums.refetch()}>
-            Recarregar pódios
-          </Button>
-        </div>
-      ) : (
-        podiums.data && <RankingPodiums {...podiums.data} />
-      )}
       <PlayerRatingRanking
         rows={rows}
         loading={ranking.isPending}

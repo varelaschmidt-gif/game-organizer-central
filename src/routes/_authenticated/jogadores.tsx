@@ -1,8 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Download, Link2, Pencil, Plus, Trophy, Upload, UserX, Users } from "lucide-react";
+import { Download, Link2, Pencil, Plus, ShieldCheck, Trophy, Upload, UserX, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { PlayerAvatar } from "@/components/PlayerAvatar";
 import { loadVenueProfileAvatars } from "@/lib/profile-avatar";
@@ -15,12 +15,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { AdminManager, MAX_ADMINS } from "@/components/AdminManager";
 import { isPlayerRatingRankingEnabled } from "@/lib/player-rating-ranking";
 
 type Player = Database["public"]["Tables"]["players"]["Row"];
 
 export const Route = createFileRoute("/_authenticated/jogadores")({
+  validateSearch: (search: Record<string, unknown>): { administradores?: boolean } =>
+    search["administradores"] === true ? { administradores: true } : {},
   head: () => ({
     meta: [
       { title: "Jogadores | Rei da Quadra" },
@@ -42,6 +45,9 @@ function PlayersPage() {
   const { group, can, isLoading } = useActiveGroup();
   const court = useActiveCourt(group?.id);
   const qc = useQueryClient();
+  const navigate = useNavigate({ from: "/jogadores" });
+  const { administradores } = Route.useSearch();
+  const isAdmin = group?.role === "admin";
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("active");
   const [type, setType] = useState("");
@@ -79,6 +85,20 @@ function PlayersPage() {
     queryFn: () => loadVenueProfileAvatars(court.venue!.id),
   });
 
+  const adminAccounts = useQuery({
+    queryKey: ["group-admin-accounts", group?.id],
+    enabled: !!group && !!court.venue,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("group_members")
+        .select("user_id")
+        .eq("group_id", group!.id)
+        .eq("role", "admin");
+      if (error) throw error;
+      return new Set((data ?? []).map(({ user_id }) => user_id));
+    },
+  });
+
   const refresh = () => qc.invalidateQueries({ queryKey: ["players"] });
 
   async function exportCsv() {
@@ -109,6 +129,13 @@ function PlayersPage() {
         <div><h1 className="text-3xl font-bold uppercase">Jogadores</h1><p className="text-sm text-muted-foreground">{court.venue.name}</p></div>
         <div className="flex flex-wrap gap-2">
           {isPlayerRatingRankingEnabled() && <Button asChild variant="outline"><Link to="/jogadores/ranking"><Trophy className="mr-2 h-4 w-4" />Ranking</Link></Button>}
+          {isAdmin && (
+            <Button asChild variant="outline">
+              <Link to="/jogadores" search={{ administradores: true }}>
+                <ShieldCheck aria-hidden="true" className="mr-2 h-4 w-4" />Recrutar Administrador
+              </Link>
+            </Button>
+          )}
           {manager && <>
             <Button variant="outline" onClick={exportCsv}><Download className="mr-2 h-4 w-4" />Exportar CSV</Button>
             <Button variant="outline" onClick={() => setImporting(true)}><Upload className="mr-2 h-4 w-4" />Importar CSV</Button>
@@ -138,7 +165,15 @@ function PlayersPage() {
           rowKey={(r: Player) => r.id}
           empty={<EmptyState icon={<Users className="h-8 w-8" />} title="Nenhum jogador encontrado" description={manager ? "Cadastre o primeiro jogador ou ajuste os filtros." : "Ajuste os filtros."} action={manager ? <Button onClick={() => setEditing("new")}>Novo jogador</Button> : undefined} />}
           columns={[
-            { key: "name", header: "Jogador", render: (r: Player) => <PlayerCell p={r} profileAvatar={profileAvatars.data?.[r.id]} /> },
+            {
+              key: "name", header: "Jogador", render: (r: Player) => (
+                <PlayerCell
+                  p={r}
+                  profileAvatar={profileAvatars.data?.[r.id]}
+                  isAdmin={!!r.user_id && adminAccounts.data?.has(r.user_id) === true}
+                />
+              ),
+            },
             { key: "pos", header: "Posição", render: (r: Player) => [r.position, ...r.secondary_positions].filter(Boolean).join(", ") || "—" },
             { key: "type", header: "Tipo", render: (r: Player) => TYPE_LABEL[r.participation_type] },
             { key: "notes", header: "Nota", render: (r: Player) => `${r.skill_level ?? "—"}${r.goalkeeper_level != null ? ` / G ${r.goalkeeper_level}` : ""}` },
@@ -169,6 +204,19 @@ function PlayersPage() {
       {editing && <PlayerForm groupId={group.id} venueId={court.venue.id} player={editing === "new" ? null : editing} manager={manager} onClose={() => { setEditing(null); refresh(); }} />}
       {inviting && <InvitePlayer groupId={group.id} player={inviting} onClose={() => setInviting(null)} />}
       {importing && <ImportCsv groupId={group.id} venueId={court.venue.id} onClose={() => { setImporting(false); refresh(); }} />}
+      {isAdmin && administradores && (
+        <Dialog open onOpenChange={(open) => {
+          if (!open) void navigate({ search: {}, replace: true });
+        }}>
+          <DialogContent className="max-h-[85dvh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Recrutar Administrador</DialogTitle>
+              <DialogDescription>Máximo de {MAX_ADMINS} administradores por grupo, contando todos os locais.</DialogDescription>
+            </DialogHeader>
+            <AdminManager key={group.id} groupId={group.id} />
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 }
@@ -182,12 +230,15 @@ function usePhotoUrl(path: string | null) {
   }).data;
 }
 
-function PlayerCell({ p, profileAvatar }: { p: Player; profileAvatar?: string | undefined }) {
+function PlayerCell({ p, profileAvatar, isAdmin }: { p: Player; profileAvatar?: string | undefined; isAdmin: boolean }) {
   return (
     <div className="flex items-center gap-3">
       <PlayerAvatar name={p.name} profileAvatar={profileAvatar} photoPath={p.photo_path} />
       <div>
-        <div className="font-medium">{p.name}</div>
+        <div className="flex flex-wrap items-center gap-1.5 font-medium">
+          {p.name}
+          {isAdmin && <Badge>Administrador</Badge>}
+        </div>
         <div className="text-xs text-muted-foreground">{p.nickname || p.email || ""}</div>
       </div>
     </div>

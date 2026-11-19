@@ -1,12 +1,12 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { MapPin, Pencil, Plus, ShieldCheck } from "lucide-react";
+import { ChevronDown, MapPin, Pencil, Plus, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useActiveGroup } from "@/lib/groups";
 import { setActiveCourtId, setActiveGroupId } from "@/lib/groups";
-import { AdminManager } from "@/components/AdminManager";
+import { MAX_ADMINS } from "@/components/AdminManager";
 import { publicAppUrl } from "@/lib/public-app-url";
 import { EmptyState, ErrorState, LoadingState } from "@/components/states";
 import { Button } from "@/components/ui/button";
@@ -160,11 +160,19 @@ function CourtsPage() {
       </header>
 
       {isAdmin && (
-        <section className="rounded-xl border bg-card p-4">
-          <h2 className="flex items-center gap-2 font-semibold"><ShieldCheck className="h-5 w-5 text-primary" />Administradores de {group.name}</h2>
-          <p className="mb-3 text-sm text-muted-foreground">Até 3 administradores por quadra, valendo para todos os locais deste grupo.</p>
-          <AdminManager groupId={group.id} />
-        </section>
+        <details key={group.id} className="group rounded-xl border bg-card">
+          <summary className="flex cursor-pointer list-none items-center gap-2 px-4 py-3 text-sm font-semibold [&::-webkit-details-marker]:hidden">
+            <ShieldCheck aria-hidden="true" className="h-4 w-4 shrink-0 text-primary" />
+            Recrutar Administrador
+            <ChevronDown aria-hidden="true" className="ml-auto h-4 w-4 shrink-0 group-open:rotate-180" />
+          </summary>
+          <div className="space-y-3 px-4 pb-4">
+            <p className="text-sm text-muted-foreground">Máximo de {MAX_ADMINS} administradores por grupo, contando todos os locais.</p>
+            <Button asChild size="sm" variant="outline">
+              <Link to="/jogadores" search={{ administradores: true }}>Gerenciar em Jogadores</Link>
+            </Button>
+          </div>
+        </details>
       )}
 
       {!group ? (
