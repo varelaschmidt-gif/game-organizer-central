@@ -8,6 +8,9 @@ const mocks = vi.hoisted(() => ({
   rpc: vi.fn(),
   range: vi.fn(),
   order: vi.fn(),
+  select: vi.fn(),
+  gt: vi.fn(),
+  limit: vi.fn(),
 }));
 vi.mock("@/lib/player-rating-ranking", async (original) => ({
   ...(await original<object>()),
@@ -17,8 +20,13 @@ vi.mock("@/integrations/supabase/client", () => ({ supabase: { rpc: mocks.rpc } 
 
 beforeEach(() => {
   mocks.enabled = true;
-  mocks.rpc.mockReset().mockReturnValue({ order: mocks.order });
-  mocks.order.mockReset().mockReturnValue({ order: mocks.order, range: mocks.range });
+  mocks.rpc.mockReset().mockReturnValue({ order: mocks.order, select: mocks.select });
+  mocks.select.mockReset().mockReturnValue({ gt: mocks.gt });
+  mocks.gt.mockReset().mockReturnValue({ order: mocks.order });
+  mocks.order
+    .mockReset()
+    .mockReturnValue({ order: mocks.order, range: mocks.range, limit: mocks.limit });
+  mocks.limit.mockReset().mockResolvedValue({ data: [{ player_id: "p50" }], error: null });
   mocks.range.mockReset().mockImplementation((from: number) =>
     Promise.resolve({
       data: Array.from({ length: from === 0 ? 51 : 1 }, (_, n) => ({
@@ -59,12 +67,17 @@ describe("court ranking integration", () => {
     await screen.findByRole("heading", { name: "Player 0" });
     expect(mocks.rpc).toHaveBeenCalledWith("get_court_player_ranking", { _venue_id: "court-a" });
     expect(mocks.order).toHaveBeenCalledWith("rank", { ascending: true, nullsFirst: false });
-    expect(mocks.rpc).toHaveBeenCalledTimes(1);
+    expect(mocks.gt).toHaveBeenCalledWith("events_count", 0);
+    expect(mocks.order).toHaveBeenCalledWith("average", { ascending: true, nullsFirst: false });
+    expect(mocks.limit).toHaveBeenCalledExactlyOnceWith(3);
     expect(screen.getAllByRole("list")).toHaveLength(1);
     expect(mocks.range).toHaveBeenCalledWith(0, 50);
     expect(screen.queryByRole("heading", { name: "Player 50" })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Próxima" }));
-    await screen.findByRole("heading", { name: "Player 50" });
+    const lastPlayer = await screen.findByRole("heading", { name: "Player 50" });
+    expect(lastPlayer.closest("li")).toHaveClass("border-rose-500");
+    expect(lastPlayer.closest("li")).toHaveTextContent("Ouro");
+    expect(mocks.limit).toHaveBeenCalledTimes(1);
     expect(mocks.range).toHaveBeenCalledWith(50, 100);
     expect(screen.getByRole("button", { name: "Próxima" })).toBeDisabled();
     expect(screen.getByRole("button", { name: "Anterior" })).toBeEnabled();
