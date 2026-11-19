@@ -1,4 +1,4 @@
-import { ChevronDown, Star } from "lucide-react";
+import { ChevronDown, Medal, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { PlayerRatingRank } from "@/lib/player-rating-ranking";
 
@@ -6,6 +6,7 @@ export type { PlayerRatingRank } from "@/lib/player-rating-ranking";
 
 type Props = {
   rows: PlayerRatingRank[];
+  lastPlayerIds?: ReadonlySet<string>;
   loading?: boolean;
   error?: boolean;
   onRetry?: () => void;
@@ -16,7 +17,13 @@ const averageFormat = new Intl.NumberFormat("pt-BR", {
   maximumFractionDigits: 2,
 });
 
-function RatingScore({ average }: { average: number | null }) {
+const medalStyles: Partial<Record<number, { label: string; card: string; accent: string }>> = {
+  1: { label: "Ouro", card: "border-amber-500 bg-amber-500/10", accent: "text-amber-500" },
+  2: { label: "Prata", card: "border-slate-400/50 bg-slate-400/15", accent: "text-slate-200" },
+  3: { label: "Bronze", card: "border-orange-500/40 bg-orange-500/10", accent: "text-orange-300" },
+};
+
+function RatingScore({ average, accent }: { average: number | null; accent: string }) {
   if (average === null)
     return (
       <span aria-label="Sem média" className="text-muted-foreground">
@@ -29,7 +36,7 @@ function RatingScore({ average }: { average: number | null }) {
       className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap"
       aria-label={`Média ${label} de 5`}
     >
-      <span className="inline-flex gap-px text-amber-400" aria-hidden="true">
+      <span className={`inline-flex gap-px ${accent}`} aria-hidden="true">
         {[0, 1, 2, 3, 4].map((star) => (
           <span key={star} className="relative block size-3 sm:size-3.5">
             <Star className="size-full opacity-35" />
@@ -57,7 +64,7 @@ function ratingStatus(row: PlayerRatingRank) {
   return null;
 }
 
-export function PlayerRatingRanking({ rows, loading, error, onRetry }: Props) {
+export function PlayerRatingRanking({ rows, lastPlayerIds, loading, error, onRetry }: Props) {
   return (
     <section aria-label="Classificação completa" className="space-y-2">
       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
@@ -81,10 +88,16 @@ export function PlayerRatingRanking({ rows, loading, error, onRetry }: Props) {
         <ul className="grid gap-2" aria-label="Médias e contagens por jogador">
           {rows.map((row) => {
             const status = ratingStatus(row);
+            const medal = row.events_count && row.rank !== null ? medalStyles[row.rank] : undefined;
+            const isAmongLast = lastPlayerIds?.has(row.player_id) === true;
+            const card = isAmongLast
+              ? "border-rose-500 bg-rose-500/10"
+              : (medal?.card ?? "bg-card");
+            const accent = isAmongLast ? "text-rose-500" : (medal?.accent ?? "text-amber-400");
             return (
               <li
                 key={row.player_id}
-                className="min-w-0 space-y-2 rounded-xl border bg-card px-3 py-2.5"
+                className={`min-w-0 space-y-2 rounded-xl border px-3 py-2.5 ${card}`}
               >
                 <div className="flex items-center gap-2">
                   <span
@@ -93,10 +106,21 @@ export function PlayerRatingRanking({ rows, loading, error, onRetry }: Props) {
                   >
                     {row.rank === null ? "—" : `${row.rank}º`}
                   </span>
-                  <h3 className="min-w-0 flex-1 break-words text-sm font-semibold">
-                    {row.nickname || row.name}
-                  </h3>
-                  <RatingScore average={row.average} />
+                  <div className="min-w-0 flex-1">
+                    <h3 className="break-words text-sm font-semibold">
+                      {row.nickname || row.name}
+                    </h3>
+                    {medal && (
+                      <span
+                        className={`inline-flex items-center gap-1 text-xs font-medium ${medal.accent}`}
+                      >
+                        <Medal className="size-3" aria-hidden="true" />
+                        {medal.label}
+                      </span>
+                    )}
+                    {isAmongLast && <span className="sr-only">Entre as três menores médias</span>}
+                  </div>
+                  <RatingScore average={row.average} accent={accent} />
                 </div>
                 {status && <p className="text-xs text-muted-foreground">{status}</p>}
                 <dl className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
