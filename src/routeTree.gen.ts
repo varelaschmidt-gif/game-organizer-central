@@ -26,6 +26,7 @@ import { Route as ConviteTokenRouteImport } from './routes/convite.$token'
 import { Route as QuadraCourtIdRouteImport } from './routes/quadra.$courtId'
 import { Route as AuthenticatedEventsEventIdRouteImport } from './routes/_authenticated/events.$eventId'
 import { Route as AuthenticatedJogadoresRankingRouteImport } from './routes/_authenticated/jogadores_.ranking'
+import { Route as AuthenticatedTimesVotacaoEventIdRouteImport } from './routes/_authenticated/times_.votacao.$eventId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -114,6 +115,12 @@ const AuthenticatedJogadoresRankingRoute =
     path: '/jogadores/ranking',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedTimesVotacaoEventIdRoute =
+  AuthenticatedTimesVotacaoEventIdRouteImport.update({
+    id: '/times_/votacao/$eventId',
+    path: '/times/votacao/$eventId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -132,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/quadra/$courtId': typeof QuadraCourtIdRoute
   '/events/$eventId': typeof AuthenticatedEventsEventIdRoute
   '/jogadores/ranking': typeof AuthenticatedJogadoresRankingRoute
+  '/times/votacao/$eventId': typeof AuthenticatedTimesVotacaoEventIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -150,6 +158,7 @@ export interface FileRoutesByTo {
   '/quadra/$courtId': typeof QuadraCourtIdRoute
   '/events/$eventId': typeof AuthenticatedEventsEventIdRoute
   '/jogadores/ranking': typeof AuthenticatedJogadoresRankingRoute
+  '/times/votacao/$eventId': typeof AuthenticatedTimesVotacaoEventIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -170,6 +179,7 @@ export interface FileRoutesById {
   '/quadra/$courtId': typeof QuadraCourtIdRoute
   '/_authenticated/events/$eventId': typeof AuthenticatedEventsEventIdRoute
   '/_authenticated/jogadores_/ranking': typeof AuthenticatedJogadoresRankingRoute
+  '/_authenticated/times_/votacao/$eventId': typeof AuthenticatedTimesVotacaoEventIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/quadra/$courtId'
     | '/events/$eventId'
     | '/jogadores/ranking'
+    | '/times/votacao/$eventId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/quadra/$courtId'
     | '/events/$eventId'
     | '/jogadores/ranking'
+    | '/times/votacao/$eventId'
   id:
     | '__root__'
     | '/'
@@ -227,6 +239,7 @@ export interface FileRouteTypes {
     | '/quadra/$courtId'
     | '/_authenticated/events/$eventId'
     | '/_authenticated/jogadores_/ranking'
+    | '/_authenticated/times_/votacao/$eventId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -359,6 +372,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedJogadoresRankingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/times_/votacao/$eventId': {
+      id: '/_authenticated/times_/votacao/$eventId'
+      path: '/times/votacao/$eventId'
+      fullPath: '/times/votacao/$eventId'
+      preLoaderRoute: typeof AuthenticatedTimesVotacaoEventIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -384,6 +404,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedQuadrasRoute: typeof AuthenticatedQuadrasRoute
   AuthenticatedTimesRoute: typeof AuthenticatedTimesRoute
   AuthenticatedJogadoresRankingRoute: typeof AuthenticatedJogadoresRankingRoute
+  AuthenticatedTimesVotacaoEventIdRoute: typeof AuthenticatedTimesVotacaoEventIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -397,6 +418,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedQuadrasRoute: AuthenticatedQuadrasRoute,
   AuthenticatedTimesRoute: AuthenticatedTimesRoute,
   AuthenticatedJogadoresRankingRoute: AuthenticatedJogadoresRankingRoute,
+  AuthenticatedTimesVotacaoEventIdRoute: AuthenticatedTimesVotacaoEventIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

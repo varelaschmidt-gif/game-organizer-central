@@ -57,6 +57,7 @@ export function RatingSection({ eventId, venueId, rows, isAdmin }: Props) {
     },
   });
   const fiveHolder = ratings.data?.find((r) => r.rating === 5)?.player_id;
+  const oneHolder = ratings.data?.find((r) => r.rating === 1)?.player_id;
   const editable = isAdmin && !busy && ratings.isSuccess && !ratings.isFetching;
   async function refresh() {
     await Promise.all([
@@ -139,7 +140,9 @@ export function RatingSection({ eventId, venueId, rows, isAdmin }: Props) {
             </div>
             <div className="flex items-center gap-1">
               {[1, 2, 3, 4, 5].map((n) => {
-                const blocked = n === 5 && !!fiveHolder && fiveHolder !== row.player_id;
+                const blocked =
+                  (n === 5 && !!fiveHolder && fiveHolder !== row.player_id) ||
+                  (n === 1 && !!oneHolder && oneHolder !== row.player_id);
                 return (
                   <button
                     key={n}
@@ -147,7 +150,11 @@ export function RatingSection({ eventId, venueId, rows, isAdmin }: Props) {
                     aria-label={`${n} estrelas para ${name}`}
                     aria-pressed={n === current}
                     disabled={!editable || blocked}
-                    title={blocked ? "Outro jogador já tem 5 estrelas" : undefined}
+                    title={
+                      blocked
+                        ? `Outro jogador já tem ${n} ${n === 1 ? "estrela" : "estrelas"}`
+                        : undefined
+                    }
                     onClick={() => void save(row.player_id, n)}
                     className="disabled:cursor-not-allowed"
                   >

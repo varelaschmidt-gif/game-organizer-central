@@ -1947,6 +1947,16 @@ export type Database = {
         Returns: number;
       };
       can_manage_finance: { Args: { _group_id: string }; Returns: boolean };
+      complete_event_voting: {
+        Args: {
+          _best_player_id: string;
+          _event_id: string;
+          _expected_player_ids: string[];
+          _expected_ratings: Json;
+          _worst_player_id: string;
+        };
+        Returns: undefined;
+      };
       create_court: {
         Args: {
           _address: string;
@@ -2255,6 +2265,10 @@ export type Database = {
         Returns: undefined;
       };
       shares_group_with: { Args: { _user_id: string }; Returns: boolean };
+      start_event_voting: {
+        Args: { _event_id: string; _present_ids: string[] };
+        Returns: undefined;
+      };
       update_events_scoped: {
         Args: { _changes: Json; _event_id: string; _scope: string };
         Returns: number;
