@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
-import { financeRpc } from "@/lib/finance-client";
+import { financeDb, financeRpc, type FinancePlayerTermsRow } from "@/lib/finance-client";
 import { readAllFinanceRows, requireMoneyCents } from "@/lib/finance-report";
 import { formatBRL } from "@/lib/finance-view";
 
@@ -13,15 +12,7 @@ type Player = {
   status?: string;
   is_event_guest?: boolean;
 };
-type Terms = {
-  player_id: string;
-  monthly_fee_cents: number | null;
-  due_day: number | null;
-  reason: string;
-  updated_by: string;
-  updated_at: string;
-};
-const db = supabase;
+const db = financeDb;
 
 export function FinancePlayerTerms({
   venueId,
@@ -46,7 +37,7 @@ export function FinancePlayerTerms({
         .eq("venue_id", venueId)
         .order("player_id");
       const { data } = await readAllFinanceRows((from, to) => query.range(from, to));
-      return data as Terms[];
+      return data as FinancePlayerTermsRow[];
     },
   });
   return (

@@ -22,3 +22,4 @@
 - Player-editable vs admin-only columns on players are enforced by a trigger — RLS can't restrict columns.
 - Signed-in pages live under src/routes/_authenticated (client-only gate) and share AppShell.
 - Event ratings (1-5 stars, admin-only, one 5-star per event via partial unique index) live in event_player_ratings; peer voting table is kept but disabled by its trigger — preserves old votes.
+- Supplement lagging generated finance types at the finance-client boundary using checked-in SQL contracts and the existing client; this preserves managed files, sessions, and backend configuration.
